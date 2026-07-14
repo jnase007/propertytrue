@@ -1,20 +1,87 @@
 (function () {
+  // Skip link
+  if (!document.querySelector(".skip-link")) {
+    const skip = document.createElement("a");
+    skip.className = "skip-link";
+    skip.href = "#main";
+    skip.textContent = "Skip to content";
+    document.body.prepend(skip);
+  }
+
+  // Main landmark
+  const main = document.querySelector("main");
+  if (main && !main.id) main.id = "main";
+
+  // Active nav by path
+  const path = (location.pathname.replace(/\/$/, "") || "/").toLowerCase();
+  const page =
+    path.endsWith(".html") ? path.split("/").pop() : path === "/" ? "index.html" : path;
+  document.querySelectorAll(".nav-desktop a, .mobile-menu a").forEach((a) => {
+    const href = (a.getAttribute("href") || "").replace(/^\//, "").toLowerCase();
+    const isHome = (href === "" || href === "/" || href === "index.html") && (page === "index.html" || page === "/");
+    const isMatch = href && page === href;
+    if (isHome || isMatch) a.classList.add("is-active");
+  });
+
+  // Header scroll state
+  const header = document.querySelector(".site-header");
+  const onScroll = () => {
+    if (!header) return;
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
+  };
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // Mobile menu
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
+  const setMenu = (open) => {
+    if (!mobileMenu || !menuBtn) return;
+    mobileMenu.classList.toggle("open", open);
+    document.body.classList.toggle("menu-open", open);
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menuBtn.textContent = open ? "✕" : "☰";
+  };
   if (menuBtn && mobileMenu) {
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.setAttribute("aria-controls", "mobileMenu");
     menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("open");
+      setMenu(!mobileMenu.classList.contains("open"));
     });
     mobileMenu.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", () => mobileMenu.classList.remove("open"));
+      a.addEventListener("click", () => setMenu(false));
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setMenu(false);
     });
   }
 
+  // Sticky mobile access CTA (all pages except access)
+  const isAccess = /access\.html$/i.test(location.pathname);
+  if (!isAccess && !document.querySelector(".mobile-cta")) {
+    const bar = document.createElement("div");
+    bar.className = "mobile-cta";
+    bar.innerHTML = '<a class="btn btn-gold" href="/access.html">Request Private Access</a>';
+    document.body.appendChild(bar);
+    document.body.classList.add("has-mobile-cta");
+
+    const updateCta = () => {
+      const show = window.innerWidth < 1024 && window.scrollY > 420;
+      bar.classList.toggle("is-visible", show);
+    };
+    updateCta();
+    window.addEventListener("scroll", updateCta, { passive: true });
+    window.addEventListener("resize", updateCta);
+  }
+
+  // Year
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
+  // Reveal on scroll
   const reveals = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window) {
+  if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -31,17 +98,20 @@
     reveals.forEach((el) => el.classList.add("in"));
   }
 
+  // Access form UX
   const form = document.getElementById("accessForm");
   if (!form) return;
 
   const success = document.getElementById("formSuccess");
   const errorEl = document.getElementById("formError");
   const submitBtn = document.getElementById("submitBtn");
+  const successPanel = document.getElementById("formSuccessPanel");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (success) success.classList.add("hidden");
     if (errorEl) errorEl.classList.add("hidden");
+    if (successPanel) successPanel.classList.add("hidden");
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = "Sending…";
@@ -53,7 +123,13 @@
         headers: { Accept: "application/json" },
       });
       if (!res.ok) throw new Error("bad status");
-      if (success) success.classList.remove("hidden");
+      if (successPanel) {
+        successPanel.classList.remove("hidden");
+        form.classList.add("hidden");
+        successPanel.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else if (success) {
+        success.classList.remove("hidden");
+      }
       form.reset();
     } catch (err) {
       if (errorEl) errorEl.classList.remove("hidden");

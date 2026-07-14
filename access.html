@@ -37,15 +37,23 @@
       </div>
     </section>
     <section class="section section-soft">
-      <div class="container split" style="margin-bottom:1.6rem;align-items:stretch;">
-        <div class="reveal" style="min-height:220px;">
-          <img src="/assets/hero-storage.jpg" alt="Property True storage visual" style="width:100%;height:100%;min-height:220px;object-fit:cover;border:1px solid var(--line);box-shadow:var(--shadow);" />
+      <div class="container" style="max-width:820px;">
+        <div class="grid-3 reveal" style="margin-bottom:1.6rem;">
+          <article class="card"><div class="card-num">01</div><h3>Share context</h3><p>Who you are and what kind of relationship you want.</p></article>
+          <article class="card"><div class="card-num">02</div><h3>Private review</h3><p>Fit is evaluated directly — not by a public marketplace filter.</p></article>
+          <article class="card"><div class="card-num">03</div><h3>Direct reply</h3><p>If there is mutual interest, you hear back personally.</p></article>
         </div>
-        <div class="reveal" style="min-height:220px;">
-          <img src="/assets/approach.jpg" alt="Private capital conversation setting" style="width:100%;height:100%;min-height:220px;object-fit:cover;border:1px solid var(--line);box-shadow:var(--shadow);" />
+
+        <div id="formSuccessPanel" class="form-success-panel reveal hidden">
+          <div class="kicker">Request Received</div>
+          <h3>Thank you — your note is in.</h3>
+          <p>If there is mutual fit, you will hear back directly. For anything time-sensitive, email <strong>justin@brandastic.com</strong>.</p>
+          <div class="hero-actions" style="margin-top:1.2rem;">
+            <a class="btn btn-outline" href="/track-record.html">View Track Record</a>
+            <a class="btn btn-gold" href="/">Back Home</a>
+          </div>
         </div>
-      </div>
-      <div class="container" style="max-width:760px;">
+
         <form id="accessForm" class="form-card reveal" action="https://formsubmit.co/ajax/justin@brandastic.com" method="POST">
           <input type="hidden" name="_subject" value="PropertyTrue — private access request" />
           <input type="hidden" name="_template" value="table" />
@@ -53,20 +61,20 @@
           <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
           <div class="form-grid two">
             <div>
-              <label>Full Name *</label>
-              <input required name="name" placeholder="Your name" />
+              <label for="name">Full Name *</label>
+              <input id="name" required name="name" autocomplete="name" placeholder="Your name" />
             </div>
             <div>
-              <label>Email *</label>
-              <input required type="email" name="email" placeholder="name@domain.com" />
+              <label for="email">Email *</label>
+              <input id="email" required type="email" name="email" autocomplete="email" placeholder="name@domain.com" />
             </div>
             <div>
-              <label>Phone</label>
-              <input name="phone" placeholder="Optional" />
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" autocomplete="tel" placeholder="Optional" />
             </div>
             <div>
-              <label>I am a… *</label>
-              <select required name="role">
+              <label for="role">I am a… *</label>
+              <select id="role" required name="role">
                 <option value="">Select</option>
                 <option>Accredited Investor</option>
                 <option>Family Office / Principal</option>
@@ -75,8 +83,8 @@
               </select>
             </div>
             <div>
-              <label>Primary Interest</label>
-              <select name="interest">
+              <label for="interest">Primary Interest</label>
+              <select id="interest" name="interest">
                 <option>Self-Storage</option>
                 <option>Multifamily</option>
                 <option>Capital Partnership Opportunities</option>
@@ -85,8 +93,8 @@
               </select>
             </div>
             <div>
-              <label>Typical Check Size (if investor)</label>
-              <select name="check">
+              <label for="check">Typical Check Size (if investor)</label>
+              <select id="check" name="check">
                 <option>Prefer not to say</option>
                 <option>$50k–$100k</option>
                 <option>$100k–$250k</option>
@@ -97,16 +105,17 @@
             </div>
           </div>
           <div style="margin-top:1rem;">
-            <label>Note</label>
-            <textarea name="note" rows="4" placeholder="Optional context on goals, markets, or partnership interest"></textarea>
+            <label for="note">Note</label>
+            <textarea id="note" name="note" rows="4" placeholder="Optional context on goals, markets, or partnership interest"></textarea>
           </div>
           <label class="checkbox" style="margin-top:1rem;">
-            <input required type="checkbox" />
+            <input required type="checkbox" name="ack" value="yes" />
             <span>I understand this form requests a private conversation only and does not constitute an offer or solicitation of securities.</span>
           </label>
           <button type="submit" id="submitBtn" class="btn btn-gold" style="margin-top:1.2rem;">Submit Request</button>
           <p id="formSuccess" class="form-msg ok hidden">Received. If there is mutual fit, you will hear back directly.</p>
           <p id="formError" class="form-msg err hidden">Something went wrong. Email justin@brandastic.com directly and we will follow up.</p>
+          <p class="fineprint" style="margin-top:1.1rem;">Prefer email? Write directly to justin@brandastic.com.</p>
         </form>
       </div>
     </section>
