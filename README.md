@@ -51,6 +51,20 @@ Access form posts via FormSubmit AJAX to **justin@brandastic.com**.
 - First production submit: FormSubmit emails a **confirmation link** — click it once.
 - Change recipient: edit the form `action` URL in `index.html`.
 
+
+## Future: client logins (planned, not in v1)
+
+Public brand site stays static. Authenticated product is a **separate app surface**, not bolted into `index.html`.
+
+Recommended path when ready:
+1. Keep `propertytrue.com` as marketing/principal brand (this repo / Pages)
+2. Add `app.propertytrue.com` (or `/app`) for investor/operator logins
+3. Stack candidates: **Clerk or Supabase Auth** + Next.js/Vercel (or similar) for portal
+4. Portal features later: private materials, deal rooms, CRM-linked profiles — invitation only
+5. No public marketplace board; login != open deal shopping
+
+v1 does **not** include auth, accounts, or document vaults. Form remains the only intake.
+
 ## Compliance
 
 Informational brand presence only. Not an offer or solicitation of securities. Counsel before broad capital marketing.
