@@ -6,11 +6,30 @@ Private real estate capital brand site for [propertytrue.com](https://propertytr
 
 | Piece | Choice | Why |
 |---|---|---|
-| Host | **GitHub Pages** from this repo | Free, simple, already on GitHub |
-| Domain | `propertytrue.com` via `CNAME` | Apex/www → GitHub Pages |
+| Host | **Vercel** (`propertytrue` project) | Live preview + custom domain; GitHub is source |
+| Domain | `propertytrue.com` on Vercel | Apex A + www CNAME (see DNS below) |
 | Form | **FormSubmit** → `justin@brandastic.com` | Zero backend; first submit sends confirm email |
 | CRM later | Google Sheet / HubSpot / Affinity | After real volume |
 | Not in v1 | Deal board, EquityMD clone, login portal | Architecture: principal brand only |
+
+
+## DNS cutover (required for propertytrue.com)
+
+Preview is already live: https://propertytrue.vercel.app
+
+Domain is on **GoDaddy DNS** (`ns49/ns50.domaincontrol.com`). In GoDaddy → DNS for `propertytrue.com`:
+
+| Type | Name | Value |
+|---|---|---|
+| **A** | `@` | `216.150.1.1` |
+| **A** | `@` | `216.150.16.1` |
+| **CNAME** | `www` | `3ee4cf508c21f457.vercel-dns-016.com.` |
+
+- Remove the old **A** record to `97.74.211.2` (current maintenance host).
+- Keep TTL low (600s) until it works.
+- Vercel will issue HTTPS after DNS validates.
+
+Optional: point nameservers to `ns1.vercel-dns.com` / `ns2.vercel-dns.com` instead of records.
 
 ## Architecture
 
