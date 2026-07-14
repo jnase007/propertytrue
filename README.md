@@ -2,49 +2,55 @@
 
 Private real estate capital brand site for [propertytrue.com](https://propertytrue.com).
 
-## Architecture (locked)
+## Recommended stack (locked for v1)
 
-- **Principal / relationship brand** — not a public multi-deal marketplace
-- **EquityMD** remains the separate SEC marketplace surface (quiet)
-- No live deal board, no syndicators’ public deal posts
-- Track record uses **partner / capital partner** language only
-- CTA = private conversation / access request
+| Piece | Choice | Why |
+|---|---|---|
+| Host | **GitHub Pages** from this repo | Free, simple, already on GitHub |
+| Domain | `propertytrue.com` via `CNAME` | Apex/www → GitHub Pages |
+| Form | **FormSubmit** → `justin@brandastic.com` | Zero backend; first submit sends confirm email |
+| CRM later | Google Sheet / HubSpot / Affinity | After real volume |
+| Not in v1 | Deal board, EquityMD clone, login portal | Architecture: principal brand only |
 
-## Stack
+## Architecture
 
-- Static single-page site (`index.html`)
-- Tailwind CDN + system fonts (Cormorant Garamond + Inter)
-- Form is front-end only until wired to an endpoint (Formspree / Google / CRM)
+- Principal / relationship brand — **not** marketplace #2
+- EquityMD stays separate (quiet SEC surface)
+- Track record = partner language only (Backbay + Sutera)
+- CTA = private conversation request
+
+## Files
+
+- `index.html` — full brand page
+- `privacy.html` — privacy policy
+- `CNAME` — `propertytrue.com`
+- `.github/workflows/pages.yml` — auto-deploy on push to `main`
+
+## Enable GitHub Pages (one-time)
+
+1. Repo → **Settings → Pages**
+2. Source: **GitHub Actions** (workflow already in repo)
+3. Custom domain: `propertytrue.com`
+4. DNS at registrar (GitHub will show exact records after domain save):
+   - Apex `A` records for GitHub Pages **or** `ALIAS`/`ANAME` if supported
+   - Optional `www` `CNAME` → `jnase007.github.io`
+5. Wait for HTTPS certificate (can take minutes–hours)
 
 ## Local preview
 
-Open `index.html` in a browser, or:
-
 ```bash
+cd propertytrue
 python3 -m http.server 5173
 # http://localhost:5173
 ```
 
-## Deploy
+## Form
 
-### GitHub Pages
+Access form posts via FormSubmit AJAX to **justin@brandastic.com**.
 
-1. Repo: `jnase007/propertytrue`
-2. Settings → Pages → Deploy from branch `main` / root (or `/docs` if moved)
-3. Custom domain: `propertytrue.com` (CNAME file included)
-4. DNS at registrar:
-   - `A` / `AAAA` for GitHub Pages apex, **or**
-   - `CNAME` `www` → `jnase007.github.io`
-5. Enforce HTTPS after DNS propagates
+- First production submit: FormSubmit emails a **confirmation link** — click it once.
+- Change recipient: edit the form `action` URL in `index.html`.
 
-### Alternative
+## Compliance
 
-Any static host (Vercel / Netlify / Cloudflare Pages) pointing at this repo works the same.
-
-## Form wiring (next)
-
-Replace the `accessForm` submit handler in `index.html` with a real endpoint when ready. Until then, submissions only log in the browser and show the success message.
-
-## Compliance note
-
-This site is informational brand presence only. It is **not** an offer or solicitation of securities. Any actual offering would be private, document-based, and counsel-reviewed.
+Informational brand presence only. Not an offer or solicitation of securities. Counsel before broad capital marketing.
