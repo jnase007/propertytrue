@@ -14,827 +14,165 @@
   <meta property="og:image" content="https://propertytrue.vercel.app/assets/hero-storage.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://propertytrue.vercel.app/assets/hero-storage.jpg" />
-  <link rel="preload" as="image" href="/assets/hero-storage.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ink: {
-              950: '#050608',
-              900: '#0a0d12',
-              850: '#10151d',
-              800: '#151c26',
-              700: '#1f2835',
-              600: '#2d3848'
-            },
-            gold: {
-              200: '#f0e2c4',
-              300: '#e8d5a8',
-              400: '#d9bc7f',
-              500: '#c6a46a',
-              600: '#a9864d',
-              700: '#8a6d3f'
-            },
-            cream: {
-              50: '#fcf9f3',
-              100: '#f5efe4',
-              200: '#e8dcc6'
-            },
-            steel: {
-              300: '#a8b7c9',
-              400: '#8799ae',
-              500: '#6a7d94'
-            }
-          },
-          fontFamily: {
-            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-            sans: ['Manrope', 'system-ui', 'sans-serif']
-          },
-          boxShadow: {
-            glow: '0 0 60px rgba(198, 164, 106, 0.14)',
-            card: '0 30px 80px rgba(0,0,0,0.45)',
-            soft: '0 12px 40px rgba(0,0,0,0.28)'
-          },
-          backgroundImage: {
-            'hero-fade': 'radial-gradient(ellipse at top, rgba(198,164,106,0.10), transparent 55%), linear-gradient(180deg, #0a0d12 0%, #050608 100%)',
-            'panel': 'linear-gradient(165deg, rgba(21,28,38,0.96) 0%, rgba(10,13,18,0.98) 100%)',
-            'veil': 'linear-gradient(105deg, rgba(5,6,8,0.97) 0%, rgba(5,6,8,0.90) 38%, rgba(5,6,8,0.62) 62%, rgba(5,6,8,0.40) 100%)',
-            'veil-bottom': 'linear-gradient(180deg, rgba(5,6,8,0.15) 0%, rgba(5,6,8,0.78) 58%, #050608 100%)'
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    html { scroll-behavior: smooth; }
-    body {
-      background: #050608;
-      color: #f5efe4;
-      letter-spacing: 0.01em;
-    }
-    ::selection { background: rgba(198,164,106,0.28); color: #fcf9f3; }
-    .grain {
-      position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.045;
-      mix-blend-mode: soft-light;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-    .gold-line {
-      background: linear-gradient(90deg, transparent 0%, rgba(198,164,106,0.15) 12%, rgba(232,213,168,0.85) 50%, rgba(198,164,106,0.15) 88%, transparent 100%);
-      height: 1px;
-    }
-    .gold-hairline {
-      background: linear-gradient(90deg, transparent, rgba(198,164,106,0.55), transparent);
-      height: 1px;
-    }
-    .nav-blur {
-      backdrop-filter: blur(22px) saturate(1.15);
-      -webkit-backdrop-filter: blur(22px) saturate(1.15);
-    }
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
-    .reveal.in { opacity: 1; transform: none; }
-    .card-hover { transition: transform .45s cubic-bezier(.22,1,.36,1), border-color .45s ease, box-shadow .45s ease; }
-    .card-hover:hover { transform: translateY(-5px); border-color: rgba(198,164,106,0.5); box-shadow: 0 28px 70px rgba(0,0,0,0.42), 0 0 50px rgba(198,164,106,0.08); }
-    .btn-gold {
-      background: linear-gradient(135deg, #f0e2c4 0%, #d9bc7f 38%, #c6a46a 72%, #a9864d 100%);
-      color: #0a0d12;
-      box-shadow: 0 10px 30px rgba(198,164,106,0.18);
-      transition: filter .25s ease, transform .25s ease, box-shadow .25s ease;
-    }
-    .btn-gold:hover { filter: brightness(1.06); transform: translateY(-1px); box-shadow: 0 14px 36px rgba(198,164,106,0.24); }
-    .btn-outline {
-      border: 1px solid rgba(198,164,106,0.42);
-      color: #e8d5a8;
-      background: rgba(5,6,8,0.25);
-      transition: background .25s ease, border-color .25s ease, color .25s ease;
-    }
-    .btn-outline:hover { background: rgba(198,164,106,0.08); border-color: rgba(232,213,168,0.75); color: #f0e2c4; }
-    .modal-overlay {
-      background: rgba(5,6,8,0.88);
-      backdrop-filter: blur(12px);
-    }
-    input, select, textarea {
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(198,164,106,0.16);
-      color: #f5efe4;
-      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
-    }
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: rgba(198,164,106,0.55);
-      background: rgba(255,255,255,0.04);
-      box-shadow: 0 0 0 3px rgba(198,164,106,0.10);
-    }
-    ::placeholder { color: rgba(168,183,201,0.5); }
-    .muted { color: #a8b7c9; }
-    .lock-chip {
-      border: 1px solid rgba(198,164,106,0.28);
-      background: linear-gradient(180deg, rgba(198,164,106,0.10), rgba(198,164,106,0.04));
-      color: #e8d5a8;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-    }
-    .img-frame {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(198,164,106,0.22);
-      background: #0a0d12;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
-    }
-    .img-frame::after {
-      content: '';
-      position: absolute; inset: 0;
-      pointer-events: none;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
-    }
-    .img-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 1.25s cubic-bezier(.22,1,.36,1), filter 1.25s ease;
-      filter: saturate(0.92) contrast(1.05);
-    }
-    .img-frame:hover img {
-      transform: scale(1.04);
-      filter: saturate(1) contrast(1.08);
-    }
-    .hero-photo {
-      position: absolute;
-      inset: 0;
-      background-image: url('/assets/hero-storage.jpg');
-      background-size: cover;
-      background-position: center 38%;
-      transform: scale(1.04);
-      filter: saturate(0.9) contrast(1.08) brightness(0.82);
-    }
-    .section-photo {
-      min-height: 340px;
-    }
-    .display-hero {
-      font-weight: 500;
-      letter-spacing: -0.02em;
-    }
-    .eyebrow {
-      letter-spacing: 0.28em;
-    }
-    .luxury-card {
-      border: 1px solid rgba(198,164,106,0.16);
-      background: linear-gradient(165deg, rgba(21,28,38,0.92), rgba(10,13,18,0.96));
-      box-shadow: 0 18px 50px rgba(0,0,0,0.28);
-    }
-    .stat-tile {
-      border: 1px solid rgba(255,255,255,0.06);
-      background: linear-gradient(180deg, rgba(16,21,29,0.82), rgba(5,6,8,0.72));
-      backdrop-filter: blur(8px);
-    }
-    @media (min-width: 1024px) {
-      .section-photo { min-height: 100%; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
-      html { scroll-behavior: auto; }
-    }
-  </style>
+  <link rel="stylesheet" href="/styles.css" />
 </head>
-<body class="font-sans antialiased">
-  <div class="grain"></div>
-
-  <!-- NAV -->
-  <header id="nav" class="fixed top-0 inset-x-0 z-40 nav-blur border-b border-white/[0.04] bg-ink-950/75">
-    <div class="gold-hairline"></div>
-    <div class="mx-auto max-w-7xl px-5 md:px-8">
-      <div class="flex h-18 md:h-20 items-center justify-between py-4">
-        <a href="#top" class="group flex items-center gap-3.5">
-          <span class="inline-flex h-9 w-9 items-center justify-center border border-gold-500/45 bg-gradient-to-b from-ink-800 to-ink-950 text-gold-300 font-display text-lg tracking-wide shadow-soft">PT</span>
-          <span class="font-display text-xl md:text-2xl tracking-[0.22em] text-cream-50 group-hover:text-gold-300 transition">PROPERTY TRUE</span>
-        </a>
-
-        <nav class="hidden lg:flex items-center gap-9 text-[12px] tracking-[0.18em] uppercase text-steel-300">
-          <a href="#approach" class="hover:text-gold-300 transition">Approach</a>
-          <a href="#track-record" class="hover:text-gold-300 transition">Track Record</a>
-          <a href="#thesis" class="hover:text-gold-300 transition">Thesis</a>
-          <a href="#network" class="hover:text-gold-300 transition">Network</a>
-          <a href="#partners" class="hover:text-gold-300 transition">Partners</a>
-          <a href="#access" class="btn-gold px-6 py-2.5 text-[11px] font-semibold tracking-[0.2em] uppercase">Request Access</a>
-        </nav>
-
-        <button id="menuBtn" class="lg:hidden inline-flex items-center justify-center h-11 w-11 border border-gold-500/30 text-gold-300" aria-label="Open menu">
-          <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-      </div>
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="/">
+        <span class="brand-mark">PT</span>
+        <span class="brand-name">PROPERTY TRUE</span>
+      </a>
+      <nav class="nav-desktop">
+        <a class="is-active" href="/">Home</a>
+        <a href="/approach.html">Approach</a>
+        <a href="/track-record.html">Track Record</a>
+        <a href="/thesis.html">Thesis</a>
+        <a href="/network.html">Network</a>
+        <a href="/partners.html">Partners</a>
+        <a href="/about.html">About</a>
+        <a class="btn btn-gold" href="/access.html">Request Access</a>
+      </nav>
+      <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
     </div>
-    <div id="mobileMenu" class="hidden lg:hidden border-t border-white/5 bg-ink-950/95">
-      <div class="px-5 py-6 flex flex-col gap-4 text-[13px] tracking-[0.14em] uppercase text-steel-300">
-        <a href="#approach" class="mobile-link hover:text-gold-300">Approach</a>
-        <a href="#track-record" class="mobile-link hover:text-gold-300">Track Record</a>
-        <a href="#thesis" class="mobile-link hover:text-gold-300">Thesis</a>
-        <a href="#network" class="mobile-link hover:text-gold-300">Network</a>
-        <a href="#partners" class="mobile-link hover:text-gold-300">Partners</a>
-        <a href="#access" class="mobile-link btn-gold text-center px-5 py-3 text-[12px] font-medium text-ink-900">Request Access</a>
+    <div id="mobileMenu" class="mobile-menu">
+      <div class="container">
+        <a href="/">Home</a>
+        <a href="/approach.html">Approach</a>
+        <a href="/track-record.html">Track Record</a>
+        <a href="/thesis.html">Thesis</a>
+        <a href="/network.html">Network</a>
+        <a href="/partners.html">Partners</a>
+        <a href="/about.html">About</a>
+        <a href="/access.html">Request Access</a>
       </div>
     </div>
   </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="relative overflow-hidden pt-36 pb-28 md:pt-44 md:pb-36 min-h-[92vh] flex items-center">
-      <div class="hero-photo" aria-hidden="true"></div>
-      <div class="absolute inset-0 bg-veil" aria-hidden="true"></div>
-      <div class="absolute inset-0 bg-veil-bottom" aria-hidden="true"></div>
-      <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute -top-32 right-0 h-[480px] w-[480px] rounded-full bg-gold-500/[0.09] blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 h-[360px] w-[360px] rounded-full bg-steel-500/[0.08] blur-3xl"></div>
-        <div class="absolute inset-0 opacity-[0.12]" style="background-image: linear-gradient(rgba(198,164,106,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(198,164,106,0.07) 1px, transparent 1px); background-size: 88px 88px;"></div>
-      </div>
-
-      <div class="relative mx-auto max-w-7xl px-5 md:px-8 w-full">
-        <div class="max-w-4xl reveal">
-          <div class="inline-flex items-center gap-3 lock-chip px-4 py-2 text-[10px] eyebrow uppercase mb-10">
-            <span class="h-1.5 w-1.5 rounded-full bg-gold-300 shadow-[0_0_12px_rgba(232,213,168,0.7)]"></span>
-            Private Capital · By Invitation
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Private Capital · By Invitation</div>
+          <h1>Precision capital.<br /><em>Private relationships.</em><br />Enduring real assets.</h1>
+          <p class="lead">Property True is the principal brand of Justin Nassie — a discreet real estate capital partner for operator relationships and high-caliber investors. Not a public marketplace. Direct, intentional connection.</p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="/access.html">Request Private Access</a>
+            <a class="btn btn-outline" href="/approach.html">Our Approach</a>
           </div>
-          <h1 class="font-display display-hero text-[3.25rem] sm:text-6xl md:text-7xl lg:text-[5.1rem] leading-[0.98] text-cream-50">
-            Precision capital.<br />
-            <span class="text-gold-300 italic font-normal">Private relationships.</span><br />
-            Enduring real assets.
-          </h1>
-          <p class="mt-9 max-w-2xl text-lg md:text-[1.2rem] leading-[1.75] text-steel-300 font-light">
-            Property True is the principal brand of Justin Nassie — a discreet real estate capital partner for operator relationships and high-caliber investors. Not a public marketplace. Not volume listings. Direct, intentional connection.
-          </p>
-          <div class="mt-11 flex flex-col sm:flex-row gap-4">
-            <a href="#access" class="btn-gold inline-flex items-center justify-center px-9 py-4 text-[11px] font-semibold tracking-[0.22em] uppercase">Request Private Access</a>
-            <a href="#approach" class="btn-outline inline-flex items-center justify-center px-9 py-4 text-[11px] font-medium tracking-[0.22em] uppercase">Our Approach</a>
-          </div>
-          <p class="mt-9 text-[11px] leading-relaxed text-steel-400/90 max-w-xl tracking-wide">
-            Communications are educational and relationship-oriented. No securities offering is made on this website. Investment opportunities, if any, are shared privately and only with qualified parties under applicable exemptions.
-          </p>
+          <p class="fineprint">Communications are educational and relationship-oriented. No securities offering is made on this website.</p>
         </div>
-
-        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 reveal">
-          <div class="stat-tile p-5 md:p-6">
-            <div class="text-[10px] tracking-[0.22em] uppercase text-gold-500/90">Model</div>
-            <div class="mt-3 font-display text-[1.55rem] md:text-2xl text-cream-50">Capital Partner</div>
-          </div>
-          <div class="stat-tile p-5 md:p-6">
-            <div class="text-[10px] tracking-[0.22em] uppercase text-gold-500/90">Markets</div>
-            <div class="mt-3 font-display text-[1.55rem] md:text-2xl text-cream-50">U.S. Real Assets</div>
-          </div>
-          <div class="stat-tile p-5 md:p-6">
-            <div class="text-[10px] tracking-[0.22em] uppercase text-gold-500/90">Focus Next</div>
-            <div class="mt-3 font-display text-[1.55rem] md:text-2xl text-cream-50">Self-Storage</div>
-          </div>
-          <div class="stat-tile p-5 md:p-6">
-            <div class="text-[10px] tracking-[0.22em] uppercase text-gold-500/90">Access</div>
-            <div class="mt-3 font-display text-[1.55rem] md:text-2xl text-cream-50">Invitation Only</div>
-          </div>
+        <div class="hero-visual reveal">
+          <img src="/assets/hero-storage.jpg" alt="Modern self-storage facility at dusk" />
+        </div>
+      </div>
+      <div class="container">
+        <div class="stats reveal">
+          <div class="stat"><div class="stat-label">Model</div><div class="stat-value">Capital Partner</div></div>
+          <div class="stat"><div class="stat-label">Markets</div><div class="stat-value">U.S. Real Assets</div></div>
+          <div class="stat"><div class="stat-label">Focus Next</div><div class="stat-value">Self-Storage</div></div>
+          <div class="stat"><div class="stat-label">Access</div><div class="stat-value">Invitation Only</div></div>
         </div>
       </div>
     </section>
 
-    <div class="gold-line"></div>
-
-    <!-- APPROACH -->
-    <section id="approach" class="py-24 md:py-32 bg-ink-950">
-      <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
-          <div class="lg:col-span-5 reveal flex flex-col">
-            <div class="text-[12px] tracking-[0.24em] uppercase text-gold-500 mb-4">Approach</div>
-            <h2 class="font-display text-4xl md:text-5xl text-cream-50 leading-tight">Partner first.<br />Platform later.<br /><span class="text-gold-400 italic">Economics always.</span></h2>
-            <div class="img-frame mt-10 flex-1 section-photo hidden md:block">
-              <img src="/assets/approach.jpg" alt="Private capital office setting with architectural models" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink-950/70 via-transparent to-transparent"></div>
-              <div class="absolute bottom-5 left-5 right-5 text-[11px] tracking-[0.18em] uppercase text-gold-300">Discreet rooms. Intentional capital.</div>
-            </div>
-          </div>
-          <div class="lg:col-span-7 reveal">
-            <div class="img-frame md:hidden mb-8 h-56">
-              <img src="/assets/approach.jpg" alt="Private capital office setting with architectural models" loading="lazy" />
-            </div>
-            <p class="text-lg text-steel-300 leading-relaxed font-light">
-              Property True is built for people who want real estate relationships without theater. Justin partners on transactions, brings capital relationships to close, and builds a reputation through process — not loud public deal boards.
-            </p>
-            <p class="mt-6 text-steel-300 leading-relaxed font-light">
-              The long game is clear: a durable capital brand for co-sponsored opportunities, with operator partners handling operational and legal-heavy execution. Self-storage is the forward thesis. Multifamily partnership experience is the foundation.
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-16 grid md:grid-cols-2 xl:grid-cols-4 gap-5">
-          <article class="card-hover luxury-card p-7 reveal">
-            <div class="text-gold-300 font-display text-3xl">01</div>
-            <h3 class="mt-5 font-display text-2xl text-cream-50">Direct Capital Relationships</h3>
-            <p class="mt-3 text-sm leading-relaxed text-steel-300">Investors are known, not scraped. Activity is measured through real conversations, not marketplace clicks.</p>
-          </article>
-          <article class="card-hover luxury-card p-7 reveal">
-            <div class="text-gold-300 font-display text-3xl">02</div>
-            <h3 class="mt-5 font-display text-2xl text-cream-50">Defined Partner Roles</h3>
-            <p class="mt-3 text-sm leading-relaxed text-steel-300">Lower legal surface through partnership design: capital and structure on one side, specialist ops where they belong.</p>
-          </article>
-          <article class="card-hover luxury-card p-7 reveal">
-            <div class="text-gold-300 font-display text-3xl">03</div>
-            <h3 class="mt-5 font-display text-2xl text-cream-50">Honest Track Record</h3>
-            <p class="mt-3 text-sm leading-relaxed text-steel-300">Partnered transaction experience is stated as partnered experience — precise language, no sponsor cosplay.</p>
-          </article>
-          <article class="card-hover luxury-card p-7 reveal">
-            <div class="text-gold-300 font-display text-3xl">04</div>
-            <h3 class="mt-5 font-display text-2xl text-cream-50">Private Process</h3>
-            <p class="mt-3 text-sm leading-relaxed text-steel-300">Opportunities, when shared, move through private rooms and direct dialogue. This site is not a deal exchange.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="how" class="py-24 md:py-28 bg-ink-900 border-y border-white/5">
-      <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <div class="max-w-3xl reveal">
-          <div class="text-[12px] tracking-[0.24em] uppercase text-gold-500 mb-4">How It Works</div>
-          <h2 class="font-display text-4xl md:text-5xl text-cream-50">A quiet process for serious capital.</h2>
-          <p class="mt-5 text-steel-300 font-light leading-relaxed">Five steps. No public shopping cart for securities. No noise.</p>
-        </div>
-
-        <div class="mt-14 grid md:grid-cols-5 gap-4">
-          <div class="reveal border border-white/8 bg-ink-950/70 p-5">
-            <div class="text-gold-400 text-xs tracking-[0.2em] uppercase">Step 01</div>
-            <h3 class="mt-4 font-display text-xl text-cream-50">Introduction</h3>
-            <p class="mt-2 text-sm text-steel-300">Request private access and outline your capital profile or operator context.</p>
-          </div>
-          <div class="reveal border border-white/8 bg-ink-950/70 p-5">
-            <div class="text-gold-400 text-xs tracking-[0.2em] uppercase">Step 02</div>
-            <h3 class="mt-4 font-display text-xl text-cream-50">Qualification</h3>
-            <p class="mt-2 text-sm text-steel-300">Confirm fit, accreditation where relevant, and mutual priorities.</p>
-          </div>
-          <div class="reveal border border-white/8 bg-ink-950/70 p-5">
-            <div class="text-gold-400 text-xs tracking-[0.2em] uppercase">Step 03</div>
-            <h3 class="mt-4 font-display text-xl text-cream-50">Conversation</h3>
-            <p class="mt-2 text-sm text-steel-300">Direct dialogue. No automated matching theater.</p>
-          </div>
-          <div class="reveal border border-white/8 bg-ink-950/70 p-5">
-            <div class="text-gold-400 text-xs tracking-[0.2em] uppercase">Step 04</div>
-            <h3 class="mt-4 font-display text-xl text-cream-50">Private Materials</h3>
-            <p class="mt-2 text-sm text-steel-300">If aligned, materials are shared under confidentiality controls.</p>
-          </div>
-          <div class="reveal border border-white/8 bg-ink-950/70 p-5">
-            <div class="text-gold-400 text-xs tracking-[0.2em] uppercase">Step 05</div>
-            <h3 class="mt-4 font-display text-xl text-cream-50">Relationship</h3>
-            <p class="mt-2 text-sm text-steel-300">Ongoing calibration — not a one-click commitment funnel.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRACK RECORD -->
-    <section id="track-record" class="py-24 md:py-32 bg-ink-950">
-      <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 reveal">
-          <div class="max-w-3xl">
-            <div class="text-[12px] tracking-[0.24em] uppercase text-gold-500 mb-4">Track Record</div>
-            <h2 class="font-display text-4xl md:text-5xl text-cream-50">Partnered experience, precisely stated.</h2>
-            <p class="mt-5 text-steel-300 font-light leading-relaxed max-w-2xl">
-              These marks reflect transaction partnership and capital participation — not sole sponsorship or sole operational ownership. Details remain high-level by design.
-            </p>
-          </div>
-          <button data-modal="disclaimerModal" class="self-start btn-outline px-5 py-3 text-[11px] tracking-[0.16em] uppercase">Role Language Notes</button>
-        </div>
-
-        <div class="mt-14 grid lg:grid-cols-2 gap-6">
-          <article class="card-hover luxury-card border-gold-500/25 p-8 md:p-10 reveal">
-            <div class="flex items-center justify-between gap-4">
-              <span class="lock-chip px-3 py-1 text-[10px] tracking-[0.18em] uppercase">Partnered Transaction</span>
-              <span class="text-[10px] text-steel-400 tracking-[0.2em] uppercase">Closed Mark</span>
-            </div>
-            <h3 class="mt-6 font-display text-3xl text-cream-50">Backbay</h3>
-            <p class="mt-2 text-gold-400 text-sm tracking-wide uppercase">Real Estate Transaction Partnership</p>
-            <p class="mt-6 text-steel-300 leading-relaxed">
-              Partnered on a real estate transaction with capital involvement directed at closing. Exact economics and confidential deal metrics are not published publicly.
-            </p>
-            <dl class="mt-8 grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <dt class="text-steel-400 text-xs tracking-widest uppercase">Public Role</dt>
-                <dd class="mt-1 text-cream-100">Capital / Transaction Partner</dd>
-              </div>
-              <div>
-                <dt class="text-steel-400 text-xs tracking-widest uppercase">Status</dt>
-                <dd class="mt-1 text-cream-100">Completed / Hold (as applicable)</dd>
-              </div>
-            </dl>
-          </article>
-
-          <article class="card-hover luxury-card border-gold-500/25 p-8 md:p-10 reveal">
-            <div class="flex items-center justify-between gap-4">
-              <span class="lock-chip px-3 py-1 text-[10px] tracking-[0.18em] uppercase">Partnered Transaction</span>
-              <span class="text-[10px] text-steel-400 tracking-[0.2em] uppercase">Active Partnership Mark</span>
-            </div>
-            <h3 class="mt-6 font-display text-3xl text-cream-50">Sutera · Crossings Portfolio</h3>
-            <p class="mt-2 text-gold-400 text-sm tracking-wide uppercase">Multifamily · Murfreesboro, TN · 204 Units</p>
-            <p class="mt-6 text-steel-300 leading-relaxed">
-              Partnered with Sutera Properties on the Crossings Portfolio. Participation centered on capital support and deal packaging — not sole sponsor ownership of the asset.
-            </p>
-            <dl class="mt-8 grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <dt class="text-steel-400 text-xs tracking-widest uppercase">Public Role</dt>
-                <dd class="mt-1 text-cream-100">Capital Partner / Co-Partner</dd>
-              </div>
-              <div>
-                <dt class="text-steel-400 text-xs tracking-widest uppercase">Asset Type</dt>
-                <dd class="mt-1 text-cream-100">Multifamily Portfolio</dd>
-              </div>
-            </dl>
-          </article>
-        </div>
-
-        <div class="mt-6 border border-dashed border-gold-500/25 bg-ink-900/40 overflow-hidden reveal">
-          <div class="grid md:grid-cols-5">
-            <div class="md:col-span-2 img-frame border-0 h-48 md:h-auto min-h-[180px]">
-              <img src="/assets/hero-storage.jpg" alt="Modern self-storage facility at night" loading="lazy" />
-            </div>
-            <div class="md:col-span-3 p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-              <div>
-                <div class="text-[11px] tracking-[0.2em] uppercase text-gold-500">Next Mark</div>
-                <h3 class="mt-2 font-display text-2xl md:text-3xl text-cream-50">Reserved for a Property True–structured storage partnership</h3>
-                <p class="mt-3 text-sm text-steel-300 max-w-2xl">Independent phase does not require five prior logos. It requires owned relationships, clean economics, and disciplined role design.</p>
-              </div>
-              <a href="#access" class="btn-gold shrink-0 px-6 py-3 text-[12px] font-semibold tracking-[0.16em] uppercase">Start Conversation</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- THESIS / INNOVATION -->
-    <section id="thesis" class="py-24 md:py-32 bg-ink-900 border-y border-white/5 relative overflow-hidden">
-      <div class="absolute inset-y-0 right-0 w-full lg:w-1/2 opacity-25 pointer-events-none" aria-hidden="true" style="background-image:url('/assets/texture.jpg'); background-size:cover; background-position:center;"></div>
-      <div class="relative mx-auto max-w-7xl px-5 md:px-8">
-        <div class="grid lg:grid-cols-12 gap-12 items-center">
-          <div class="lg:col-span-5 reveal">
-            <div class="text-[12px] tracking-[0.24em] uppercase text-gold-500 mb-4">Forward Thesis</div>
-            <h2 class="font-display text-4xl md:text-5xl text-cream-50 leading-tight">From multifamily partnership experience to storage co-sponsorship.</h2>
-            <div class="img-frame mt-10 h-64 md:h-80">
-              <img src="/assets/thesis-aerial.jpg" alt="Aerial view of commercial self-storage real estate campus" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-ink-950/10 to-transparent"></div>
-              <div class="absolute bottom-4 left-4 text-[11px] tracking-[0.18em] uppercase text-gold-300">Self-storage focus</div>
-            </div>
-          </div>
-          <div class="lg:col-span-7 reveal">
-            <p class="text-lg text-steel-300 font-light leading-relaxed">
-              Multifamily delivered the apprenticeship: capital closes, partner dynamics, operator realities, and investor behavior. The independent chapter is being aimed at self-storage — cleaner operational narrative, strong digital leasing economics, and better fit for a capital-brand co-GP model.
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-          <article class="border border-white/8 bg-ink-950/60 p-7 reveal">
-            <h3 class="font-display text-2xl text-cream-50">Self-Storage Focus</h3>
-            <p class="mt-3 text-sm text-steel-300 leading-relaxed">Acquire / expand existing assets first. Ground-up only when structure and partner stack justify it.</p>
-          </article>
-          <article class="border border-white/8 bg-ink-950/60 p-7 reveal">
-            <h3 class="font-display text-2xl text-cream-50">Co-GP Capital Role</h3>
-            <p class="mt-3 text-sm text-steel-300 leading-relaxed">Own investor distribution and defined promote/fee economics without absorbing every operational liability alone.</p>
-          </article>
-          <article class="border border-white/8 bg-ink-950/60 p-7 reveal">
-            <h3 class="font-display text-2xl text-cream-50">Private Technology Stack</h3>
-            <p class="mt-3 text-sm text-steel-300 leading-relaxed">Modern deal rooms, informed underwriting support, and clean reporting — behind access controls, not a public app store for offerings.</p>
-          </article>
-          <article class="border border-white/8 bg-ink-950/60 p-7 reveal">
-            <h3 class="font-display text-2xl text-cream-50">Future-Ready Structures</h3>
-            <p class="mt-3 text-sm text-steel-300 leading-relaxed">Open to modern capital rails over time (including fractional/tokenized structures where counsel-approved). Not forced theater for 2026 hype.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- NETWORK -->
-    <section id="network" class="py-24 md:py-32 bg-ink-950">
-      <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 items-start">
+    <section class="section">
+      <div class="container">
+        <div class="split">
           <div class="reveal">
-            <div class="text-[12px] tracking-[0.24em] uppercase text-gold-500 mb-4">The Network</div>
-            <h2 class="font-display text-4xl md:text-5xl text-cream-50">A private circle measured by response quality, not roster size.</h2>
-            <p class="mt-6 text-steel-300 font-light leading-relaxed">
-              Property True prioritizes direct investor relationships so activity is known: who takes calls, who underwrites carefully, who is merely browsing. This is deliberate distribution — not anonymous marketplace traffic.
-            </p>
-            <ul class="mt-8 space-y-4 text-sm text-steel-300">
-              <li class="flex gap-3"><span class="text-gold-400">//</span><span>Accredited / sophisticated capital conversations only</span></li>
-              <li class="flex gap-3"><span class="text-gold-400">//</span><span>CRM-grade relationship tracking (not vanity memberships)</span></li>
-              <li class="flex gap-3"><span class="text-gold-400">//</span><span>No public broadcast of partner-sponsor offerings</span></li>
-              <li class="flex gap-3"><span class="text-gold-400">//</span><span>Respect for operator/syndicator channels</span></li>
-            </ul>
-          </div>
-          <div class="reveal border border-gold-500/20 bg-panel overflow-hidden shadow-glow">
-            <div class="img-frame border-0 h-40">
-              <img src="/assets/texture.jpg" alt="" loading="lazy" />
-              <div class="absolute inset-0 bg-gradient-to-b from-transparent to-ink-900/90"></div>
-            </div>
-            <div class="p-8 md:p-10">
-            <h3 class="font-display text-3xl text-cream-50">Investor profile we want</h3>
-            <div class="mt-8 space-y-6">
-              <div class="border-b border-white/8 pb-5">
-                <div class="text-xs tracking-[0.18em] uppercase text-gold-500">Orientation</div>
-                <p class="mt-2 text-steel-300">Principals, family offices, founders, and disciplined HNW investors seeking private real asset access through trusted relationships.</p>
-              </div>
-              <div class="border-b border-white/8 pb-5">
-                <div class="text-xs tracking-[0.18em] uppercase text-gold-500">Process Preference</div>
-                <p class="mt-2 text-steel-300">Conversation first. Document room second. Marketing noise never.</p>
-              </div>
-              <div>
-                <div class="text-xs tracking-[0.18em] uppercase text-gold-500">Networking Ethos</div>
-                <p class="mt-2 text-steel-300">Relationships among high-caliber capital partners and builders — discreet, professional, and constructive. No clubhouse cosplay required.</p>
-              </div>
-            </div>
+            <div class="kicker">Approach</div>
+            <h2 style="font-size:clamp(2rem,4vw,3rem);line-height:1.05;">Partner first. Platform later. <em style="font-style:italic;color:var(--gold-deep);">Economics always.</em></h2>
+            <p class="lead" style="margin-top:1rem;">Built for people who want real estate relationships without theater — capital relationships, defined roles, and private process.</p>
+            <div class="hero-actions">
+              <a class="btn btn-outline" href="/approach.html">Explore Approach</a>
             </div>
           </div>
+          <div class="reveal">
+            <img src="/assets/approach.jpg" alt="Private capital office with architectural models" />
+          </div>
+        </div>
+        <div class="grid-4" style="margin-top:2rem;">
+          <article class="card reveal"><div class="card-num">01</div><h3>Direct Capital Relationships</h3><p>Investors are known, not scraped. Activity is measured through real conversations.</p></article>
+          <article class="card reveal"><div class="card-num">02</div><h3>Defined Partner Roles</h3><p>Lower legal surface through partnership design and specialist operators.</p></article>
+          <article class="card reveal"><div class="card-num">03</div><h3>Honest Track Record</h3><p>Partnered experience is stated as partnered experience — precise language only.</p></article>
+          <article class="card reveal"><div class="card-num">04</div><h3>Private Process</h3><p>Opportunities move through private rooms and direct dialogue — not a deal exchange.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- PARTNERS / SPONSORS -->
-    <section id="partners" class="py-24 md:py-28 bg-ink-900 border-y border-white/5">
-      <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <div class="grid lg:grid-cols-12 gap-12">
-          <div class="lg:col-span-5 reveal">
-            <div class="text-[12px] tracking-[0.24em] uppercase text-gold-500 mb-4">For Operators & Sponsors</div>
-            <h2 class="font-display text-4xl md:text-5xl text-cream-50">Capital relationships without public channel conflict.</h2>
-          </div>
-          <div class="lg:col-span-7 reveal">
-            <p class="text-lg text-steel-300 font-light leading-relaxed">
-              Property True is not here to scrape and republish your offering on a marketplace page. When aligned, capital introductions are handled relationally and privately, with clear role definition and respect for your brand, process, and compliance posture.
-            </p>
-            <div class="mt-10 grid sm:grid-cols-2 gap-4">
-              <div class="border border-white/8 p-6">
-                <h3 class="font-display text-xl text-cream-50">What we bring</h3>
-                <p class="mt-3 text-sm text-steel-300">Investor relationships, packaging discipline, and close support oriented to capital.</p>
-              </div>
-              <div class="border border-white/8 p-6">
-                <h3 class="font-display text-xl text-cream-50">What we require</h3>
-                <p class="mt-3 text-sm text-steel-300">Defined partnership economics. Clean role language. No free capital harvesting.</p>
-              </div>
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="kicker">Track Record</div>
+          <h2>Partnered experience, precisely stated.</h2>
+          <p>Two partnership marks to date. Full detail will be refined with Justin’s deal notes. Public language remains high-level and partner-safe.</p>
+        </div>
+        <div class="grid-2">
+          <article class="media-card reveal">
+            <img src="/assets/approach.jpg" alt="" />
+            <div class="body">
+              <div class="kicker">Partnered Transaction</div>
+              <h3>Backbay</h3>
+              <p>Real estate transaction partnership with capital involvement directed at closing. Confidential metrics stay private.</p>
             </div>
-          </div>
+          </article>
+          <article class="media-card reveal">
+            <img src="/assets/thesis-aerial.jpg" alt="" />
+            <div class="body">
+              <div class="kicker">Partnered Transaction</div>
+              <h3>Sutera · Crossings Portfolio</h3>
+              <p>Multifamily partnership mark with Sutera Properties. Capital support and deal packaging — not sole sponsor ownership.</p>
+            </div>
+          </article>
+        </div>
+        <div style="margin-top:1.4rem;" class="reveal">
+          <a class="btn btn-outline" href="/track-record.html">View Track Record</a>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="py-24 md:py-32 bg-ink-950">
-      <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <div class="grid lg:grid-cols-12 gap-12 items-center">
-          <div class="lg:col-span-5 reveal">
-            <div class="aspect-[4/5] border border-gold-500/20 bg-gradient-to-br from-ink-800 to-ink-950 relative overflow-hidden">
-              <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(circle at 30% 20%, rgba(197,162,111,0.35), transparent 45%), radial-gradient(circle at 70% 80%, rgba(100,121,147,0.25), transparent 50%);"></div>
-              <div class="absolute bottom-0 left-0 right-0 p-8">
-                <div class="font-display text-4xl text-cream-50">Justin Nassie</div>
-                <div class="mt-2 text-sm tracking-[0.18em] uppercase text-gold-400">Principal · Property True</div>
-              </div>
-            </div>
-          </div>
-          <div class="lg:col-span-7 reveal">
-            <div class="text-[12px] tracking-[0.24em] uppercase text-gold-500 mb-4">About</div>
-            <h2 class="font-display text-4xl md:text-5xl text-cream-50">Operator-aware capital. Builder mentality. Principal standards.</h2>
-            <p class="mt-6 text-steel-300 font-light leading-relaxed">
-              Justin has partnered on multifamily real estate transactions and brings a modern operator’s discipline to capital relationships — clear process, honest positioning, and long-horizon judgment. Property True is the public face of that principal path.
-            </p>
-            <p class="mt-4 text-steel-300 font-light leading-relaxed">
-              Separate from any marketplace vehicle, Property True exists to host the relationship brand, record what is earned, and set the terms for future co-sponsored opportunities.
-            </p>
-            <div class="mt-8 flex flex-wrap gap-3">
-              <span class="lock-chip px-3 py-1.5 text-[11px] tracking-[0.14em] uppercase">Capital Partner</span>
-              <span class="lock-chip px-3 py-1.5 text-[11px] tracking-[0.14em] uppercase">Deal Packaging</span>
-              <span class="lock-chip px-3 py-1.5 text-[11px] tracking-[0.14em] uppercase">Storage Thesis</span>
-              <span class="lock-chip px-3 py-1.5 text-[11px] tracking-[0.14em] uppercase">Private IR</span>
-            </div>
+    <section class="section">
+      <div class="container split">
+        <div class="reveal">
+          <div class="kicker">Forward Thesis</div>
+          <h2 style="font-size:clamp(2rem,4vw,3rem);line-height:1.05;">From multifamily partnership experience to storage co-sponsorship.</h2>
+          <p class="lead" style="margin-top:1rem;">Self-storage is the forward focus: cleaner operational narrative, strong digital leasing economics, and a better fit for a capital-brand co-GP model.</p>
+          <div class="hero-actions">
+            <a class="btn btn-outline" href="/thesis.html">Read Thesis</a>
+            <a class="btn btn-gold" href="/access.html">Start Conversation</a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ACCESS / FORM -->
-    <section id="access" class="py-24 md:py-32 bg-ink-900 border-t border-white/5">
-      <div class="mx-auto max-w-7xl px-5 md:px-8">
-        <div class="grid lg:grid-cols-12 gap-12">
-          <div class="lg:col-span-5 reveal">
-            <div class="text-[12px] tracking-[0.24em] uppercase text-gold-500 mb-4">Private Access</div>
-            <h2 class="font-display text-4xl md:text-5xl text-cream-50">Request a conversation.</h2>
-            <p class="mt-6 text-steel-300 font-light leading-relaxed">
-              Submit a concise profile. If there is mutual fit, you’ll hear back directly. This is not an offer, solicitation portal, or automated investment checkout.
-            </p>
-            <div class="mt-8 border border-white/8 p-6 text-sm text-steel-300 leading-relaxed">
-              <strong class="text-cream-100">Important:</strong> Nothing on this website constitutes an offer to sell or a solicitation of an offer to buy securities. Any investment would be made only through confidential offering documents and only to investors who meet applicable qualifications.
-            </div>
-          </div>
-
-          <div class="lg:col-span-7 reveal">
-            <form id="accessForm" class="luxury-card border-gold-500/25 p-7 md:p-10 shadow-card" action="https://formsubmit.co/ajax/justin@brandastic.com" method="POST">
-              <input type="hidden" name="_subject" value="PropertyTrue — private access request" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
-              <div class="grid sm:grid-cols-2 gap-5">
-                <div>
-                  <label class="block text-[11px] tracking-[0.16em] uppercase text-steel-400 mb-2">Full Name *</label>
-                  <input required name="name" class="w-full px-4 py-3 text-sm" placeholder="Your name" />
-                </div>
-                <div>
-                  <label class="block text-[11px] tracking-[0.16em] uppercase text-steel-400 mb-2">Email *</label>
-                  <input required type="email" name="email" class="w-full px-4 py-3 text-sm" placeholder="name@domain.com" />
-                </div>
-                <div>
-                  <label class="block text-[11px] tracking-[0.16em] uppercase text-steel-400 mb-2">Phone</label>
-                  <input name="phone" class="w-full px-4 py-3 text-sm" placeholder="Optional" />
-                </div>
-                <div>
-                  <label class="block text-[11px] tracking-[0.16em] uppercase text-steel-400 mb-2">I am a… *</label>
-                  <select required name="role" class="w-full px-4 py-3 text-sm">
-                    <option value="">Select</option>
-                    <option>Accredited Investor</option>
-                    <option>Family Office / Principal</option>
-                    <option>Operator / Sponsor Partner</option>
-                    <option>Advisor / Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-[11px] tracking-[0.16em] uppercase text-steel-400 mb-2">Primary Interest</label>
-                  <select name="interest" class="w-full px-4 py-3 text-sm">
-                    <option>Self-Storage</option>
-                    <option>Multifamily</option>
-                    <option>Capital Partnership Opportunities</option>
-                    <option>Operator Collaboration</option>
-                    <option>General Relationship</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-[11px] tracking-[0.16em] uppercase text-steel-400 mb-2">Typical Check Size (if investor)</label>
-                  <select name="check" class="w-full px-4 py-3 text-sm">
-                    <option>Prefer not to say</option>
-                    <option>$50k–$100k</option>
-                    <option>$100k–$250k</option>
-                    <option>$250k–$500k</option>
-                    <option>$500k+</option>
-                    <option>N/A — Operator / Partner</option>
-                  </select>
-                </div>
-              </div>
-              <div class="mt-5">
-                <label class="block text-[11px] tracking-[0.16em] uppercase text-steel-400 mb-2">Note</label>
-                <textarea name="note" rows="4" class="w-full px-4 py-3 text-sm" placeholder="Optional context on goals, markets, or partnership interest"></textarea>
-              </div>
-              <label class="mt-5 flex items-start gap-3 text-xs text-steel-400 leading-relaxed">
-                <input required type="checkbox" class="mt-1" />
-                <span>I understand this form requests a private conversation only and does not constitute an offer or solicitation of securities.</span>
-              </label>
-              <button type="submit" id="submitBtn" class="mt-7 btn-gold w-full sm:w-auto px-8 py-4 text-[12px] font-semibold tracking-[0.18em] uppercase">Submit Request</button>
-              <p id="formSuccess" class="hidden mt-5 text-sm text-gold-300">Received. If there is mutual fit, you will hear back directly.</p>
-              <p id="formError" class="hidden mt-5 text-sm text-red-300">Something went wrong. Email justin@brandastic.com directly and we will follow up.</p>
-            </form>
-          </div>
+        <div class="reveal">
+          <img src="/assets/thesis-aerial.jpg" alt="Aerial commercial real estate campus" />
         </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="border-t border-white/5 bg-ink-950">
-    <div class="mx-auto max-w-7xl px-5 md:px-8 py-14">
-      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
-        <div>
-          <div class="font-display text-2xl tracking-[0.24em] text-cream-50">PROPERTY TRUE</div>
-          <p class="mt-4 max-w-md text-sm text-steel-300 leading-relaxed font-light">
-            A private real estate capital brand. Relationship-first. Marketplace-free public web presence.
-          </p>
-        </div>
-        <div class="grid grid-cols-2 gap-10 text-sm">
-          <div class="space-y-3 text-steel-300">
-            <a href="#approach" class="block hover:text-gold-300">Approach</a>
-            <a href="#track-record" class="block hover:text-gold-300">Track Record</a>
-            <a href="#thesis" class="block hover:text-gold-300">Thesis</a>
-          </div>
-          <div class="space-y-3 text-steel-300">
-            <a href="#network" class="block hover:text-gold-300">Network</a>
-            <a href="#partners" class="block hover:text-gold-300">Partners</a>
-            <a href="#access" class="block hover:text-gold-300">Access</a>
-            <a href="/privacy.html" class="block hover:text-gold-300">Privacy</a>
-          </div>
-        </div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">PROPERTY TRUE</div>
+        <p class="footer-copy">A private real estate capital brand. Relationship-first. Marketplace-free public web presence.</p>
       </div>
-      <div class="gold-line my-10"></div>
-      <div class="space-y-4 text-[11px] leading-relaxed text-steel-400 max-w-5xl">
-        <p>
-          © <span id="year"></span> Property True. All rights reserved. For informational purposes only. This website does not constitute an offer to sell or a solicitation of an offer to buy any securities. Any actual offering would be made only by confidential offering documents and only to persons who meet applicable investor qualifications under U.S. securities laws and other applicable regulations.
-        </p>
-        <p>
-          Past partnership experience is not indicative of future results. References to partnered transactions do not imply sole sponsorship, control, or ownership. No representation is made that any investor will or is likely to achieve profits or avoid losses. Property True is distinct from any marketplace platform and does not operate a public securities exchange on this site.
-        </p>
-        <p>
-          This page is a public brand presence. It is not Investment advice, tax advice, or legal advice. Consult licensed counsel and advisors regarding securities, partnership structures, and investor solicitations.
-        </p>
+      <div class="footer-links">
+        <a href="/approach.html">Approach</a>
+        <a href="/track-record.html">Track Record</a>
+        <a href="/thesis.html">Thesis</a>
+        <a href="/network.html">Network</a>
+        <a href="/partners.html">Partners</a>
+        <a href="/about.html">About</a>
+        <a href="/access.html">Access</a>
+        <a href="/privacy.html">Privacy</a>
       </div>
+    </div>
+    <div class="container legal">
+      <p>© <span id="year"></span> Property True. All rights reserved. For informational purposes only. This website does not constitute an offer to sell or a solicitation of an offer to buy any securities. Any actual offering would be made only by confidential offering documents and only to persons who meet applicable investor qualifications.</p>
     </div>
   </footer>
-
-  <!-- Modal: role disclaimer -->
-  <div id="disclaimerModal" class="fixed inset-0 z-50 hidden items-center justify-center p-5 modal-overlay">
-    <div class="w-full max-w-xl border border-gold-500/30 bg-ink-900 p-8 shadow-card">
-      <div class="flex items-start justify-between gap-4">
-        <h3 class="font-display text-3xl text-cream-50">Role Language</h3>
-        <button data-close class="text-steel-400 hover:text-gold-300 text-xl leading-none">×</button>
-      </div>
-      <div class="mt-5 space-y-4 text-sm text-steel-300 leading-relaxed">
-        <p>Property True public materials intentionally use partner/capital-partner language for completed and active transaction marks.</p>
-        <p>We do not represent sole GP/ownership status unless that is contractually and factually accurate. Confidential metrics, returns, and restricted partner materials are not published here.</p>
-        <p>If a listed mark requires operator name approval or must be anonymized, replace the public line before broader distribution.</p>
-      </div>
-      <button data-close class="mt-8 btn-outline px-5 py-3 text-[11px] tracking-[0.16em] uppercase">Close</button>
-    </div>
-  </div>
-
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Mobile menu
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
-    document.querySelectorAll('.mobile-link').forEach((a) => {
-      a.addEventListener('click', () => mobileMenu.classList.add('hidden'));
-    });
-
-    // Reveal on scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-
-    // Modals
-    function openModal(id) {
-      const m = document.getElementById(id);
-      if (!m) return;
-      m.classList.remove('hidden');
-      m.classList.add('flex');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeModal(m) {
-      m.classList.add('hidden');
-      m.classList.remove('flex');
-      document.body.style.overflow = '';
-    }
-    document.querySelectorAll('[data-modal]').forEach((btn) => {
-      btn.addEventListener('click', () => openModal(btn.getAttribute('data-modal')));
-    });
-    document.querySelectorAll('[data-close]').forEach((btn) => {
-      btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay') || btn.closest('[id$="Modal"]')));
-    });
-    document.querySelectorAll('.modal-overlay').forEach((overlay) => {
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) closeModal(overlay);
-      });
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.modal-overlay:not(.hidden)').forEach(closeModal);
-      }
-    });
-
-    // Form → FormSubmit (confirm email once on first live submit)
-    const form = document.getElementById('accessForm');
-    const success = document.getElementById('formSuccess');
-    const errorEl = document.getElementById('formError');
-    const submitBtn = document.getElementById('submitBtn');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      success.classList.add('hidden');
-      errorEl.classList.add('hidden');
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending…';
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { Accept: 'application/json' }
-        });
-        if (!res.ok) throw new Error('bad status');
-        success.classList.remove('hidden');
-        form.reset();
-        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      } catch (err) {
-        errorEl.classList.remove('hidden');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Submit Request';
-      }
-    });
-
-    // Nav shadow on scroll
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 12) nav.classList.add('shadow-card');
-      else nav.classList.remove('shadow-card');
-    });
-  </script>
+  <script src="/site.js"></script>
 </body>
 </html>
