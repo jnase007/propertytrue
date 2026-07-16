@@ -32,6 +32,41 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
+  // Homepage hero video: keep muted autoplay resilient, pause offscreen / reduced-motion
+  const heroVideo = document.querySelector(".hero-stage .hero-video");
+  if (heroVideo) {
+    const reduced =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      heroVideo.removeAttribute("autoplay");
+      heroVideo.pause();
+      heroVideo.style.display = "none";
+    } else {
+      heroVideo.muted = true;
+      heroVideo.defaultMuted = true;
+      heroVideo.playsInline = true;
+      const tryPlay = () => {
+        const p = heroVideo.play();
+        if (p && typeof p.catch === "function") p.catch(() => {});
+      };
+      tryPlay();
+      heroVideo.addEventListener("loadeddata", tryPlay, { once: true });
+      if ("IntersectionObserver" in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) tryPlay();
+              else heroVideo.pause();
+            });
+          },
+          { threshold: 0.15 }
+        );
+        io.observe(heroVideo);
+      }
+    }
+  }
+
   // Mobile menu — premium full-screen drawer
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
