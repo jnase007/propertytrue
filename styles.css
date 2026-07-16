@@ -185,7 +185,7 @@ main, .site-header, .site-footer { position: relative; z-index: 1; }
   width: 42px;
   height: 42px;
   border: 0;
-  border-radius: 14px;
+  border-radius: 999px;
   display: block;
   flex: 0 0 auto;
   color: transparent;
@@ -193,8 +193,8 @@ main, .site-header, .site-footer { position: relative; z-index: 1; }
   line-height: 0;
   overflow: hidden;
   background:
-    center / 100% 100% no-repeat url("/assets/pt-mark.svg"),
-    linear-gradient(145deg, #8cbcff 0%, #2f6fed 48%, #1240a8 100%);
+    center / 100% 100% no-repeat url("/assets/pt-mark.svg?v=3"),
+    linear-gradient(145deg, #9ec5ff 0%, #2f6fed 48%, #0f3ea8 100%);
   box-shadow:
     0 10px 24px rgba(47, 111, 237, 0.28),
     inset 0 1px 0 rgba(255,255,255,0.28);

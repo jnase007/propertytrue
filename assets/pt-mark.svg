@@ -1,32 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PropertyTrue">
   <defs>
-    <linearGradient id="ptFill" x1="8" y1="4" x2="58" y2="60" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#8cbcff"/>
-      <stop offset="45%" stop-color="#2f6fed"/>
-      <stop offset="100%" stop-color="#1240a8"/>
+    <linearGradient id="ptFill" x1="12" y1="6" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9ec5ff"/>
+      <stop offset="42%" stop-color="#2f6fed"/>
+      <stop offset="100%" stop-color="#0f3ea8"/>
     </linearGradient>
-    <linearGradient id="ptSheen" x1="16" y1="8" x2="42" y2="40" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.34"/>
+    <radialGradient id="ptGlow" cx="32%" cy="26%" r="70%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.30"/>
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="soft" x="-25%" y="-25%" width="150%" height="150%">
-      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#1a4fbf" flood-opacity="0.28"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#1340a8" flood-opacity="0.30"/>
     </filter>
   </defs>
 
-  <!-- soft pill / rounded plate (not hard square) -->
-  <rect x="2" y="2" width="60" height="60" rx="20" fill="url(#ptFill)" filter="url(#soft)"/>
-  <rect x="2" y="2" width="60" height="60" rx="20" fill="url(#ptSheen)"/>
-  <rect x="7" y="7" width="50" height="50" rx="16" fill="none" stroke="rgba(255,255,255,0.32)" stroke-width="1.2"/>
+  <circle cx="32" cy="32" r="29.5" fill="url(#ptFill)" filter="url(#soft)"/>
+  <circle cx="32" cy="32" r="29.5" fill="url(#ptGlow)"/>
+  <circle cx="32" cy="32" r="25.2" fill="none" stroke="rgba(255,255,255,0.36)" stroke-width="1.2"/>
 
-  <!-- modern geometric PT lockup -->
+  <!-- clean modern PT monogram -->
   <g fill="#ffffff">
     <!-- P stem -->
-    <rect x="17.5" y="17" width="5" height="30" rx="2.4"/>
+    <rect x="17" y="17" width="5.4" height="30" rx="1.4"/>
     <!-- P bowl -->
-    <path d="M22.5 17h9.2c6.4 0 10.8 3.55 10.8 9 0 5.5-4.4 9.1-10.8 9.1H22.5V17zm5 5v8.1h4c3.05 0 4.95-1.55 4.95-4.05S34.55 22 31.5 22h-4z"/>
-    <!-- T crossbar + stem overlapping for monogram feel -->
-    <rect x="33.4" y="17" width="15.2" height="5" rx="2.4"/>
-    <rect x="38.5" y="17" width="5" height="30" rx="2.4"/>
+    <path d="M22.4 17h9.6c6.7 0 11.2 3.7 11.2 9.2 0 5.55-4.5 9.25-11.2 9.25h-9.6V17zm5.4 5.05v8.35h4c3.2 0 5.15-1.6 5.15-4.15S35 22.05 31.8 22.05h-4z"/>
+    <!-- T crossbar + stem, overlapping for lockup -->
+    <rect x="33.6" y="17" width="15.2" height="5.2" rx="1.4"/>
+    <rect x="38.7" y="17" width="5.2" height="30" rx="1.4"/>
   </g>
 </svg>
