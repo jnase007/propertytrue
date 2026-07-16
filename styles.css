@@ -835,7 +835,7 @@ input:focus, select:focus, textarea:focus {
   border-top: 1px solid var(--line);
   background:
     linear-gradient(180deg, #f7f5f1 0%, #f1ebe2 100%);
-  padding: 3rem 0 2rem;
+  padding: 3rem 0 4.5rem;
   position: relative;
 }
 .site-footer::before {
@@ -878,22 +878,23 @@ input:focus, select:focus, textarea:focus {
 }
 .footer-links a:hover { color: var(--gold-deep); }
 .legal {
-  margin-top: 2rem;
-  padding-top: 1.3rem;
+  margin-top: 2.25rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.25rem;
   border-top: 1px solid var(--line);
   font-size: 0.72rem;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--muted);
   max-width: 64rem;
 }
 .legal-copy {
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.85rem;
   font-size: inherit;
   line-height: inherit;
   color: inherit;
   font-weight: 400;
 }
-.legal-copy:last-child { margin-bottom: 0; }
+.legal-copy:last-child { margin-bottom: 0.5rem; }
 .legal-copy strong {
   color: var(--ink-soft);
   font-weight: 600;
@@ -917,7 +918,7 @@ input:focus, select:focus, textarea:focus {
 .mobile-cta .btn { width: 100%; }
 body.has-mobile-cta main,
 body.has-mobile-cta .site-footer {
-  padding-bottom: 5.5rem;
+  padding-bottom: 7.5rem;
 }
 body.menu-open .mobile-cta { display: none !important; }
 
