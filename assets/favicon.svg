@@ -1,17 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PropertyTrue">
   <defs>
-    <linearGradient id="f" x1="12" y1="6" x2="54" y2="58" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#9ec5ff"/>
-      <stop offset="42%" stop-color="#2f6fed"/>
-      <stop offset="100%" stop-color="#0f3ea8"/>
+    <linearGradient id="bg" x1="10" y1="4" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#e8f0ff"/>
     </linearGradient>
   </defs>
-  <circle cx="32" cy="32" r="29.5" fill="url(#f)"/>
-  <circle cx="32" cy="32" r="25.2" fill="none" stroke="rgba(255,255,255,0.36)" stroke-width="1.2"/>
-  <g fill="#ffffff">
-    <rect x="17" y="17" width="5.4" height="30" rx="1.4"/>
-    <path d="M22.4 17h9.6c6.7 0 11.2 3.7 11.2 9.2 0 5.55-4.5 9.25-11.2 9.25h-9.6V17zm5.4 5.05v8.35h4c3.2 0 5.15-1.6 5.15-4.15S35 22.05 31.8 22.05h-4z"/>
-    <rect x="33.6" y="17" width="15.2" height="5.2" rx="1.4"/>
-    <rect x="38.7" y="17" width="5.2" height="30" rx="1.4"/>
-  </g>
+  <rect width="64" height="64" fill="url(#bg)"/>
+  <rect x="5" y="5" width="54" height="54" fill="none" stroke="#2f6fed" stroke-width="2.4"/>
+  <text x="32" y="42" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" fill="#1a4fbf" letter-spacing="1.5">PT</text>
 </svg>

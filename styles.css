@@ -182,47 +182,35 @@ main, .site-header, .site-footer { position: relative; z-index: 1; }
   min-width: 0;
 }
 .brand-mark {
-  width: 42px;
-  height: 42px;
-  border: 0;
-  border-radius: 999px;
-  display: block;
-  flex: 0 0 auto;
-  color: transparent;
-  font-size: 0;
-  line-height: 0;
-  overflow: hidden;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid rgba(47, 111, 237, 0.55);
+  border-radius: 0;
+  display: grid;
+  place-items: center;
+  color: var(--gold-deep);
   background:
-    center / 100% 100% no-repeat url("/assets/pt-mark.svg?v=3"),
-    linear-gradient(145deg, #9ec5ff 0%, #2f6fed 48%, #0f3ea8 100%);
-  box-shadow:
-    0 10px 24px rgba(47, 111, 237, 0.28),
-    inset 0 1px 0 rgba(255,255,255,0.28);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.brand:hover .brand-mark {
-  transform: translateY(-1px) scale(1.03);
-  box-shadow:
-    0 14px 28px rgba(47, 111, 237, 0.34),
-    inset 0 1px 0 rgba(255,255,255,0.34);
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.95), transparent 45%),
+    linear-gradient(160deg, #fff 0%, var(--gold-pale) 55%, #d7e6ff 100%);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  box-shadow: 0 8px 22px rgba(47, 111, 237, 0.18);
+  flex: 0 0 auto;
 }
 .brand-name {
-  font-family: "Space Grotesk", system-ui, sans-serif;
-  letter-spacing: 0.12em;
-  font-size: 0.98rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  letter-spacing: 0.16em;
+  font-size: 1.24rem;
   color: var(--ink);
   font-weight: 500;
   line-height: 1;
   white-space: nowrap;
-  text-transform: uppercase;
+  text-transform: none;
 }
-.brand-name .word-property { font-weight: 500; color: var(--ink); opacity: 0.78; }
-.brand-name .word-true {
-  font-weight: 700;
-  color: var(--gold-deep);
-  letter-spacing: 0.14em;
-  margin-left: 0.28em;
-}
+.brand-name .word-property { font-weight: 500; color: var(--ink); opacity: 1; }
 .nav-desktop {
   display: none;
   align-items: center;
@@ -565,7 +553,7 @@ body.menu-open .brand-name {
   color: #fff;
 }
 body.menu-open .brand-mark {
-  box-shadow: 0 12px 28px rgba(47, 111, 237, 0.42);
+  border-color: rgba(47,111,237,0.7);
 }
 
 /* ── Cinematic home hero ── */
