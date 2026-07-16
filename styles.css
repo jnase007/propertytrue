@@ -862,10 +862,22 @@ input:focus, select:focus, textarea:focus {
   margin-top: 2rem;
   padding-top: 1.3rem;
   border-top: 1px solid var(--line);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   line-height: 1.65;
   color: var(--muted);
-  max-width: 56rem;
+  max-width: 64rem;
+}
+.legal-copy {
+  margin: 0 0 0.75rem;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  font-weight: 400;
+}
+.legal-copy:last-child { margin-bottom: 0; }
+.legal-copy strong {
+  color: var(--ink-soft);
+  font-weight: 600;
 }
 
 .mobile-cta {
