@@ -32,7 +32,7 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  // Mobile menu
+  // Mobile menu — premium full-screen drawer
   const menuBtn = document.getElementById("menuBtn");
   const mobileMenu = document.getElementById("mobileMenu");
   const setMenu = (open) => {
@@ -41,9 +41,56 @@
     document.body.classList.toggle("menu-open", open);
     menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
     menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    menuBtn.textContent = open ? "✕" : "☰";
   };
   if (menuBtn && mobileMenu) {
+    // Animated hamburger icon
+    if (!menuBtn.querySelector(".menu-icon")) {
+      menuBtn.innerHTML = '<span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>';
+    }
+
+    // Upgrade structure once: kicker + numbered links + footer note
+    const shell = mobileMenu.querySelector(".container");
+    if (shell && !shell.querySelector(".mobile-menu-links")) {
+      const links = Array.from(shell.querySelectorAll("a"));
+      shell.innerHTML = "";
+
+      const top = document.createElement("div");
+      const kicker = document.createElement("div");
+      kicker.className = "mobile-menu-kicker";
+      kicker.textContent = "Navigate";
+      const list = document.createElement("div");
+      list.className = "mobile-menu-links";
+
+      links.forEach((a, i) => {
+        const href = (a.getAttribute("href") || "").toLowerCase();
+        const isCta = href.includes("access");
+        if (isCta) {
+          a.classList.add("mobile-cta-link");
+          a.textContent = "Request Private Access";
+        } else {
+          const num = document.createElement("span");
+          num.className = "nav-num";
+          num.textContent = String(i + 1).padStart(2, "0");
+          const label = document.createElement("span");
+          label.textContent = a.textContent.trim();
+          a.textContent = "";
+          a.appendChild(label);
+          a.appendChild(num);
+        }
+        list.appendChild(a);
+      });
+
+      top.appendChild(kicker);
+      top.appendChild(list);
+
+      const foot = document.createElement("div");
+      foot.className = "mobile-menu-foot";
+      foot.innerHTML = "<strong>Private Capital</strong>By invitation · Direct relationships · Not a marketplace";
+
+      shell.appendChild(top);
+      shell.appendChild(foot);
+    }
+
     menuBtn.setAttribute("aria-expanded", "false");
     menuBtn.setAttribute("aria-controls", "mobileMenu");
     menuBtn.addEventListener("click", () => {
