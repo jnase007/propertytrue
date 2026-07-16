@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PropertyTrue">
+  <defs>
+    <linearGradient id="ptFill" x1="8" y1="4" x2="58" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8cbcff"/>
+      <stop offset="45%" stop-color="#2f6fed"/>
+      <stop offset="100%" stop-color="#1240a8"/>
+    </linearGradient>
+    <linearGradient id="ptSheen" x1="16" y1="8" x2="42" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.34"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="soft" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="2.2" stdDeviation="1.8" flood-color="#1a4fbf" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <!-- soft pill / rounded plate (not hard square) -->
+  <rect x="2" y="2" width="60" height="60" rx="20" fill="url(#ptFill)" filter="url(#soft)"/>
+  <rect x="2" y="2" width="60" height="60" rx="20" fill="url(#ptSheen)"/>
+  <rect x="7" y="7" width="50" height="50" rx="16" fill="none" stroke="rgba(255,255,255,0.32)" stroke-width="1.2"/>
+
+  <!-- modern geometric PT lockup -->
+  <g fill="#ffffff">
+    <!-- P stem -->
+    <rect x="17.5" y="17" width="5" height="30" rx="2.4"/>
+    <!-- P bowl -->
+    <path d="M22.5 17h9.2c6.4 0 10.8 3.55 10.8 9 0 5.5-4.4 9.1-10.8 9.1H22.5V17zm5 5v8.1h4c3.05 0 4.95-1.55 4.95-4.05S34.55 22 31.5 22h-4z"/>
+    <!-- T crossbar + stem overlapping for monogram feel -->
+    <rect x="33.4" y="17" width="15.2" height="5" rx="2.4"/>
+    <rect x="38.5" y="17" width="5" height="30" rx="2.4"/>
+  </g>
+</svg>
