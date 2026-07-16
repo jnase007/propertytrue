@@ -81,36 +81,36 @@ a { color: inherit; text-decoration: none; }
 .bg-type::before {
   content: "";
   position: absolute;
-  inset: -8%;
+  inset: -6%;
   background-image: url("/assets/topo-light.svg");
-  background-size: 720px 480px;
+  background-size: 980px 630px;
   background-repeat: repeat;
-  opacity: 0.22;
-  transform: rotate(-4deg) scale(1.05);
+  opacity: 0.09;
+  transform: rotate(-2deg) scale(1.02);
 }
 .bg-type-hero::before {
   background-image: url("/assets/topo-dense.svg");
-  background-size: 980px 620px;
-  opacity: 0.085;
+  background-size: 1200px 760px;
+  opacity: 0.045;
   mix-blend-mode: soft-light;
-  transform: rotate(0deg) scale(1.08);
+  transform: rotate(0deg) scale(1.04);
 }
 .bg-type-soft::before {
   background-image: url("/assets/topo-light.svg");
-  background-size: 820px 540px;
-  opacity: 0.18;
+  background-size: 1040px 670px;
+  opacity: 0.08;
 }
 .bg-type-dark::before,
 .bg-type-night::before {
   background-image: url("/assets/topo-dense.svg");
-  background-size: 900px 560px;
-  opacity: 0.07;
+  background-size: 1100px 700px;
+  opacity: 0.04;
   mix-blend-mode: soft-light;
 }
 .bg-type-page::before {
   background-image: url("/assets/topo-light.svg");
-  background-size: 760px 500px;
-  opacity: 0.2;
+  background-size: 1000px 650px;
+  opacity: 0.085;
 }
 .page-hero .container,
 .section.has-bg-type > .container,
@@ -123,13 +123,11 @@ a { color: inherit; text-decoration: none; }
 }
 body {
   background-image:
-    url("/assets/topo-light.svg"),
-    radial-gradient(1200px 560px at 88% -8%, rgba(196,165,116,0.12), transparent 55%),
-    radial-gradient(900px 420px at -8% 18%, rgba(241,235,226,0.85), transparent 50%);
-  background-size: 900px 600px, auto, auto;
-  background-repeat: repeat, no-repeat, no-repeat;
-  background-position: center top, center, center;
-  background-blend-mode: multiply, normal, normal;
+    radial-gradient(1200px 560px at 88% -8%, rgba(196,165,116,0.1), transparent 55%),
+    radial-gradient(900px 420px at -8% 18%, rgba(241,235,226,0.8), transparent 50%);
+  background-size: auto, auto;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
 }
 body::before {
   content: "";
@@ -137,9 +135,9 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.045;
+  opacity: 0.035;
   background-image: url("/assets/topo-light.svg");
-  background-size: 980px 640px;
+  background-size: 1100px 720px;
   background-repeat: repeat;
 }
 main, .site-header, .site-footer { position: relative; z-index: 1; }
@@ -1110,9 +1108,9 @@ a.media-card:hover img,
   inset: 0;
   pointer-events: none;
   background-image: url("/assets/topo-dense.svg");
-  background-size: 860px 540px;
+  background-size: 1080px 680px;
   background-repeat: repeat;
-  opacity: 0.08;
+  opacity: 0.04;
   mix-blend-mode: soft-light;
 }
 .cta-band::after {
@@ -1228,9 +1226,9 @@ input:focus, select:focus, textarea:focus {
   inset: 0;
   pointer-events: none;
   background-image: url("/assets/topo-dense.svg");
-  background-size: 920px 580px;
+  background-size: 1100px 700px;
   background-repeat: repeat;
-  opacity: 0.055;
+  opacity: 0.03;
   mix-blend-mode: soft-light;
 }
 .site-footer::before {
