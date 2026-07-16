@@ -150,24 +150,29 @@ a { color: inherit; text-decoration: none; }
   height: 1px;
   background: var(--gold);
 }
-.nav-desktop .btn {
-  margin-left: 0.35rem;
-}
-.nav-desktop .btn.is-active::after { display: none; }
-
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.9rem 1.4rem;
-  font-size: 0.7rem;
+  padding: 1.05rem 1.85rem;
+  min-height: 3rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   transition: 0.25s var(--ease);
   border: 1px solid transparent;
   cursor: pointer;
+  white-space: nowrap;
+  line-height: 1.2;
 }
+.nav-desktop .btn {
+  margin-left: 0.35rem;
+  padding: 0.85rem 1.35rem;
+  min-height: 2.6rem;
+  letter-spacing: 0.12em;
+}
+.nav-desktop .btn.is-active::after { display: none; }
 .btn-gold {
   background: linear-gradient(160deg, #d4af61 0%, #b08a45 38%, #8d6a2f 72%, #6f5320 100%);
   color: #fff;
