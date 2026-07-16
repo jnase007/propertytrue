@@ -633,8 +633,12 @@ body.menu-open .brand-mark {
 }
 .hero h1 {
   color: #fff;
-  max-width: 14ch;
+  max-width: min(22ch, 100%);
   text-shadow: 0 18px 50px rgba(0,0,0,0.35);
+}
+.hero h1 .hero-line {
+  display: block;
+  white-space: nowrap;
 }
 .hero h1 em {
   color: var(--gold-soft);
@@ -1516,6 +1520,12 @@ body.menu-open .mobile-cta { display: none !important; }
 }
 
 /* ── Responsive ── */
+@media (max-width: 420px) {
+  .hero h1 .hero-line {
+    white-space: normal;
+  }
+}
+
 @media (min-width: 768px) {
   .stats { grid-template-columns: repeat(4, 1fr); }
   .grid-2 { grid-template-columns: repeat(2, 1fr); }
@@ -1559,8 +1569,12 @@ body.menu-open .mobile-cta { display: none !important; }
     justify-self: end;
   }
   .hero h1 {
-    font-size: clamp(2.7rem, 4.4vw, 4.1rem);
+    font-size: clamp(2.5rem, 4.2vw, 4.1rem);
     line-height: 0.98;
+    max-width: min(24ch, 100%);
+  }
+  .hero h1 .hero-line {
+    white-space: nowrap;
   }
   .hero .stats .stat {
     padding: 0.95rem 0.9rem;
