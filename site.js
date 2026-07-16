@@ -79,9 +79,18 @@
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
 
-  // Reveal on scroll
+  // Reveal on scroll (stagger siblings in grids)
   const reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.querySelectorAll(".grid-2, .grid-3, .grid-4, .stats, .trust-strip").forEach((group) => {
+      Array.from(group.children).forEach((child, i) => {
+        if (!child.classList.contains("reveal")) return;
+        if (child.classList.contains("reveal-delay-1") || child.classList.contains("reveal-delay-2") || child.classList.contains("reveal-delay-3")) return;
+        if (i === 1) child.classList.add("reveal-delay-1");
+        if (i === 2) child.classList.add("reveal-delay-2");
+        if (i >= 3) child.classList.add("reveal-delay-3");
+      });
+    });
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -91,11 +100,22 @@
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
     );
     reveals.forEach((el) => io.observe(el));
   } else {
     reveals.forEach((el) => el.classList.add("in"));
+  }
+
+  // Subtle cinematic hero parallax
+  const heroStage = document.querySelector(".hero-stage img");
+  if (heroStage && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const onHeroScroll = () => {
+      const y = Math.min(window.scrollY, 520);
+      heroStage.style.transform = `scale(1.06) translate3d(0, ${y * 0.12}px, 0)`;
+    };
+    onHeroScroll();
+    window.addEventListener("scroll", onHeroScroll, { passive: true });
   }
 
   // Access form UX
