@@ -18,7 +18,26 @@
   <link rel="icon" href="/assets/favicon.svg?v=logo-classic-2" type="image/svg+xml" />
   <link rel="icon" href="/assets/favicon.ico?v=logo-classic-2" sizes="any" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=logo-classic-2" />
-  <link rel="stylesheet" href="/styles.css?v=nav-hero-1" />
+  <link rel="stylesheet" href="/styles.css?v=chartjs-1" />
+
+<style>
+  .chart-card .chart-shell {
+    background: #ffffff;
+    border-bottom: 1px solid rgba(15, 35, 65, 0.08);
+    padding: 1.1rem 1rem 0.55rem;
+  }
+  .chart-shell {
+    position: relative;
+    width: 100%;
+    height: 340px;
+  }
+  .chart-shell-sm { height: 280px; }
+  .chart-shell canvas { width: 100% !important; height: 100% !important; }
+  @media (max-width: 720px) {
+    .chart-shell { height: 280px; }
+    .chart-shell-sm { height: 250px; }
+  }
+</style>
 </head>
 <body>
     <a class="latest-offering-bar" href="/truestorage-menifee.html">
@@ -217,26 +236,32 @@
           <strong>How to read this:</strong> NOI is roughly the same across scenarios because the building size is fixed (~10k NRSF). What changes is all-in cost / leverage load. Tight basis works; mid is marginal; heavy fails in base case. Liquidity can also be a sale or later cash-out refinance after stabilize — not modeled as a promise here.
         </div>
 
-        <article class="media-card reveal" style="margin-bottom:1.2rem;">
-          <img src="/assets/projections/truestorage-cumulative-lp.png" alt="Illustrative cumulative LP cash chart for TrueStorage Menifee across three all-in cost scenarios from year 0 to year 8" style="width:100%;height:auto;display:block;background:#fff;" />
+        <article class="media-card reveal chart-card" style="margin-bottom:1.2rem;">
+          <div class="chart-shell">
+            <canvas id="chartCumulativeLp" aria-label="Illustrative cumulative LP cash chart for TrueStorage Menifee across three all-in cost scenarios from year 0 to year 8" role="img"></canvas>
+          </div>
           <div class="body">
-            <div class="kicker">Chart 01 · Cumulative cash</div>
+            <div class="kicker">Chart 01 · Cumulative cash · interactive</div>
             <h3>Three cost paths over a full cycle</h3>
-            <p>Illustrative cumulative investor cash from capital-in through Year 8. The tight ~$1.5M path is the only base case that crosses back above zero by exit. Mid and heavy remain underwater under the same operating assumptions.</p>
+            <p>Illustrative cumulative investor cash from capital-in through Year 8. The tight ~$1.5M path is the only base case that crosses back above zero by exit. Mid and heavy remain underwater under the same operating assumptions. Hover any year for exact model values.</p>
           </div>
         </article>
 
         <div class="grid-2" style="margin-bottom:1.2rem;">
-          <article class="media-card reveal">
-            <img src="/assets/projections/truestorage-lp-distributions-15m.png" alt="Illustrative LP cash events chart for the $1.5M all-in TrueStorage Menifee path" style="width:100%;height:auto;display:block;background:#fff;" />
+          <article class="media-card reveal chart-card">
+            <div class="chart-shell chart-shell-sm">
+              <canvas id="chartLpEvents" aria-label="Illustrative LP cash events chart for the $1.5M all-in TrueStorage Menifee path" role="img"></canvas>
+            </div>
             <div class="body">
               <div class="kicker">Chart 02 · Cash events · $1.5M path</div>
               <h3>When cash shows up</h3>
               <p>Capital in at Y0, thin ops cash from roughly Y3–Y7 after lease-up, and the bulk of recovery modeled at a Year-8 exit event. This is why full-cycle hold matters on a first chapter storage build.</p>
             </div>
           </article>
-          <article class="media-card reveal">
-            <img src="/assets/projections/truestorage-noi-btcf-15m.png" alt="Illustrative NOI versus cash after debt chart for TrueStorage Menifee" style="width:100%;height:auto;display:block;background:#fff;" />
+          <article class="media-card reveal chart-card">
+            <div class="chart-shell chart-shell-sm">
+              <canvas id="chartNoiBtcf" aria-label="Illustrative NOI versus cash after debt chart for TrueStorage Menifee" role="img"></canvas>
+            </div>
             <div class="body">
               <div class="kicker">Chart 03 · Stabilization</div>
               <h3>NOI vs cash after debt</h3>
@@ -497,6 +522,248 @@
       <p class="legal-copy">Access to any private materials is by invitation and subject to confidentiality. By using this website, you agree that communications may be educational or relationship-oriented and that no securities transaction is completed through this public site.</p>
     </div>
   </footer>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+  <script>
+    (function () {
+      if (typeof Chart === "undefined") return;
+
+      const years = ["Y0", "Y1", "Y2", "Y3", "Y4", "Y5", "Y6", "Y7", "Y8"];
+      const BLUE = "#2F6FED";
+      const GOLD = "#d4af6a";
+      const GRAY = "#8b95a7";
+      const NAVY = "#0b1c33";
+      const MUTED = "#6b7280";
+      const RED = "#c45c5c";
+
+      // Illustrative planning model only — not an offer of securities.
+      // Values from private TrueStorage Menifee break-even schedule (public framing).
+      const data = {
+        years: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+        tight: {
+          label: "Tight basis · ~$1.5M all-in",
+          cum: [-607500, -607500, -607500, -598719, -553780, -508841, -463902, -418962, 453743],
+          dist: [-607500, 0, 0, 8781, 44939, 44939, 44939, 44939, 872705],
+          noi: [null, null, 4339, 76656, 112814, 112814, 112814, 112814, 112814],
+          btcf: [null, null, -63536, 8781, 44939, 44939, 44939, 44939, 44939]
+        },
+        mid: {
+          label: "Mid basis · ~$2.0M all-in",
+          cum: [-810000, -810000, -810000, -810000, -787686, -765372, -743057, -720743, -29502]
+        },
+        heavy: {
+          label: "Heavy basis · ~$2.5M all-in",
+          cum: [-1012500, -1012500, -1012500, -1012500, -1012500, -1012500, -1012500, -1012500, -618573]
+        }
+      };
+
+      const money = (v) => {
+        if (v == null || Number.isNaN(v)) return "—";
+        const sign = v < 0 ? "-" : "";
+        const n = Math.abs(v);
+        if (n >= 1000000) return sign + "$" + (n / 1000000).toFixed(2) + "M";
+        if (n >= 1000) return sign + "$" + Math.round(n / 1000) + "k";
+        return sign + "$" + Math.round(n);
+      };
+
+      const baseOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: { mode: "index", intersect: false },
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: {
+              boxWidth: 12,
+              boxHeight: 12,
+              usePointStyle: true,
+              pointStyle: "circle",
+              color: MUTED,
+              font: { size: 11, family: "Inter, system-ui, sans-serif" }
+            }
+          },
+          tooltip: {
+            backgroundColor: "rgba(11, 28, 51, 0.94)",
+            titleColor: "#fff",
+            bodyColor: "#e8eef8",
+            borderColor: "rgba(212,175,106,0.35)",
+            borderWidth: 1,
+            padding: 10,
+            displayColors: true,
+            callbacks: {
+              label: (ctx) => {
+                const label = ctx.dataset.label || "";
+                return " " + label + ": " + money(ctx.parsed.y);
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            grid: { color: "rgba(15,35,65,0.05)" },
+            ticks: { color: MUTED, font: { size: 11 } }
+          },
+          y: {
+            grid: { color: "rgba(15,35,65,0.06)" },
+            ticks: {
+              color: MUTED,
+              font: { size: 11 },
+              callback: (v) => money(v)
+            }
+          }
+        }
+      };
+
+      const el1 = document.getElementById("chartCumulativeLp");
+      if (el1) {
+        new Chart(el1, {
+          type: "line",
+          data: {
+            labels: years,
+            datasets: [
+              {
+                label: data.tight.label,
+                data: data.tight.cum,
+                borderColor: BLUE,
+                backgroundColor: "rgba(47,111,237,0.12)",
+                borderWidth: 2.5,
+                pointRadius: 3.5,
+                pointHoverRadius: 5,
+                tension: 0.22,
+                fill: false
+              },
+              {
+                label: data.mid.label,
+                data: data.mid.cum,
+                borderColor: GOLD,
+                backgroundColor: "rgba(212,175,106,0.12)",
+                borderWidth: 2.5,
+                pointRadius: 3.5,
+                pointHoverRadius: 5,
+                tension: 0.22,
+                fill: false
+              },
+              {
+                label: data.heavy.label,
+                data: data.heavy.cum,
+                borderColor: GRAY,
+                backgroundColor: "rgba(139,149,167,0.12)",
+                borderWidth: 2.5,
+                pointRadius: 3.5,
+                pointHoverRadius: 5,
+                tension: 0.22,
+                fill: false
+              }
+            ]
+          },
+          options: {
+            ...baseOptions,
+            plugins: {
+              ...baseOptions.plugins,
+              title: {
+                display: true,
+                text: "TrueStorage Menifee · Illustrative cumulative LP cash (Y0–Y8)",
+                align: "start",
+                color: NAVY,
+                font: { size: 13, weight: "600", family: "Inter, system-ui, sans-serif" },
+                padding: { bottom: 12 }
+              }
+            }
+          }
+        });
+      }
+
+      const el2 = document.getElementById("chartLpEvents");
+      if (el2) {
+        const dist = data.tight.dist;
+        const colors = dist.map((v, i) => {
+          if (i === 0) return RED;
+          if (i === dist.length - 1) return GOLD;
+          if (v > 0) return BLUE;
+          return "#cfd6e2";
+        });
+        new Chart(el2, {
+          type: "bar",
+          data: {
+            labels: years,
+            datasets: [
+              {
+                label: "LP cash event",
+                data: dist,
+                backgroundColor: colors,
+                borderRadius: 6,
+                maxBarThickness: 42
+              }
+            ]
+          },
+          options: {
+            ...baseOptions,
+            plugins: {
+              ...baseOptions.plugins,
+              legend: { display: false },
+              title: {
+                display: true,
+                text: "LP cash events · $1.5M all-in path",
+                align: "start",
+                color: NAVY,
+                font: { size: 13, weight: "600", family: "Inter, system-ui, sans-serif" },
+                padding: { bottom: 12 }
+              }
+            }
+          }
+        });
+      }
+
+      const el3 = document.getElementById("chartNoiBtcf");
+      if (el3) {
+        new Chart(el3, {
+          type: "line",
+          data: {
+            labels: years,
+            datasets: [
+              {
+                label: "NOI",
+                data: data.tight.noi,
+                borderColor: BLUE,
+                backgroundColor: "rgba(47,111,237,0.10)",
+                borderWidth: 2.5,
+                pointRadius: 3.5,
+                pointHoverRadius: 5,
+                tension: 0.22,
+                spanGaps: false
+              },
+              {
+                label: "BTCF after debt + AM",
+                data: data.tight.btcf,
+                borderColor: GOLD,
+                backgroundColor: "rgba(212,175,106,0.10)",
+                borderWidth: 2.5,
+                pointRadius: 3.5,
+                pointHoverRadius: 5,
+                tension: 0.22,
+                spanGaps: false
+              }
+            ]
+          },
+          options: {
+            ...baseOptions,
+            plugins: {
+              ...baseOptions.plugins,
+              title: {
+                display: true,
+                text: "Stabilization path · NOI vs cash after debt",
+                align: "start",
+                color: NAVY,
+                font: { size: 13, weight: "600", family: "Inter, system-ui, sans-serif" },
+                padding: { bottom: 12 }
+              }
+            }
+          }
+        });
+      }
+    })();
+  </script>
+
   <script src="/site.js"></script>
 </body>
 </html>
