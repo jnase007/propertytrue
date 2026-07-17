@@ -36,6 +36,12 @@
         linear-gradient(180deg, #081526 0%, var(--navy) 45%, #0a1728 100%);
     }
     a { color: inherit; text-decoration: none; }
+    .latest-offering-bar { display:block; background:linear-gradient(90deg,#0b1220 0%,#152a4a 55%,#1a4fbf 140%); color:#fff; border-bottom:1px solid rgba(126,176,255,.25); text-decoration:none; }
+    .latest-offering-inner { max-width:1180px; margin:0 auto; padding:0.7rem 1.1rem; display:flex; flex-wrap:wrap; gap:0.45rem 1rem; align-items:center; justify-content:space-between; }
+    .latest-offering-label { display:inline-flex; align-items:center; gap:0.4rem; color:#7eb0ff; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; font-weight:700; }
+    .latest-offering-dot { width:0.45rem; height:0.45rem; border-radius:999px; background:#3dce7a; box-shadow:0 0 0 3px rgba(61,206,122,.18); }
+    .latest-offering-title { font-size:0.9rem; font-weight:600; }
+    .latest-offering-cta { color:#9ec2ff; font-weight:700; font-size:0.86rem; }
     .topbar {
       max-width: 1180px;
       margin: 0 auto;
@@ -324,6 +330,13 @@
   </style>
 </head>
 <body>
+  <a class="latest-offering-bar" href="/truestorage-menifee.html">
+    <span class="latest-offering-inner">
+      <span class="latest-offering-label"><span class="latest-offering-dot" aria-hidden="true"></span> Latest Offering</span>
+      <span class="latest-offering-title">TrueStorage Menifee — Self-Storage Co-Invest · Menifee / Inland Empire</span>
+      <span class="latest-offering-cta">View property →</span>
+    </span>
+  </a>
   <div class="topbar">
     <a class="brand" href="/">PROPERTY <span>TRUE</span></a>
     <div class="top-links">
