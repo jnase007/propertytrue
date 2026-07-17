@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Truehold Menifee · Returns Calculator | Property True</title>
+  <meta name="description" content="Illustrative investment projections calculator for Truehold Menifee planning conversations. Not an offer to sell securities." />
+  <meta name="robots" content="noindex,nofollow" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #0b1c33;
+      --navy-2: #10243f;
+      --navy-3: #163053;
+      --panel: #132a48;
+      --line: rgba(212, 175, 106, 0.22);
+      --gold: #d4af6a;
+      --gold-2: #e8c98a;
+      --ink: #f4f1ea;
+      --muted: #9fb0c7;
+      --soft: rgba(255,255,255,0.06);
+      --good: #7ddea0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(212,175,106,0.12), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(47,111,237,0.16), transparent 30%),
+        linear-gradient(180deg, #081526 0%, var(--navy) 45%, #0a1728 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 18px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      letter-spacing: 0.08em;
+      font-size: 1.05rem;
+    }
+    .brand span { color: var(--gold); }
+    .top-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .top-links a {
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .top-links a:hover { color: var(--ink); border-color: rgba(212,175,106,0.4); }
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 18px 48px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      margin: 12px 0 8px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    .lede {
+      max-width: 48rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin: 0 0 22px;
+    }
+    .shell {
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 920px) {
+      .shell { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid rgba(212,175,106,0.18);
+      border-radius: 22px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+      overflow: hidden;
+    }
+    .card-inner { padding: 22px; }
+    .chart-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: end;
+      margin-bottom: 12px;
+    }
+    .chart-head h2 {
+      margin: 0;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+    }
+    .chart-head p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .pill {
+      border: 1px solid rgba(212,175,106,0.35);
+      color: var(--gold-2);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    canvas {
+      width: 100%;
+      height: 340px;
+      display: block;
+      background:
+        linear-gradient(180deg, rgba(212,175,106,0.04), transparent 42%),
+        rgba(0,0,0,0.12);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    .legend i {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+      margin-right: 6px;
+      vertical-align: -1px;
+    }
+    label {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .field { margin-bottom: 18px; }
+    .money-row, .range-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .money-row input {
+      width: 100%;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(212,175,106,0.22);
+      border-radius: 14px;
+      color: var(--ink);
+      font: inherit;
+      font-size: 1.35rem;
+      font-weight: 700;
+      padding: 14px 16px;
+      font-variant-numeric: tabular-nums;
+    }
+    .money-row input:focus {
+      outline: 2px solid rgba(212,175,106,0.28);
+      border-color: var(--gold);
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--gold);
+    }
+    .value {
+      color: var(--gold-2);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      font-size: 1rem;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .chip {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: transparent;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 11px;
+      font: inherit;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .chip.active, .chip:hover {
+      color: var(--ink);
+      border-color: rgba(212,175,106,0.45);
+      background: rgba(212,175,106,0.08);
+    }
+    .modes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .mode {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(0,0,0,0.15);
+      color: var(--muted);
+      border-radius: 14px;
+      padding: 12px;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+    }
+    .mode strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+      font-size: 0.92rem;
+    }
+    .mode span {
+      font-size: 0.75rem;
+      line-height: 1.35;
+      display: block;
+    }
+    .mode.active {
+      border-color: rgba(212,175,106,0.5);
+      background: rgba(212,175,106,0.1);
+      color: var(--gold-2);
+    }
+    .summary {
+      background: linear-gradient(180deg, rgba(212,175,106,0.12), rgba(212,175,106,0.04));
+      border: 1px solid rgba(212,175,106,0.28);
+      border-radius: 18px;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .summary .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .summary .k { color: var(--muted); font-size: 0.9rem; }
+    .summary .v {
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: var(--gold-2);
+    }
+    .summary .v.big {
+      font-size: 1.7rem;
+      color: #fff;
+    }
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+    .table-card { margin-top: 18px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 11px 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-align: right;
+    }
+    th:first-child, td:first-child { text-align: left; }
+    th {
+      color: var(--muted);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .footer-note {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(212,175,106,0.18);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a class="brand" href="/">PROPERTY <span>TRUE</span></a>
+    <div class="top-links">
+      <a href="/truehold-menifee.html">Property page</a>
+      <a href="/truehold-menifee.html#timeline">Timeline</a>
+      <a href="/access.html">Contact</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="eyebrow">Investment Projections</div>
+    <h1>Returns Calculator</h1>
+    <p class="lede">
+      Illustrative planning tool for Truehold Menifee conversations.
+      Enter an investment amount and explore either a simple annualized path or a base-case project shape.
+      This is <strong>not</strong> an offer to sell securities and not a promise of returns.
+    </p>
+
+    <div class="shell">
+      <section class="card">
+        <div class="card-inner">
+          <div class="chart-head">
+            <div>
+              <h2>Projected value over time</h2>
+              <p id="chartSub">Illustrative path · Years 0–5</p>
+            </div>
+            <div class="pill" id="modePill">Illustrative CAGR</div>
+          </div>
+          <canvas id="chart" width="900" height="340" aria-label="Investment growth chart"></canvas>
+          <div class="legend">
+            <span><i style="background:#d4af6a"></i> Ending value path</span>
+            <span><i style="background:rgba(255,255,255,0.35)"></i> Capital invested</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card">
+        <div class="card-inner">
+          <div class="modes" role="tablist">
+            <button type="button" class="mode active" data-mode="cagr" id="modeCagr">
+              <strong>Simple growth</strong>
+              <span>Investment × annualized return over a hold period (like your sample UI).</span>
+            </button>
+            <button type="button" class="mode" data-mode="base" id="modeBase">
+              <strong>Truehold base path</strong>
+              <span>Illustrative $1.5M TPC LP cash-flow shape, scaled to your check.</span>
+            </button>
+          </div>
+
+          <div class="field">
+            <label for="invest">Investment</label>
+            <div class="money-row">
+              <input id="invest" type="text" inputmode="decimal" value="100000" />
+            </div>
+            <div class="chips" id="chips"></div>
+          </div>
+
+          <div class="field" id="cagrField">
+            <div class="range-row">
+              <label for="cagr">Compound annualized return</label>
+              <div class="value" id="cagrLabel">17%</div>
+            </div>
+            <input id="cagr" type="range" min="4" max="25" step="0.5" value="17" />
+            <div class="note">Drag this for scenario planning. Not a stated deal return.</div>
+          </div>
+
+          <div class="field" id="yearsField">
+            <div class="range-row">
+              <label for="years">Hold length</label>
+              <div class="value" id="yearsLabel">5 years</div>
+            </div>
+            <input id="years" type="range" min="3" max="10" step="1" value="5" />
+          </div>
+
+          <div class="summary" id="summary"></div>
+          <p class="note" id="pathNote">
+            Simple mode compounds your investment annually for the selected hold. Use it for conversation framing only.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <section class="card table-card">
+      <div class="card-inner">
+        <div class="chart-head">
+          <div>
+            <h2>Year-by-year</h2>
+            <p>What the graph is showing, line by line.</p>
+          </div>
+        </div>
+        <div style="overflow:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Ending value</th>
+                <th>Gain vs capital</th>
+                <th>Cash event (base path)</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      <strong style="color:var(--gold-2)">Illustrative only · not an offering.</strong>
+      Nothing on this page is a solicitation or offer to sell securities.
+      Modeled results depend on assumptions (rents, costs, debt, lease-up, exit, timing) and can be materially higher or lower — including loss of capital.
+      Prefer private conversation for deal-specific underwriting. Partner-safe public pages intentionally do not publish a fixed preferred return, IRR, or minimum investment as an offer.
+    </div>
+  </div>
+
+  <script>
+    const chips = [50000, 100000, 150000, 250000, 500000];
+    const el = {
+      invest: document.getElementById("invest"),
+      cagr: document.getElementById("cagr"),
+      years: document.getElementById("years"),
+      cagrLabel: document.getElementById("cagrLabel"),
+      yearsLabel: document.getElementById("yearsLabel"),
+      cagrField: document.getElementById("cagrField"),
+      yearsField: document.getElementById("yearsField"),
+      summary: document.getElementById("summary"),
+      rows: document.getElementById("rows"),
+      chart: document.getElementById("chart"),
+      chips: document.getElementById("chips"),
+      modePill: document.getElementById("modePill"),
+      chartSub: document.getElementById("chartSub"),
+      pathNote: document.getElementById("pathNote"),
+      modeCagr: document.getElementById("modeCagr"),
+      modeBase: document.getElementById("modeBase"),
+    };
+
+    let mode = "cagr";
+
+    function money(n, d = 0) {
+      const abs = Math.abs(n);
+      const s = abs.toLocaleString(undefined, { maximumFractionDigits: d, minimumFractionDigits: d });
+      return (n < 0 ? "-$" : "$") + s;
+    }
+    function parseMoney(v) {
+      const n = Number(String(v).replace(/[^0-9.\-]/g, ""));
+      return isFinite(n) ? n : 0;
+    }
+    function formatInput(n) {
+      return Math.round(n).toLocaleString();
+    }
+
+    // Truehold base LP path at full LP equity (~$607.5k on $1.5M TPC), then scaled
+    function buildBaseProject() {
+      const tpc = 1500000;
+      const debt = tpc * 0.55;
+      const equity = tpc * 0.45;
+      const lpEq = equity * 0.9;
+      const gpEq = equity * 0.1;
+      const ds = debt * 0.07;
+      const am = equity * 0.015;
+      const nrsf = 10000, rent = 1.55;
+      const egi = (occ) => nrsf * rent * 12 * occ * 0.96 * 1.08;
+      const fixed = egi(0.9) * 0.35;
+      const ramp = [0.3375, 0.7125, 0.9, 0.9, 0.9, 0.9, 0.9];
+      let prefAcc = 0;
+      const annual = [];
+      for (let yr = 0; yr < 7; yr++) {
+        const noi = egi(ramp[yr]) - fixed;
+        const btcf = noi - ds - am;
+        const owed = lpEq * 0.08 + prefAcc;
+        let prefPaid = 0, lpOps = 0;
+        if (btcf <= 0) prefAcc = owed;
+        else {
+          prefPaid = Math.min(btcf, owed);
+          prefAcc = owed - prefPaid;
+          lpOps = prefPaid + (btcf - prefPaid) * 0.7;
+        }
+        let lpExit = 0;
+        if (yr === 6) {
+          let pot = ((egi(0.9) - fixed) / 0.0625) * 0.98 - debt;
+          let toLp = 0;
+          let pay = Math.min(pot, lpEq); toLp += pay; pot -= pay;
+          pay = Math.min(pot, prefAcc); toLp += pay; pot -= pay; prefAcc -= pay;
+          pay = Math.min(pot, gpEq); pot -= pay;
+          toLp += pot * 0.7;
+          lpExit = toLp;
+        }
+        annual.push({ cash: lpOps + lpExit, ops: lpOps, exit: lpExit });
+      }
+      // years from capital: Y0 invest, Y1 build 0, Y2..Y8 annual
+      const cfs = [-lpEq, 0, ...annual.map((a) => a.cash)];
+      const events = ["Capital in", "Build", "Lease-up", "Lease-up", "Stabilize", "Ops", "Ops", "Ops", "Ops + Exit"];
+      return { lpEq, cfs, events, annual };
+    }
+    const BASE = buildBaseProject();
+
+    function seriesCagr(invest, cagr, years) {
+      const points = [];
+      for (let y = 0; y <= years; y++) {
+        const value = invest * Math.pow(1 + cagr, y);
+        points.push({
+          y,
+          value,
+          gain: value - invest,
+          event: y === 0 ? "Capital in" : "Compound growth",
+        });
+      }
+      return points;
+    }
+
+    function seriesBase(invest) {
+      const share = invest / BASE.lpEq;
+      let cumCash = 0;
+      const points = [];
+      // Ending economic value proxy:
+      // start with capital; add cash received; after exit year remaining is realized.
+      // For chart clarity: cumulative net wealth = invest + sum(cashflows) where Y0 cash = -invest
+      // which equals cumulative distributions - residual... simpler: use cumulative cash position + remaining book?
+      // Screenshot style wants rising value. For base path, show cumulative cash returned + residual claim until exit.
+      // Residual claim approx: remaining unpaid capital + accrued economics approximated by
+      // (total model profit share still unrealized). Cleaner approach:
+      // value_y = invest + sum_{0..y} cash_t   (cash_0 = -invest) => ends at net profit path
+      // At intermediate years before exit this can stay negative — honest for development.
+      // To match "growth chart" expectation while remaining honest, also show "gross value" =
+      // capital + cumulative positive dists + modeled remaining exit share pro-rata.
+      const totalExitLike = BASE.cfs.reduce((s, x) => s + Math.max(0, x), 0) * share;
+      const remainingAfter = (y) => {
+        // pro-rata remaining of all future positive cash
+        let future = 0;
+        for (let i = y + 1; i < BASE.cfs.length; i++) future += Math.max(0, BASE.cfs[i]) * share;
+        return future;
+      };
+      for (let y = 0; y < BASE.cfs.length; y++) {
+        cumCash += BASE.cfs[y] * share;
+        const value = invest + cumCash + remainingAfter(y - 0); // invest + all cash to date including -invest + future remaining
+        // invest + cumCash already includes -invest at y0; plus remaining future positive cash ≈ total expected back if model holds
+        // At y0: invest + (-invest) + total positive future = total expected back. Good.
+        points.push({
+          y,
+          value: invest + cumCash + remainingAfter(y),
+          gain: invest + cumCash + remainingAfter(y) - invest,
+          event: BASE.events[y] || ("Y" + y),
+          cash: BASE.cfs[y] * share,
+        });
+      }
+      return points;
+    }
+
+    function draw(points, invest) {
+      const canvas = el.chart;
+      const dpr = window.devicePixelRatio || 1;
+      const cssW = canvas.clientWidth || 900;
+      const cssH = 340;
+      canvas.width = Math.floor(cssW * dpr);
+      canvas.height = Math.floor(cssH * dpr);
+      const ctx = canvas.getContext("2d");
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, cssW, cssH);
+
+      const pad = { l: 58, r: 18, t: 24, b: 40 };
+      const w = cssW - pad.l - pad.r;
+      const h = cssH - pad.t - pad.b;
+      const vals = points.map((p) => p.value).concat([invest, 0]);
+      const minY = 0;
+      const maxY = Math.max(...vals) * 1.12 || 1;
+      const maxX = Math.max(...points.map((p) => p.y), 1);
+      const xAt = (y) => pad.l + (y / maxX) * w;
+      const yAt = (v) => pad.t + h * (1 - (v - minY) / (maxY - minY));
+
+      // grid
+      ctx.strokeStyle = "rgba(255,255,255,0.06)";
+      ctx.fillStyle = "rgba(159,176,199,0.9)";
+      ctx.font = "11px DM Sans, system-ui, sans-serif";
+      ctx.textAlign = "right";
+      for (let i = 0; i <= 4; i++) {
+        const v = (maxY * i) / 4;
+        const y = yAt(v);
+        ctx.beginPath();
+        ctx.moveTo(pad.l, y);
+        ctx.lineTo(pad.l + w, y);
+        ctx.stroke();
+        ctx.fillText(money(v / 1000, 0) + "k", pad.l - 8, y + 4);
+      }
+
+      // capital line
+      ctx.strokeStyle = "rgba(255,255,255,0.28)";
+      ctx.setLineDash([5, 5]);
+      ctx.beginPath();
+      ctx.moveTo(pad.l, yAt(invest));
+      ctx.lineTo(pad.l + w, yAt(invest));
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // area
+      const grad = ctx.createLinearGradient(0, pad.t, 0, pad.t + h);
+      grad.addColorStop(0, "rgba(212,175,106,0.28)");
+      grad.addColorStop(1, "rgba(212,175,106,0.01)");
+      ctx.beginPath();
+      points.forEach((p, i) => {
+        const x = xAt(p.y), y = yAt(p.value);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.lineTo(xAt(points[points.length - 1].y), yAt(0));
+      ctx.lineTo(xAt(points[0].y), yAt(0));
+      ctx.closePath();
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // gold line
+      ctx.strokeStyle = "#d4af6a";
+      ctx.lineWidth = 2.8;
+      ctx.beginPath();
+      points.forEach((p, i) => {
+        const x = xAt(p.y), y = yAt(p.value);
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      points.forEach((p) => {
+        ctx.fillStyle = "#e8c98a";
+        ctx.beginPath();
+        ctx.arc(xAt(p.y), yAt(p.value), 3.6, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // x labels
+      ctx.fillStyle = "rgba(159,176,199,0.95)";
+      ctx.textAlign = "center";
+      points.forEach((p) => {
+        ctx.fillText("Y" + p.y, xAt(p.y), cssH - 14);
+      });
+    }
+
+    function render() {
+      const invest = Math.max(1000, parseMoney(el.invest.value));
+      el.invest.value = formatInput(invest);
+      [...el.chips.children].forEach((c) => {
+        c.classList.toggle("active", Number(c.dataset.amount) === invest);
+      });
+
+      const cagr = Number(el.cagr.value) / 100;
+      const years = Number(el.years.value);
+      el.cagrLabel.textContent = (cagr * 100).toFixed(1).replace(/\.0$/, "") + "%";
+      el.yearsLabel.textContent = years + " years";
+
+      let points;
+      if (mode === "cagr") {
+        points = seriesCagr(invest, cagr, years);
+        el.modePill.textContent = "Illustrative CAGR";
+        el.chartSub.textContent = "Simple compound path · Years 0–" + years;
+        el.cagrField.style.display = "";
+        el.yearsField.style.display = "";
+        el.pathNote.textContent = "Simple mode compounds your investment annually for the selected hold. Conversation framing only — not a stated deal return.";
+      } else {
+        points = seriesBase(invest);
+        el.modePill.textContent = "Base path · $1.5M TPC";
+        el.chartSub.textContent = "Illustrative LP cash-flow shape · Years 0–8 (build → exit)";
+        el.cagrField.style.display = "none";
+        el.yearsField.style.display = "none";
+        el.pathNote.textContent = "Base path scales the private $1.5M TPC LP model to your check (pref + residual + exit shape). Still illustrative — not an offering or guarantee.";
+      }
+
+      const end = points[points.length - 1];
+      const totalReturn = end.value;
+      const profit = end.value - invest;
+      const multiple = end.value / invest;
+      const holdYears = points[points.length - 1].y;
+      const cagrImplied = holdYears > 0 ? Math.pow(end.value / invest, 1 / holdYears) - 1 : 0;
+
+      el.summary.innerHTML = `
+        <div class="row"><div class="k">You invest</div><div class="v">${money(invest)}</div></div>
+        <div class="row"><div class="k">Avg length / model horizon</div><div class="v">${holdYears} years</div></div>
+        <div class="row"><div class="k">Total investment value</div><div class="v big">${money(totalReturn)}</div></div>
+        <div class="row"><div class="k">Net gain</div><div class="v" style="color:${profit >= 0 ? "var(--good)" : "#ff8e8e"}">${money(profit)}</div></div>
+        <div class="row"><div class="k">Multiple</div><div class="v">${multiple.toFixed(2)}x</div></div>
+        <div class="row"><div class="k">Implied annualized</div><div class="v">${(cagrImplied * 100).toFixed(1)}%</div></div>
+      `;
+
+      el.rows.innerHTML = points.map((p) => `
+        <tr>
+          <td>Year ${p.y}</td>
+          <td>${money(p.value)}</td>
+          <td>${money(p.gain)}</td>
+          <td style="text-align:left;color:var(--muted)">${p.event}${p.cash != null ? " · cash " + money(p.cash) : ""}</td>
+        </tr>
+      `).join("");
+
+      draw(points, invest);
+    }
+
+    chips.forEach((n) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip";
+      b.dataset.amount = String(n);
+      b.textContent = money(n);
+      b.addEventListener("click", () => {
+        el.invest.value = formatInput(n);
+        render();
+      });
+      el.chips.appendChild(b);
+    });
+
+    function setMode(next) {
+      mode = next;
+      el.modeCagr.classList.toggle("active", mode === "cagr");
+      el.modeBase.classList.toggle("active", mode === "base");
+      render();
+    }
+    el.modeCagr.addEventListener("click", () => setMode("cagr"));
+    el.modeBase.addEventListener("click", () => setMode("base"));
+    el.invest.addEventListener("change", render);
+    el.invest.addEventListener("keydown", (e) => { if (e.key === "Enter") render(); });
+    el.cagr.addEventListener("input", render);
+    el.years.addEventListener("input", render);
+    window.addEventListener("resize", render);
+    render();
+  </script>
+</body>
+</html>
