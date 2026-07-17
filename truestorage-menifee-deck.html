@@ -205,8 +205,38 @@
       font-size: 0.78rem;
     }
     .footer-bar a { color: var(--blue-soft); text-decoration: none; font-weight: 600; }
+    .deck-exit {
+      position: fixed;
+      top: 0.85rem;
+      right: 0.85rem;
+      z-index: 40;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.2);
+      background: rgba(15,17,20,.82);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.28);
+    }
+    .deck-exit:hover {
+      border-color: var(--blue-soft);
+      color: var(--blue-soft);
+    }
+    .deck-exit span {
+      font-size: 1rem;
+      line-height: 1;
+      opacity: 0.9;
+    }
     .nav-btns { display: flex; gap: 0.45rem; align-items: center; }
-    .nav-btns button {
+    .nav-btns button,
+    .nav-btns a.exit-btn {
       appearance: none;
       border: 1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.06);
@@ -215,8 +245,17 @@
       padding: 0.45rem 0.75rem;
       font: inherit;
       cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
     }
-    .nav-btns button:hover { border-color: var(--blue-soft); color: var(--blue-soft); }
+    .nav-btns button:hover,
+    .nav-btns a.exit-btn:hover { border-color: var(--blue-soft); color: var(--blue-soft); }
+    .nav-btns a.exit-btn {
+      border-color: rgba(126,176,255,.45);
+      background: rgba(47,111,237,.28);
+      font-weight: 600;
+    }
     .progress {
       position: fixed;
       top: 0; left: 0; height: 3px;
@@ -505,16 +544,22 @@
     </section>
   </div>
 
+  <a class="deck-exit" href="/truestorage-menifee.html" title="Exit deck (Esc)">
+    <span aria-hidden="true">×</span> Exit deck
+  </a>
+
   <div class="footer-bar">
     <div>
       <strong style="color:#fff;">TrueStorage Menifee</strong>
       · <span id="slideLabel">1 / 12</span>
       · <a href="/truestorage-menifee.html">Property page</a>
+      · <a href="/">Home</a>
       · <a href="/access.html">Contact</a>
     </div>
     <div class="nav-btns">
       <button type="button" id="prevBtn">← Prev</button>
       <button type="button" id="nextBtn">Next →</button>
+      <a class="exit-btn" href="/truestorage-menifee.html">Exit</a>
     </div>
   </div>
 
@@ -522,6 +567,7 @@
     const slides = [...document.querySelectorAll('.slide')];
     const progress = document.getElementById('progress');
     const label = document.getElementById('slideLabel');
+    const exitUrl = '/truestorage-menifee.html';
     let i = 0;
     function show(n) {
       i = Math.max(0, Math.min(slides.length - 1, n));
@@ -530,9 +576,13 @@
       label.textContent = (i + 1) + ' / ' + slides.length + ' · ' + (slides[i].dataset.title || '');
       history.replaceState(null, '', '#' + (i + 1));
     }
+    function exitDeck() {
+      window.location.href = exitUrl;
+    }
     document.getElementById('prevBtn').onclick = () => show(i - 1);
     document.getElementById('nextBtn').onclick = () => show(i + 1);
     window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') { e.preventDefault(); exitDeck(); return; }
       if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); show(i + 1); }
       if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); show(i - 1); }
       if (e.key === 'Home') show(0);
