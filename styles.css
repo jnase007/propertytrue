@@ -848,21 +848,38 @@ body.menu-open .brand-mark {
 .hero.hero-simple .hero-inner {
   padding: 5.2rem 0 4.4rem;
   max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 .hero-simple-copy {
   max-width: 46rem;
+  margin: 0 auto;
+  text-align: center;
 }
 .hero.hero-simple .eyebrow {
   font-size: 0.82rem;
   letter-spacing: 0.16em;
+  justify-content: center;
 }
 .hero.hero-simple h1 {
   font-size: clamp(2.55rem, 6.2vw, 4.55rem);
   line-height: 0.98;
   max-width: min(18ch, 100%);
+  margin-left: auto;
+  margin-right: auto;
 }
 .hero.hero-simple h1 .hero-line {
   display: block;
+}
+.hero.hero-simple .lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero.hero-simple .hero-actions {
+  justify-content: center;
 }
 .hero-grid {
   display: grid;

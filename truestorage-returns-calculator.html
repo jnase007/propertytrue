@@ -271,9 +271,19 @@
       background: linear-gradient(180deg, rgba(212,175,106,0.12), rgba(212,175,106,0.04));
       border: 1px solid rgba(212,175,106,0.28);
       border-radius: 18px;
-      padding: 16px;
+      padding: 18px 16px;
       display: grid;
-      gap: 12px;
+      gap: 14px;
+      margin-top: 4px;
+      min-height: 11rem;
+    }
+    .summary-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 0 0 2px;
     }
     .summary .row {
       display: flex;
@@ -411,7 +421,10 @@
             <input id="years" type="range" min="3" max="10" step="1" value="5" />
           </div>
 
-          <div class="summary" id="summary"></div>
+          <div class="summary" id="summary" aria-live="polite">
+            <div class="summary-title">Projected returns</div>
+            <div class="row"><div class="k">Loading…</div><div class="v">—</div></div>
+          </div>
           <p class="note" id="pathNote">
             Simple mode compounds your investment annually for the selected hold. Use it for conversation framing only.
           </p>
@@ -707,11 +720,12 @@
       const cagrImplied = holdYears > 0 ? Math.pow(end.value / invest, 1 / holdYears) - 1 : 0;
 
       el.summary.innerHTML = `
+        <div class="summary-title">Projected returns</div>
         <div class="row"><div class="k">You invest</div><div class="v">${money(invest)}</div></div>
-        <div class="row"><div class="k">Avg length / model horizon</div><div class="v">${holdYears} years</div></div>
-        <div class="row"><div class="k">Total investment value</div><div class="v big">${money(totalReturn)}</div></div>
+        <div class="row"><div class="k">Average length to go full-cycle</div><div class="v">${holdYears} years</div></div>
+        <div class="row"><div class="k">Total investment return</div><div class="v big">${money(totalReturn)}</div></div>
         <div class="row"><div class="k">Net gain</div><div class="v" style="color:${profit >= 0 ? "var(--good)" : "#ff8e8e"}">${money(profit)}</div></div>
-        <div class="row"><div class="k">Multiple</div><div class="v">${multiple.toFixed(2)}x</div></div>
+        <div class="row"><div class="k">Multiple on capital</div><div class="v">${multiple.toFixed(2)}x</div></div>
         <div class="row"><div class="k">Implied annualized</div><div class="v">${(cagrImplied * 100).toFixed(1)}%</div></div>
       `;
 
