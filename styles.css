@@ -1176,6 +1176,37 @@ h1 em {
 }
 .section-dark .card p { color: rgba(255,255,255,0.68); }
 .section-dark .card-num { color: var(--gold-soft); }
+
+.section-dark .stat-label {
+  color: rgba(196,165,116,0.92);
+}
+.section-dark .stat-value {
+  color: #fff;
+}
+.section-dark .deal-meta {
+  border-top-color: rgba(255,255,255,0.14);
+}
+.section-dark .fineprint {
+  color: rgba(255,255,255,0.58);
+}
+.section-dark .media-card {
+  background: #fff;
+  border-color: rgba(255,255,255,0.14);
+  color: var(--ink);
+}
+.section-dark .media-card .kicker {
+  color: var(--gold-deep);
+}
+.section-dark .media-card .body h3 {
+  color: var(--ink);
+}
+.section-dark .media-card .body p {
+  color: var(--ink-soft);
+}
+.section-dark .media-card .card-cta {
+  color: var(--gold-deep);
+}
+
 .section-head {
   max-width: 44rem;
   margin-bottom: 2.6rem;
