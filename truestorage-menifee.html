@@ -18,7 +18,7 @@
   <link rel="icon" href="/assets/favicon.svg?v=logo-classic-2" type="image/svg+xml" />
   <link rel="icon" href="/assets/favicon.ico?v=logo-classic-2" sizes="any" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=logo-classic-2" />
-  <link rel="stylesheet" href="/styles.css?v=chartjs-1" />
+  <link rel="stylesheet" href="/styles.css?v=deal-tabs-1" />
 
 <style>
   .chart-card .chart-shell {
@@ -85,14 +85,26 @@
         <h1>TrueStorage Menifee</h1>
         <p>Principal co-invest self-storage chapter — land + approximately 10,000 sq ft ground-up in the Menifee / Inland Empire corridor. Planning stage. Partner-safe overview only.</p>
         <div class="hero-actions" style="margin-top:1.25rem;">
-          <a class="btn btn-gold" href="/truestorage-menifee-deck.html">Pitch Deck</a>
-          <a class="btn btn-outline" href="/ie-self-storage-market-report.html">Market Brief</a>
+          <a class="btn btn-gold" href="#overview">Explore the mark</a>
           <a class="btn btn-outline" href="#projections">Projected Returns</a>
+          <a class="btn btn-outline" href="#pitch">Pitch summary</a>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <nav class="deal-tabs" id="dealTabs" aria-label="TrueStorage page sections">
+      <div class="container deal-tabs-inner">
+        <a class="deal-tab is-active" href="#overview" data-tab="overview">Overview</a>
+        <a class="deal-tab" href="#market" data-tab="market">Market</a>
+        <a class="deal-tab" href="#design" data-tab="design">Design</a>
+        <a class="deal-tab" href="#pitch" data-tab="pitch">Pitch</a>
+        <a class="deal-tab" href="#projections" data-tab="projections">Returns</a>
+        <a class="deal-tab" href="#timeline" data-tab="timeline">Timeline</a>
+        <a class="deal-tab" href="#next" data-tab="next">Next</a>
+      </div>
+    </nav>
+
+    <section class="section" id="overview">
       <div class="container">
         <div class="note reveal" style="margin-bottom:1.4rem;">
           Public property marks stay partner-safe on purpose. Land price, equity size, debt terms, preferred returns, IRR, MOIC, unit rents as underwriting targets, and minimum investment — if any — are shared only in private conversation or confidential materials. This page is <strong>not</strong> an offer to sell securities.
@@ -117,8 +129,8 @@
             </div>
             <p style="margin-top:1rem;font-size:0.9rem;color:var(--muted);">Hold thesis, capital structure, land basis, and projected returns are deal-specific. Use the illustrative calculator for conversation framing only — not an offer to sell securities.</p>
             <div class="hero-actions" style="margin-top:1.15rem;">
-              <a class="btn btn-gold" href="/truestorage-returns-calculator.html#summary">Projected Returns</a>
-              <a class="btn btn-outline" href="/truestorage-returns-calculator.html">Returns Calculator</a>
+              <a class="btn btn-gold" href="#projections">Projected Returns</a>
+              <a class="btn btn-outline" href="#pitch">Pitch summary</a>
               <a class="btn btn-outline" href="#timeline">Project Timeline</a>
             </div>
           </div>
@@ -139,7 +151,7 @@
       </div>
     </section>
 
-    <section class="section section-soft">
+    <section class="section section-soft" id="market">
       <div class="container split">
         <div class="reveal">
           <img src="/assets/thesis-aerial.jpg" alt="Aerial campus framing for TrueStorage Menifee concept" />
@@ -158,7 +170,63 @@
       </div>
     </section>
 
-    <section class="section">
+
+    <section class="section" id="market-brief">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:1.2rem;max-width:48rem;">
+          <div class="kicker">Market brief · on this page</div>
+          <h2 style="font-size:clamp(1.9rem,3.5vw,2.6rem);">IE / Menifee signals that matter.</h2>
+          <p class="lead" style="margin-top:0.85rem;">Partner-safe metro context for investor conversations. Use trade-area comps for underwriting — not homepage averages alone.</p>
+        </div>
+        <div class="grid-4 reveal" style="margin-bottom:1.2rem;">
+          <article class="card">
+            <div class="stat-label">IE 10×10 street rate</div>
+            <div class="stat-value" style="font-size:1.55rem;">$17.28</div>
+            <p style="margin-top:0.55rem;font-size:0.88rem;color:var(--muted);">Matthews CA Self-Storage 2026 · directional metro</p>
+          </article>
+          <article class="card">
+            <div class="stat-label">IE rent YoY</div>
+            <div class="stat-value" style="font-size:1.55rem;">−0.2%</div>
+            <p style="margin-top:0.55rem;font-size:0.88rem;color:var(--muted);">Stable / soft — underwrite IE rents, not LA</p>
+          </article>
+          <article class="card">
+            <div class="stat-label">IE pipeline</div>
+            <div class="stat-value" style="font-size:1.55rem;">1.7%</div>
+            <p style="margin-top:0.55rem;font-size:0.88rem;color:var(--muted);">Of inventory · disciplined vs boom markets</p>
+          </article>
+          <article class="card">
+            <div class="stat-label">IE 12-mo sales</div>
+            <div class="stat-value" style="font-size:1.55rem;">$146M</div>
+            <p style="margin-top:0.55rem;font-size:0.88rem;color:var(--muted);">Liquidity exists · still site-specific</p>
+          </article>
+        </div>
+        <div class="grid-3 reveal" style="margin-bottom:1.2rem;">
+          <article class="card">
+            <div class="kicker">Growth is real</div>
+            <h3 style="margin-top:0.35rem;">Menifee demographics</h3>
+            <p>~77.5k (2010) → ~102.5k (2020) → ~116–117k (~2024). Strong multi-year household growth is the cleanest demand foundation for a first-chapter storage mark.</p>
+          </article>
+          <article class="card">
+            <div class="kicker">Metro ≠ trade area</div>
+            <h3 style="margin-top:0.35rem;">Site selection wins</h3>
+            <p>IE averages can look balanced while a 3–5 mile ring is tight or competitive. We hunt visibility, truck geometry, and trade-area supply — not citywide slogans.</p>
+          </article>
+          <article class="card">
+            <div class="kicker">What we will not claim</div>
+            <h3 style="margin-top:0.35rem;">No scarcity theater</h3>
+            <p>We do not lead with “CBRE says #1 market” or citywide undersupply without a trade-area audit. Growth + basis discipline over hype.</p>
+          </article>
+        </div>
+        <div class="note reveal">
+          <strong>Sources (directional):</strong> Matthews Real Estate Investment Services, California Self-Storage Market Report 2026 (Yardi Matrix / RCA cited therein); U.S. Census / ACS population figures for Menifee. Full brief remains available as a downloadable-style page if needed — but the investor-facing story lives here.
+          <div class="hero-actions" style="margin-top:0.9rem;">
+            <a class="btn btn-outline" href="/ie-self-storage-market-report.html">Open full market brief page</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="design">
       <div class="container">
         <div class="reveal" style="margin-bottom:1.2rem;">
           <div class="kicker">Design Language</div>
@@ -184,6 +252,54 @@
         </div>
         <div class="note reveal" style="margin-top:1.4rem;">
           <strong>One-line design brief:</strong> A calm blue-and-concrete storage campus that looks more Property True than big-box — compact ~10k sq ft, drought-smart, digital-first, pitch-ready.
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section section-soft" id="pitch">
+      <div class="container">
+        <div class="reveal" style="margin-bottom:1.3rem;max-width:48rem;">
+          <div class="kicker">Pitch summary · on this page</div>
+          <h2 style="font-size:clamp(1.9rem,3.5vw,2.6rem);">What we’d walk an investor through.</h2>
+          <p class="lead" style="margin-top:0.85rem;">Same story as the fullscreen deck — laid out here so you never leave this page. Open the deck only if you want the presentation mode.</p>
+        </div>
+        <div class="grid-3 reveal" style="margin-bottom:1.2rem;">
+          <article class="card">
+            <div class="card-num">01</div>
+            <h3>Thesis</h3>
+            <p>Self-storage is Property True’s forward focus. Principal land posture + co-invest vertical on a right-sized first chapter (~10k sq ft), not marketplace theater.</p>
+          </article>
+          <article class="card">
+            <div class="card-num">02</div>
+            <h3>Snapshot</h3>
+            <p>Menifee / IE corridor · ground-up · digital-first ops · planning / site search. Public role: <strong>Principal · Co-Invest</strong>.</p>
+          </article>
+          <article class="card">
+            <div class="card-num">03</div>
+            <h3>Capital posture</h3>
+            <p>Invitation-only relationships. Partner-safe public materials. Full economics, structure, and minimums stay in private conversation.</p>
+          </article>
+          <article class="card">
+            <div class="card-num">04</div>
+            <h3>Market frame</h3>
+            <p>Documented Menifee growth + IE rent reality (~high teens). Trade-area supply audit over metro slogans. Site selection is the strategy.</p>
+          </article>
+          <article class="card">
+            <div class="card-num">05</div>
+            <h3>Path</h3>
+            <p>Site control → entitle → design → capital close → build → lease-up → stabilize. School-style timeline lives below on this same page.</p>
+          </article>
+          <article class="card">
+            <div class="card-num">06</div>
+            <h3>Risks</h3>
+            <p>Development risk is real: basis, entitlement, lease-up, rates. The model is intentionally honest — only the tight basis path works cleanly in base case.</p>
+          </article>
+        </div>
+        <div class="hero-actions reveal">
+          <a class="btn btn-gold" href="#projections">See projected returns</a>
+          <a class="btn btn-outline" href="#timeline">See project timeline</a>
+          <a class="btn btn-outline" href="/truestorage-menifee-deck.html">Open fullscreen deck</a>
         </div>
       </div>
     </section>
@@ -458,7 +574,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="next">
       <div class="container grid-2">
         <div class="reveal">
           <div class="kicker">What Stays Private</div>
@@ -485,7 +601,7 @@
         <div class="cta-band reveal">
           <div>
             <div class="kicker">Private Access</div>
-            <h2>Discuss TrueStorage Menifee</h2>
+            <h2 id="next-heading">Discuss TrueStorage Menifee</h2>
             <p>Operator, land, or known investor relationship — start with a direct conversation. No public invest button. No securities offered on this page.</p>
           </div>
           <div>
@@ -760,6 +876,53 @@
             }
           }
         });
+      }
+    })();
+  </script>
+
+  
+  <script>
+    (function () {
+      const tabs = Array.from(document.querySelectorAll(".deal-tab"));
+      if (!tabs.length) return;
+      const map = tabs.map((t) => {
+        const id = (t.getAttribute("href") || "").replace("#", "");
+        return { tab: t, el: document.getElementById(id) };
+      }).filter((x) => x.el);
+
+      const setActive = (id) => {
+        tabs.forEach((t) => t.classList.toggle("is-active", t.getAttribute("href") === "#" + id));
+      };
+
+      // Click: smooth scroll already via CSS; still set active immediately
+      tabs.forEach((t) => {
+        t.addEventListener("click", () => {
+          const id = (t.getAttribute("href") || "").replace("#", "");
+          setActive(id);
+        });
+      });
+
+      if (!("IntersectionObserver" in window)) return;
+      const io = new IntersectionObserver((entries) => {
+        // pick the most visible intersecting section
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0] && visible[0].target && visible[0].target.id) {
+          setActive(visible[0].target.id);
+        }
+      }, { rootMargin: "-30% 0px -55% 0px", threshold: [0.1, 0.25, 0.5] });
+
+      map.forEach(({ el }) => io.observe(el));
+      // also observe market-brief under Market tab feel - map market-brief to market tab when visible
+      const brief = document.getElementById("market-brief");
+      if (brief) {
+        const briefIo = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) setActive("market");
+          });
+        }, { rootMargin: "-30% 0px -55% 0px", threshold: 0.2 });
+        briefIo.observe(brief);
       }
     })();
   </script>

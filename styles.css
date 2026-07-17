@@ -2023,3 +2023,63 @@ body.menu-open .mobile-cta { display: none !important; }
   }
   .eyebrow-dot { animation: none; }
 }
+
+
+/* Deal page sticky section tabs (TrueStorage one-page layout) */
+.deal-tabs {
+  position: sticky;
+  top: calc(var(--header-h) + 42px);
+  z-index: 40;
+  background: rgba(247, 249, 252, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+body:has(.latest-offering-bar) .deal-tabs {
+  top: calc(var(--header-h) + 42px);
+}
+.deal-tabs-inner {
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.55rem 0;
+  scrollbar-width: none;
+}
+.deal-tabs-inner::-webkit-scrollbar { display: none; }
+.deal-tab {
+  flex: 0 0 auto;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid transparent;
+  transition: color 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+.deal-tab:hover {
+  color: var(--ink);
+  background: rgba(47, 111, 237, 0.06);
+}
+.deal-tab.is-active {
+  color: var(--gold-deep);
+  background: var(--gold-pale);
+  border-color: rgba(47, 111, 237, 0.22);
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+@media (max-width: 980px) {
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  .deal-tabs { top: calc(var(--header-h) + 56px); }
+}
+/* Anchor offset under sticky header + tabs */
+#overview, #market, #market-brief, #design, #pitch, #projections, #timeline, #next {
+  scroll-margin-top: 9.5rem;
+}
