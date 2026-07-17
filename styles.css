@@ -879,6 +879,54 @@ body.menu-open .brand-mark {
   margin-top: 1.55rem;
   gap: 0.75rem;
 }
+
+/* Market report / lead-gen brief */
+.report-hero h1 {
+  max-width: 16ch;
+}
+.report-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.65rem;
+  margin-top: 1rem;
+  font-size: 0.86rem;
+  color: var(--muted, #6b7280);
+  font-weight: 500;
+}
+.report-stats .stat {
+  min-height: 100%;
+}
+.report-stats .stat-note {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--muted, #6b7280);
+}
+.report-list {
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+.report-list li {
+  position: relative;
+  padding-left: 1.05rem;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: #374151;
+}
+.report-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: #2f6fed;
+  opacity: 0.8;
+}
 .hero .fineprint {
   margin-top: 0.95rem;
   max-width: 32rem;
