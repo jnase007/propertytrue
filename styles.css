@@ -3992,3 +3992,21 @@ a.media-card:hover,
 .site-header{position:sticky!important;z-index:1000!important;isolation:isolate}
 .deal-tabs{z-index:30!important}
 main{position:relative;z-index:1}
+
+/* QA PASS — contrast + long-title safety */
+.page-hero h1 { max-width: min(20ch, 100%) !important; }
+.page-hero h1 em { color: #9ec0ff !important; -webkit-text-fill-color: #9ec0ff !important; font-style: italic; }
+.page-hero + .section .card,
+.page-hero + .section .media-card,
+.section-after-hero .card,
+.section-after-hero .media-card { color: var(--ink); }
+.page-hero + .section .card h3,
+.page-hero + .section .media-card h3,
+.section-after-hero .card h3,
+.section-after-hero .media-card h3 { color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important; }
+.page-hero + .section .card p,
+.page-hero + .section .media-card p,
+.section-after-hero .card p,
+.section-after-hero .media-card p { color: var(--ink-soft) !important; -webkit-text-fill-color: var(--ink-soft) !important; }
+.page-hero + .section .stat-value,
+.section-after-hero .stat-value { color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important; }
