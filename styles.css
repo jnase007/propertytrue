@@ -4019,3 +4019,97 @@ main{position:relative;z-index:1}
 .hero.hero-club .hero-club-grid:not(:has(.hero-side-card)) .hero-simple-copy {
   max-width: min(38rem, 100%);
 }
+
+/* HEADER STACK HARD LOCK — body never paints over nav */
+.latest-offering-bar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 12050 !important;
+  isolation: isolate !important;
+}
+.site-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 12040 !important;
+  isolation: isolate !important;
+  background: rgba(247, 249, 252, 0.98) !important;
+  backdrop-filter: blur(18px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.2) !important;
+}
+body:has(.latest-offering-bar) .site-header {
+  top: 42px !important;
+}
+body.is-scrolled .site-header,
+.site-header.is-scrolled {
+  background: rgba(8, 11, 18, 0.96) !important;
+  border-bottom-color: rgba(126, 176, 255, 0.14) !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28) !important;
+}
+/* Solid underlay so scrolled body text never ghosts through */
+.site-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: inherit;
+  pointer-events: none;
+}
+.deal-tabs {
+  position: sticky !important;
+  z-index: 12020 !important;
+  background: rgba(247, 249, 252, 0.97) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+body:has(.latest-offering-bar) .deal-tabs {
+  top: calc(var(--header-h) + 42px) !important;
+}
+body:not(:has(.latest-offering-bar)) .deal-tabs {
+  top: var(--header-h) !important;
+}
+/* Keep page content under chrome */
+main,
+.site-footer,
+.section,
+.page-hero,
+.note,
+.media-card,
+.card {
+  position: relative;
+  z-index: 1;
+}
+/* Grain must never intercept stack above chrome */
+body::after {
+  z-index: 50 !important;
+}
+
+/* Final nav occlusion kill-switch */
+html { background: #f4f7fb; }
+.latest-offering-bar,
+.site-header,
+.deal-tabs {
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.site-header {
+  background-color: #f7f9fc !important;
+  background-image: none !important;
+}
+body.is-scrolled .site-header,
+.site-header.is-scrolled {
+  background-color: #0a1018 !important;
+  background-image: none !important;
+}
+.deal-tabs {
+  background-color: #f7f9fc !important;
+}
+.reveal,
+.media-card,
+.note,
+.section > .container,
+.card,
+.chart-card {
+  z-index: auto !important;
+}
+main { z-index: 0 !important; }
