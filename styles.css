@@ -3739,10 +3739,12 @@ body.is-scrolled .site-header .btn-outline {
 /* ── Inner page heroes — club grade ── */
 .page-hero {
   position: relative;
-  padding: 6.5rem 0 4rem;
+  padding: 6.5rem 0 4.25rem;
+  /* Full night field — no mid-hero light split (H1 was falling onto light band) */
   background:
     radial-gradient(ellipse 80% 90% at 100% -20%, rgba(47,111,237,0.22), transparent 50%),
-    linear-gradient(180deg, #0a0e16 0%, #121722 55%, #eef3f9 55.1%, #eef3f9 100%);
+    radial-gradient(ellipse 60% 50% at 0% 100%, rgba(47,111,237,0.12), transparent 55%),
+    linear-gradient(180deg, #0a0e16 0%, #101722 72%, #141b28 100%);
   color: #fff;
   border-bottom: 0;
   overflow: hidden;
@@ -3770,14 +3772,33 @@ body.is-scrolled .site-header .btn-outline {
   color: #fff;
   -webkit-text-fill-color: #fff;
   background: none;
-  font-size: clamp(2.9rem, 6vw, 4.8rem);
-  max-width: 14ch;
+  font-size: clamp(2.7rem, 5.4vw, 4.4rem);
+  line-height: 1.02;
+  max-width: min(16ch, 100%);
   text-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  overflow-wrap: break-word;
 }
 .page-hero p {
   color: rgba(255,255,255,0.72);
   max-width: 40rem;
   font-size: 1.1rem;
+  margin-top: 1.1rem;
+}
+/* Soft handoff into light page body */
+.page-hero + .section,
+.page-hero + .section-soft {
+  position: relative;
+}
+.page-hero + .section::before,
+.page-hero + .section-soft::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3.5rem;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(20,27,40,0.08), transparent);
 }
 
 /* Sections breathe more like a book */
@@ -3875,10 +3896,14 @@ a.media-card:hover,
     margin-top: 0;
   }
   .page-hero {
-    padding: 5.5rem 0 3.2rem;
+    padding: 5.5rem 0 3.4rem;
     background:
       radial-gradient(ellipse 80% 70% at 100% -10%, rgba(47,111,237,0.22), transparent 50%),
-      linear-gradient(180deg, #0a0e16 0%, #121722 62%, #eef3f9 62.1%, #eef3f9 100%);
+      linear-gradient(180deg, #0a0e16 0%, #121722 70%, #141b28 100%);
+  }
+  .page-hero h1 {
+    font-size: clamp(2.35rem, 9vw, 3.4rem);
+    max-width: none;
   }
 }
 @media (max-width: 640px) {
