@@ -1,54 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Property True — Principal Real Estate Capital</title>
-  <meta name="description" content="Property True is a private real estate capital brand for accredited investors and operator partners. Discretion. Discipline. Direct relationships." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://propertytrue.com/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Property True — Principal Real Estate Capital" />
-  <meta property="og:description" content="Private real estate capital brand for accredited investors and operator partners. Direct relationships — not a public marketplace." />
-  <meta property="og:url" content="https://propertytrue.com/" />
-  <meta property="og:image" content="https://propertytrue.com/assets/hero-storage.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://propertytrue.com/assets/hero-storage.jpg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="icon" href="/assets/favicon.svg?v=t-letter-3" type="image/svg+xml" />
-  <link rel="icon" href="/assets/favicon.ico?v=t-letter-3" sizes="any" />
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=t-letter-3" />
-  <link rel="stylesheet" href="/styles.css?v=qa-pass-1" />
-</head>
-<body>
-  <a class="latest-offering-bar" href="/truestorage-menifee.html">
-    <span class="latest-offering-inner container">
-      <span class="latest-offering-label"><span class="latest-offering-dot" aria-hidden="true"></span> Latest Offering</span>
-      <span class="latest-offering-title">TrueStorage Menifee — Self-Storage Co-Invest · Menifee / Inland Empire</span>
-      <span class="latest-offering-cta">View property <span aria-hidden="true">→</span></span>
-    </span>
-  </a>
-  <header class="site-header">
-    <div class="container nav-row">
-      <a class="brand" href="/">
-        <span class="brand-mark" aria-hidden="true"><img src="/assets/pt-mark.svg?v=t-letter-3" alt="" width="44" height="44" /></span>
-        <span class="brand-name"><span class="word-property">PROPERTY</span><span class="word-true">TRUE</span></span>
-      </a>
-                        <nav class="nav-desktop">
-        <a class="is-active" href="/">Home</a>
-        <a href="/track-record.html">Track Record</a>
-        <a href="/thesis.html">Thesis</a>
-        <a href="/about.html">About</a>
-        <a class="btn btn-outline" href="/truestorage-menifee.html">Latest Offering</a>
-        <a class="btn btn-gold" href="/access.html">Contact Us</a>
-      </nav>
-      <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
-    </div>
-</header>
+from pathlib import Path
 
-  <main>
+p = Path("index.html")
+t = p.read_text()
+
+t = t.replace("styles.css?v=premium-atmos-4", "styles.css?v=private-club-5")
+t = t.replace("site.js?v=premium-atmos-4", "site.js?v=private-club-5")
+
+start = t.find("  <main>")
+end = t.find("  </main>")
+if start < 0 or end < 0:
+    raise SystemExit("main not found")
+
+new_main = r'''  <main>
     <section class="hero hero-simple hero-club">
       <div class="hero-stage" aria-hidden="true">
         <video
@@ -333,48 +296,8 @@
         </div>
       </div>
     </section>
-  </main>
+'''
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="footer-brand"><span class="word-property">PROPERTY</span><span class="word-true">TRUE</span></div>
-        <p class="footer-copy">A private real estate capital brand. Relationship-first. Marketplace-free public web presence.</p>
-      </div>
-            <div class="footer-links">
-        <a href="/track-record.html">Track Record</a>
-        <a href="/thesis.html">Thesis</a>
-        <a href="/truestorage-menifee.html">TrueStorage Menifee</a>
-        <a href="/approach.html">Approach</a>
-        <a href="/about.html">About</a>
-        <a href="/network.html">Network</a>
-        <a href="/partners.html">Partners</a>
-        <a href="/access.html">Contact</a>
-        <a href="/privacy.html">Privacy</a>
-      </div>
-    </div>
-    <div class="container legal">
-      <p class="legal-copy"><strong>© <span id="year"></span> Property True.</strong> All rights reserved. This website is for general informational and relationship purposes only. Nothing on this site constitutes an offer to sell, or a solicitation of an offer to buy, any security or investment interest. Any actual private placement, if made, would be offered only through confidential offering documents and only to persons who meet applicable investor qualifications under U.S. securities laws (including, where applicable, accredited investor or other suitability standards).</p>
-      <p class="legal-copy">Real estate and private investments involve substantial risk, including the possible loss of principal, illiquidity, leverage risk, development and entitlement risk, market and interest-rate risk, sponsor and operator risk, and other factors. There is no guarantee of distributions, preferred returns, cash flow, or return of capital. Past performance, partnered track-record marks, case studies, projections, and forward-looking statements are not indicative of future results and should not be relied upon as a promise or representation of future performance.</p>
-      <p class="legal-copy">Content on this website does not constitute investment, legal, tax, accounting, or other professional advice. Readers should consult their own advisors before making any investment decision. Property True partnership marks are described at a high level and reflect capital raise / partner roles alongside operator-sponsors; they do not imply sole sponsorship, sole operational control, or guaranteed outcomes. References to markets, strategies, unit counts, timelines, or property characteristics are descriptive only and may change. Third-party names, marks, and images are the property of their respective owners and are used for identification/context only.</p>
-      <p class="legal-copy">Access to any private materials is by invitation and subject to confidentiality. By using this website, you agree that communications may be educational or relationship-oriented and that no securities transaction is completed through this public site.</p>
-    </div>
-</footer>
-<div id="mobileMenu" class="mobile-menu">
-      <div class="container">
-        <a class="is-active" href="/">Home</a>
-        <a href="/track-record.html">Track Record</a>
-        <a href="/thesis.html">Thesis</a>
-        <a href="/approach.html">Approach</a>
-        <a href="/truestorage-menifee.html">TrueStorage Menifee</a>
-        <a href="/ie-self-storage-market-report.html">Market Brief</a>
-        <a href="/about.html">About</a>
-        <a href="/network.html">Network</a>
-        <a href="/partners.html">Partners</a>
-        <a href="/access.html">Contact Us</a>
-      </div>
-    </div>
-
-    <script src="/site.js?v=t-letter-2"></script>
-</body>
-</html>
+t = t[:start] + new_main + t[end:]
+p.write_text(t)
+print("index rewritten ok", len(t))

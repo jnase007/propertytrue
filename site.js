@@ -78,6 +78,11 @@
     menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   };
   if (menuBtn && mobileMenu) {
+    // Escape header containing block (sticky + backdrop-filter traps fixed children)
+    if (mobileMenu.parentElement !== document.body) {
+      document.body.appendChild(mobileMenu);
+    }
+
     // Animated hamburger icon
     if (!menuBtn.querySelector(".menu-icon")) {
       menuBtn.innerHTML = '<span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>';
@@ -86,7 +91,14 @@
     // Upgrade structure once: kicker + numbered links + footer note
     const shell = mobileMenu.querySelector(".container");
     if (shell && !shell.querySelector(".mobile-menu-links")) {
-      const links = Array.from(shell.querySelectorAll("a"));
+      // De-dupe by href before building (guards against stale duplicate markup)
+      const seen = new Set();
+      const links = Array.from(shell.querySelectorAll("a")).filter((a) => {
+        const key = (a.getAttribute("href") || "").toLowerCase();
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
       shell.innerHTML = "";
 
       const top = document.createElement("div");
@@ -189,15 +201,101 @@
     reveals.forEach((el) => el.classList.add("in"));
   }
 
-  // Subtle cinematic hero parallax
-  const heroStage = document.querySelector(".hero-stage img");
-  if (heroStage && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  // Subtle cinematic hero parallax (image + video)
+  const heroMedia = document.querySelectorAll(".hero-stage .hero-media");
+  if (heroMedia.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const onHeroScroll = () => {
       const y = Math.min(window.scrollY, 520);
-      heroStage.style.transform = `scale(1.06) translate3d(0, ${y * 0.12}px, 0)`;
+      heroMedia.forEach((el) => {
+        el.style.transform = `scale(1.08) translate3d(0, ${y * 0.1}px, 0)`;
+      });
     };
     onHeroScroll();
     window.addEventListener("scroll", onHeroScroll, { passive: true });
+  }
+
+  // Header glass elevation on scroll
+  const onScrollChrome = () => {
+    document.body.classList.toggle("is-scrolled", window.scrollY > 12);
+  };
+  onScrollChrome();
+  window.addEventListener("scroll", onScrollChrome, { passive: true });
+
+  // Thin top scroll progress bar
+  if (!document.querySelector(".scroll-progress") && !reduceMotionSafe()) {
+    const bar = document.createElement("div");
+    bar.className = "scroll-progress";
+    bar.setAttribute("aria-hidden", "true");
+    document.body.prepend(bar);
+    const paintProgress = () => {
+      const doc = document.documentElement;
+      const max = Math.max(1, doc.scrollHeight - window.innerHeight);
+      bar.style.width = Math.min(100, (window.scrollY / max) * 100) + "%";
+    };
+    paintProgress();
+    window.addEventListener("scroll", paintProgress, { passive: true });
+    window.addEventListener("resize", paintProgress);
+  }
+
+  function reduceMotionSafe() {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
+
+  // Magnetic primary buttons (desktop)
+  if (
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+    !reduceMotionSafe()
+  ) {
+    document.querySelectorAll(".btn-gold, .hero-actions .btn").forEach((btn) => {
+      btn.classList.add("is-magnetic");
+      btn.addEventListener("pointermove", (e) => {
+        const r = btn.getBoundingClientRect();
+        const x = e.clientX - (r.left + r.width / 2);
+        const y = e.clientY - (r.top + r.height / 2);
+        btn.style.transform = `translate3d(${x * 0.14}px, ${y * 0.18}px, 0)`;
+      });
+      btn.addEventListener("pointerleave", () => {
+        btn.style.transform = "";
+      });
+    });
+  }
+
+  // Soft cursor glow + card spotlight (desktop only)
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (canHover && !reduceMotion) {
+    const glow = document.createElement("div");
+    glow.className = "cursor-glow";
+    glow.setAttribute("aria-hidden", "true");
+    document.body.appendChild(glow);
+    document.body.classList.add("has-cursor-glow");
+
+    let raf = 0;
+    let mx = 0;
+    let my = 0;
+    const paint = () => {
+      raf = 0;
+      glow.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+    };
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+        if (!raf) raf = requestAnimationFrame(paint);
+      },
+      { passive: true }
+    );
+
+    document.querySelectorAll(".card, .media-card, .path-card").forEach((card) => {
+      card.addEventListener("pointermove", (e) => {
+        const r = card.getBoundingClientRect();
+        const x = ((e.clientX - r.left) / r.width) * 100;
+        const y = ((e.clientY - r.top) / r.height) * 100;
+        card.style.setProperty("--mx", x + "%");
+        card.style.setProperty("--my", y + "%");
+      });
+    });
   }
 
   // Access form UX
