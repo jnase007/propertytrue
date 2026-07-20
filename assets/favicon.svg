@@ -1,15 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Property True">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Property True T">
   <defs>
-    <linearGradient id="plate" x1="8" y1="0" x2="56" y2="64" gradientUnits="userSpaceOnUse">
+    <linearGradient id="plate" x1="10" y1="0" x2="54" y2="64" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#020617"/>
-      <stop offset="40%" stop-color="#0b1630"/>
+      <stop offset="55%" stop-color="#0c1b3a"/>
       <stop offset="100%" stop-color="#1d5fd6"/>
-    </linearGradient>
-    <linearGradient id="tFace" x1="20" y1="12" x2="44" y2="52" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#9ec0ff"/>
     </linearGradient>
   </defs>
   <rect width="64" height="64" rx="16" fill="url(#plate)"/>
-  <path fill="url(#tFace)" d="M16.2 15.4c0-1.35 1.1-2.45 2.45-2.45h26.7c1.35 0 2.45 1.1 2.45 2.45v7.1c0 1.35-1.1 2.45-2.45 2.45H36.05V48.2c0 1.45-1.18 2.63-2.63 2.63h-2.84c-1.45 0-2.63-1.18-2.63-2.63V25h-9.3c-1.35 0-2.45-1.1-2.45-2.45v-7.1z"/>
+  <rect x="14" y="15" width="36" height="11" rx="2.5" fill="#ffffff"/>
+  <rect x="25.5" y="15" width="13" height="34" rx="2.5" fill="#ffffff"/>
 </svg>
