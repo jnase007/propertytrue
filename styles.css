@@ -4010,3 +4010,12 @@ main{position:relative;z-index:1}
 .section-after-hero .media-card p { color: var(--ink-soft) !important; -webkit-text-fill-color: var(--ink-soft) !important; }
 .page-hero + .section .stat-value,
 .section-after-hero .stat-value { color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important; }
+
+/* Hero without LIVE CHAPTER side card */
+.hero.hero-club .hero-club-grid:not(:has(.hero-side-card)) {
+  grid-template-columns: 1fr;
+  max-width: min(42rem, 100%);
+}
+.hero.hero-club .hero-club-grid:not(:has(.hero-side-card)) .hero-simple-copy {
+  max-width: min(38rem, 100%);
+}
