@@ -15,10 +15,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="/assets/favicon.svg?v=logo-classic-2" type="image/svg+xml" />
-  <link rel="icon" href="/assets/favicon.ico?v=logo-classic-2" sizes="any" />
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=logo-classic-2" />
-  <link rel="stylesheet" href="/styles.css?v=deal-ux-10x" />
+  <link rel="icon" href="/assets/favicon.svg?v=t-letter-2" type="image/svg+xml" />
+  <link rel="icon" href="/assets/favicon.ico?v=t-letter-2" sizes="any" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=t-letter-2" />
+  <link rel="stylesheet" href="/styles.css?v=t-letter-2" />
 
 <style>
   /* TrueStorage deal page — 10x single-page UX */
@@ -64,7 +64,7 @@
   .deal-tabs {
     position: sticky;
     top: calc(var(--header-h) + 42px);
-    z-index: 45;
+    z-index: 30;
     background: rgba(247,249,252,0.94);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--line);
@@ -144,86 +144,193 @@
   .chart-shell-sm { height: 300px; }
   .chart-shell canvas { width: 100% !important; height: 100% !important; }
 
+  /* Light investment calculator — side-by-side, chart always visible */
+  #calculator.section-calc-light {
+    background:
+      radial-gradient(900px 320px at 12% 0%, rgba(47,111,237,0.06), transparent 58%),
+      linear-gradient(180deg, #f7f9fc 0%, #eef3f9 100%);
+    padding-top: 2.6rem;
+    padding-bottom: 2.6rem;
+  }
+  #calculator .section-head-row {
+    margin-bottom: 0.65rem;
+    align-items: end;
+    gap: 1rem;
+  }
+  #calculator .section-head-row h2 {
+    font-size: clamp(1.55rem, 2.6vw, 2.05rem) !important;
+    margin: 0.2rem 0 0 !important;
+  }
+  #calculator .section-head-row .lead {
+    margin: 0.45rem 0 0 !important;
+    font-size: 0.95rem;
+    max-width: 38rem;
+  }
   .calc-embed {
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 1rem;
-    margin-top: 1.2rem;
+    grid-template-columns: minmax(280px, 0.92fr) minmax(320px, 1.08fr);
+    align-items: stretch;
+    gap: 0;
+    margin-top: 0.7rem;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid rgba(15, 35, 65, 0.1);
+    background: #fff;
+    box-shadow: 0 22px 60px rgba(15, 17, 20, 0.08);
+    max-height: min(520px, calc(100vh - 210px));
+    /* Don't animate this block — Chart.js needs real dimensions on paint */
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
   .calc-panel {
-    background: #0f1624;
-    color: #e8eef8;
-    border-radius: 18px;
-    padding: 1.2rem;
-    border: 1px solid rgba(212,175,106,0.18);
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    color: #0f1114;
+    border-radius: 0;
+    padding: 1rem 1.1rem 0.9rem;
+    border: 0;
+    border-right: 1px solid rgba(15, 35, 65, 0.08);
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
   }
   .calc-panel label {
     display: block;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(232,238,248,0.62);
-    margin-bottom: 0.35rem;
+    color: #4b5563;
+    margin-bottom: 0.3rem;
     font-weight: 700;
+  }
+  .calc-panel label span {
+    color: #1a4fbf;
   }
   .calc-panel input[type="text"],
   .calc-panel input[type="range"] {
     width: 100%;
-    margin-bottom: 0.95rem;
+    margin-bottom: 0.75rem;
   }
   .calc-panel input[type="text"] {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    color: #fff;
+    background: #fff;
+    border: 1px solid rgba(15, 35, 65, 0.14);
+    color: #0f1114;
     border-radius: 12px;
-    padding: 0.8rem 0.9rem;
+    padding: 0.72rem 0.85rem;
     font-size: 1.05rem;
-    font-weight: 600;
+    font-weight: 700;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
   }
-  .calc-panel input[type="range"] { accent-color: #d4af6a; }
+  .calc-panel input[type="text"]:focus {
+    outline: none;
+    border-color: rgba(47,111,237,0.45);
+    box-shadow: 0 0 0 3px rgba(47,111,237,0.12);
+  }
+  .calc-panel input[type="range"] { accent-color: #2f6fed; }
   .calc-row {
     display: flex;
     justify-content: space-between;
     gap: 0.75rem;
-    padding: 0.55rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    font-size: 0.92rem;
+    padding: 0.48rem 0;
+    border-bottom: 1px solid rgba(15, 35, 65, 0.08);
+    font-size: 0.9rem;
   }
   .calc-row:last-child { border-bottom: 0; }
-  .calc-row .k { color: rgba(232,238,248,0.62); }
-  .calc-row .v { font-weight: 700; color: #fff; }
-  .calc-row .v.big { color: #d4af6a; font-size: 1.2rem; }
+  .calc-row .k { color: #4b5563; font-weight: 500; }
+  .calc-row .v { font-weight: 700; color: #0f1114; text-align: right; }
+  .calc-row .v.big { color: #1a4fbf; font-size: 1.15rem; }
   .calc-mode {
     display: flex;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
+    gap: 0.35rem;
+    margin-bottom: 0.85rem;
+    padding: 0.28rem;
+    border-radius: 999px;
+    background: #eef3f9;
+    border: 1px solid rgba(15, 35, 65, 0.06);
   }
   .calc-mode button {
     flex: 1;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid transparent;
     background: transparent;
-    color: rgba(232,238,248,0.75);
+    color: #4b5563;
     border-radius: 999px;
-    padding: 0.55rem 0.7rem;
-    font-size: 0.72rem;
+    padding: 0.52rem 0.55rem;
+    font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
   .calc-mode button.is-active {
-    background: rgba(212,175,106,0.16);
-    border-color: rgba(212,175,106,0.4);
-    color: #d4af6a;
+    background: #fff;
+    border-color: rgba(47,111,237,0.22);
+    color: #1a4fbf;
+    box-shadow: 0 6px 16px rgba(15, 17, 20, 0.06);
   }
   .calc-chart-wrap {
-    background: #fff;
-    border-radius: 18px;
-    border: 1px solid rgba(15,35,65,0.08);
-    padding: 0.9rem;
-    min-height: 280px;
+    background: linear-gradient(180deg, #ffffff 0%, #f3f7fc 100%);
+    border-radius: 0;
+    border: 0;
+    padding: 0.9rem 0.9rem 0.85rem;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
-  .calc-chart-wrap canvas { width: 100% !important; height: 260px !important; }
+  .calc-chart-label {
+    display: block;
+    flex: 0 0 auto;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4b5563;
+    margin: 0.05rem 0.2rem 0.55rem;
+  }
+  .calc-chart-frame {
+    position: relative;
+    flex: 1 1 auto;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+  }
+  .calc-chart-frame canvas {
+    position: absolute !important;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .calc-panel .calc-note {
+    margin: 0.7rem 0 0;
+    font-size: 0.76rem;
+    color: #6b7280;
+    line-height: 1.45;
+  }
+  @media (max-width: 900px) {
+    .calc-embed {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 720px) {
+    .calc-embed {
+      grid-template-columns: 1fr;
+      max-height: none;
+    }
+    .calc-panel {
+      border-right: 0;
+      border-bottom: 1px solid rgba(15, 35, 65, 0.08);
+      overflow: visible;
+    }
+    .calc-chart-frame {
+      min-height: 240px;
+      height: 240px;
+      flex: none;
+    }
+  }
 
   .back-top {
     position: fixed;
@@ -256,7 +363,6 @@
   }
 
   @media (max-width: 900px) {
-    .calc-embed { grid-template-columns: 1fr; }
     .chart-shell { height: 300px; }
     .chart-shell-sm { height: 260px; }
     .deal-tabs { top: calc(var(--header-h) + 52px); }
@@ -273,7 +379,7 @@
   </a>
 <header class="site-header">
     <div class="container nav-row">
-      <a class="brand" href="/"><span class="brand-mark">PT</span><span class="brand-name"><span class="word-property">PROPERTY</span><span class="word-true">TRUE</span></span></a>
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"><img src="/assets/pt-mark.svg?v=t-letter-2" alt="" width="44" height="44" /></span><span class="brand-name"><span class="word-property">PROPERTY</span><span class="word-true">TRUE</span></span></a>
                   <nav class="nav-desktop">
         <a href="/">Home</a>
         <a href="/track-record.html">Track Record</a>
@@ -284,21 +390,7 @@
       </nav>
       <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
     </div>
-        <div id="mobileMenu" class="mobile-menu">
-      <div class="container">
-        <a href="/">Home</a>
-        <a href="#overview">Overview</a>
-        <a href="#market">Market</a>
-        <a href="#pitch">Pitch</a>
-        <a href="#projections">Returns</a>
-        <a href="#calculator">Calculator</a>
-        <a href="#timeline">Timeline</a>
-        <a href="#next">Contact / Next</a>
-        <a href="/track-record.html">Track Record</a>
-        <a href="/access.html">Contact Us</a>
-      </div>
-    </div>
-  </header>
+</header>
 
   <main>
     <section class="page-hero">
@@ -647,18 +739,18 @@
       </div>
     </section>
 
-    <section class="section" id="calculator">
+    <section class="section section-calc-light" id="calculator">
       <div class="container">
         <div class="section-head-row reveal">
           <div style="max-width:42rem;">
-            <div class="kicker">Interactive · on this page</div>
+            <div class="kicker">Interactive · investment section</div>
             <h2 style="font-size:clamp(1.9rem,3.5vw,2.6rem); margin:0.35rem 0 0;">Returns calculator</h2>
             <p class="lead" style="margin-top:0.75rem;">Model an illustrative check size without leaving the mark. Switch between simple annualized growth and the TrueStorage base-path shape.</p>
           </div>
           <a class="section-jump" href="/truestorage-returns-calculator.html">Fullscreen calculator →</a>
         </div>
 
-        <div class="calc-embed reveal">
+        <div class="calc-embed" id="calcEmbed">
           <div class="calc-panel">
             <div class="calc-mode" role="tablist" aria-label="Calculator mode">
               <button type="button" class="is-active" id="calcModeCagr" data-mode="cagr">Illustrative CAGR</button>
@@ -679,10 +771,13 @@
               <div class="calc-row"><div class="k">Net gain</div><div class="v">—</div></div>
               <div class="calc-row"><div class="k">Multiple</div><div class="v">—</div></div>
             </div>
-            <p style="margin:0.9rem 0 0;font-size:0.8rem;color:rgba(232,238,248,0.55);line-height:1.5;">Illustrative only. Not an offer to sell securities. Not a prediction of actual LP cash, preferred return, or exit timing.</p>
+            <p class="calc-note">Illustrative only. Not an offer to sell securities. Not a prediction of actual LP cash, preferred return, or exit timing.</p>
           </div>
           <div class="calc-chart-wrap">
-            <canvas id="calcPathChart" aria-label="Illustrative investment path chart" role="img"></canvas>
+            <div class="calc-chart-label">Illustrative path</div>
+            <div class="calc-chart-frame">
+              <canvas id="calcPathChart" aria-label="Illustrative investment path chart" role="img"></canvas>
+            </div>
           </div>
         </div>
         <p class="fineprint reveal" style="margin-top:1rem;max-width:46rem;color:var(--muted);">Prefer a private model with preferred return, debt, and exit assumptions? Use Contact — full underwriting is not published as a public offer.</p>
@@ -1305,6 +1400,9 @@
           chart.data.labels = labels;
           chart.data.datasets[0].data = values;
           chart.update("none");
+          requestAnimationFrame(() => {
+            try { chart.resize(); } catch (e) {}
+          });
         } else {
           chart = new Chart(canvas, {
             type: "line",
@@ -1313,32 +1411,53 @@
               datasets: [{
                 label: "Illustrative value",
                 data: values,
-                borderColor: "#d4af6a",
-                backgroundColor: "rgba(212,175,106,0.12)",
+                borderColor: "#1a4fbf",
+                backgroundColor: "rgba(47,111,237,0.14)",
                 fill: true,
-                tension: 0.25,
-                borderWidth: 2.5,
-                pointRadius: 3,
-                pointHoverRadius: 5
+                tension: 0.28,
+                borderWidth: 3,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                pointBackgroundColor: "#fff",
+                pointBorderColor: "#1a4fbf",
+                pointBorderWidth: 2
               }]
             },
             options: {
               responsive: true,
               maintainAspectRatio: false,
+              animation: { duration: 450 },
+              layout: { padding: { top: 8, right: 8, bottom: 4, left: 4 } },
               plugins: {
                 legend: { display: false },
                 tooltip: {
+                  backgroundColor: "#0f1624",
+                  titleColor: "#fff",
+                  bodyColor: "#e8eef8",
+                  padding: 10,
+                  displayColors: false,
                   callbacks: {
                     label: (ctx) => " " + money(ctx.parsed.y)
                   }
                 }
               },
               scales: {
-                x: { grid: { color: "rgba(15,35,65,0.05)" }, ticks: { color: "#6b7280" } },
-                y: {
-                  grid: { color: "rgba(15,35,65,0.06)" },
+                x: {
+                  grid: { color: "rgba(15,35,65,0.08)", drawBorder: false },
                   ticks: {
-                    color: "#6b7280",
+                    color: "#1f2937",
+                    font: { size: 12, weight: "600" }
+                  }
+                },
+                y: {
+                  beginAtZero: false,
+                  grace: "8%",
+                  grid: { color: "rgba(15,35,65,0.1)", drawBorder: false },
+                  border: { display: false },
+                  ticks: {
+                    color: "#1f2937",
+                    font: { size: 12, weight: "600" },
+                    padding: 8,
                     callback: (v) => {
                       if (Math.abs(v) >= 1000000) return "$" + (v / 1000000).toFixed(1) + "M";
                       if (Math.abs(v) >= 1000) return "$" + Math.round(v / 1000) + "k";
@@ -1360,16 +1479,52 @@
         render();
       }
 
+      function forceChartResize() {
+        if (!chart) return;
+        requestAnimationFrame(() => {
+          try { chart.resize(); chart.update("none"); } catch (e) {}
+        });
+      }
+
       modeCagr.addEventListener("click", () => setMode("cagr"));
       modeBase.addEventListener("click", () => setMode("base"));
       investEl.addEventListener("change", render);
       investEl.addEventListener("keydown", (e) => { if (e.key === "Enter") render(); });
       cagrEl.addEventListener("input", render);
       yearsEl.addEventListener("input", render);
-      render();
+      window.addEventListener("resize", forceChartResize);
+
+      // Init after layout so canvas has real width/height
+      requestAnimationFrame(() => {
+        render();
+        forceChartResize();
+        setTimeout(forceChartResize, 120);
+        setTimeout(forceChartResize, 400);
+      });
+
+      const embed = document.getElementById("calcEmbed");
+      if (embed && typeof ResizeObserver !== "undefined") {
+        const ro = new ResizeObserver(() => forceChartResize());
+        ro.observe(embed);
+      }
     })();
   </script>
 
-  <script src="/site.js"></script>
+<div id="mobileMenu" class="mobile-menu">
+      <div class="container">
+        <a href="/">Home</a>
+        <a href="/track-record.html">Track Record</a>
+        <a href="/thesis.html">Thesis</a>
+        <a href="/approach.html">Approach</a>
+        <a class="is-active" href="/truestorage-menifee.html">TrueStorage Menifee</a>
+        <a href="/ie-self-storage-market-report.html">Market Brief</a>
+        <a href="/about.html">About</a>
+        <a href="/network.html">Network</a>
+        <a href="/partners.html">Partners</a>
+        <a href="/access.html">Contact Us</a>
+      </div>
+    </div>
+
+    <script src="/site.js?v=t-letter-2"></script>
 </body>
 </html>
