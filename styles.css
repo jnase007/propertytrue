@@ -3431,9 +3431,22 @@ body.is-scrolled .site-header .btn-outline {
 }
 .hero-club-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(17.5rem, 0.7fr);
-  gap: clamp(2.75rem, 5vw, 4.75rem); /* more air between copy + Live chapter */
+  /* default: single centered column (side card removed from homepage) */
+  grid-template-columns: 1fr;
+  gap: clamp(2.75rem, 5vw, 4.75rem);
   align-items: center;
+  justify-items: center;
+  text-align: center;
+  max-width: min(48rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.hero-club-grid:has(.hero-side-card) {
+  grid-template-columns: minmax(0, 1.25fr) minmax(17.5rem, 0.7fr);
+  max-width: none;
+  justify-items: stretch;
+  text-align: left;
 }
 .hero.hero-club .hero-simple-copy,
 .hero.hero-simple .hero-simple-copy {
@@ -4034,6 +4047,56 @@ main{position:relative;z-index:1}
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+/* HARD CENTER LOCK — homepage hero copy always centered in viewport */
+.hero.hero-club .hero-inner,
+.hero.hero-simple .hero-inner {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: min(var(--container), calc(100% - 2.5rem)) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+.hero.hero-club .hero-club-grid,
+.hero.hero-simple .hero-club-grid {
+  width: 100% !important;
+  max-width: min(48rem, 100%) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  grid-template-columns: 1fr !important;
+  justify-items: center !important;
+  text-align: center !important;
+}
+.hero.hero-club .hero-simple-copy,
+.hero.hero-simple .hero-simple-copy,
+.hero.hero-club .hero-simple-copy.reveal,
+.hero.hero-simple .hero-simple-copy.reveal {
+  width: 100% !important;
+  max-width: min(42rem, 100%) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+.hero.hero-club .eyebrow,
+.hero.hero-simple .eyebrow,
+.hero.hero-club h1,
+.hero.hero-simple h1,
+.hero.hero-club .lead,
+.hero.hero-simple .lead,
+.hero.hero-club .hero-actions,
+.hero.hero-simple .hero-actions {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+  justify-content: center !important;
+}
+.hero.hero-club .hero-actions,
+.hero.hero-simple .hero-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
 }
 
 /* HEADER STACK HARD LOCK — body never paints over nav */
