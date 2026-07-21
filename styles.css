@@ -3404,9 +3404,10 @@ body.is-scrolled .site-header .btn-outline {
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(ellipse 55% 45% at 70% 35%, rgba(47,111,237,0.28), transparent 60%),
-    linear-gradient(180deg, rgba(5,7,12,0.35) 0%, rgba(5,7,12,0.15) 40%, rgba(5,7,12,0.92) 100%),
-    linear-gradient(90deg, rgba(5,7,12,0.88) 0%, rgba(5,7,12,0.35) 55%, rgba(5,7,12,0.55) 100%);
+    radial-gradient(ellipse 70% 55% at 50% 42%, rgba(47,111,237,0.22), transparent 62%),
+    radial-gradient(ellipse 90% 70% at 50% 48%, rgba(5,7,12,0.42), rgba(5,7,12,0.18) 55%, transparent 72%),
+    linear-gradient(180deg, rgba(5,7,12,0.42) 0%, rgba(5,7,12,0.22) 38%, rgba(5,7,12,0.9) 100%),
+    linear-gradient(90deg, rgba(5,7,12,0.55) 0%, rgba(5,7,12,0.28) 50%, rgba(5,7,12,0.55) 100%);
 }
 .hero.hero-club .hero-stage::after,
 .hero.hero-simple .hero-stage::after {
@@ -3436,18 +3437,23 @@ body.is-scrolled .site-header .btn-outline {
 }
 .hero.hero-club .hero-simple-copy,
 .hero.hero-simple .hero-simple-copy {
-  max-width: 38rem;
-  margin: 0; /* left-aligned club layout, not centered block */
-  text-align: left;
-  padding-right: 0.5rem;
+  max-width: min(42rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-right: 0;
 }
 .hero.hero-club .eyebrow,
 .hero.hero-simple .eyebrow {
-  justify-content: flex-start;
+  justify-content: center;
 }
 .hero.hero-club .hero-actions,
 .hero.hero-simple .hero-actions {
-  justify-content: flex-start;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
 }
 .hero.hero-club h1,
 .hero.hero-simple h1 {
@@ -3455,8 +3461,9 @@ body.is-scrolled .site-header .btn-outline {
   line-height: 0.95;
   letter-spacing: -0.04em;
   color: #fff;
-  margin: 0.8rem 0 1.1rem;
-  max-width: 12ch;
+  margin: 0.8rem auto 1.1rem;
+  max-width: min(14ch, 100%);
+  text-align: center;
 }
 .hero.hero-club h1 .hero-line,
 .hero.hero-simple h1 .hero-line {
@@ -3473,12 +3480,13 @@ body.is-scrolled .site-header .btn-outline {
 }
 .hero.hero-club .lead,
 .hero.hero-simple .lead {
-  max-width: 32rem;
+  max-width: 34rem;
   color: rgba(255,255,255,0.78);
   font-size: clamp(1.05rem, 1.5vw, 1.22rem);
   line-height: 1.55;
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 .hero-side-card {
   border: 1px solid rgba(255,255,255,0.12);
@@ -4011,13 +4019,21 @@ main{position:relative;z-index:1}
 .page-hero + .section .stat-value,
 .section-after-hero .stat-value { color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important; }
 
-/* Hero without LIVE CHAPTER side card */
+/* Hero without LIVE CHAPTER side card — centered full-bleed copy */
 .hero.hero-club .hero-club-grid:not(:has(.hero-side-card)) {
   grid-template-columns: 1fr;
-  max-width: min(42rem, 100%);
+  max-width: min(48rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  justify-items: center;
+  text-align: center;
 }
 .hero.hero-club .hero-club-grid:not(:has(.hero-side-card)) .hero-simple-copy {
-  max-width: min(38rem, 100%);
+  max-width: min(42rem, 100%);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 /* HEADER STACK HARD LOCK — body never paints over nav */
