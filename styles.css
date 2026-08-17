@@ -336,16 +336,22 @@ body.is-scrolled .site-header .brand-name .word-true {
 .nav-desktop {
   display: none;
   align-items: center;
-  gap: 1.5rem;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
+  gap: 1.35rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 .nav-desktop a {
   position: relative;
-  padding: 0.25rem 0;
+  padding: 0.3rem 0;
   transition: color 0.2s ease;
+}
+.nav-desktop a:not(.btn) {
+  font-weight: 600;
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  color: rgba(15, 17, 20, 0.88);
 }
 .nav-desktop a:hover { color: var(--gold-deep); }
 .nav-desktop a.is-active { color: var(--gold-deep); }
@@ -2707,8 +2713,10 @@ body.is-scrolled .site-header {
   box-shadow: 0 10px 28px rgba(47,111,237,0.22);
 }
 .nav-desktop a:not(.btn) {
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.07em;
+  color: rgba(15, 17, 20, 0.92);
 }
 
 /* Offering bar = live signal ribbon */
@@ -3377,8 +3385,9 @@ body.is-scrolled .site-header .btn-outline {
 /* ── Homepage club hero ── */
 .hero.hero-simple,
 .hero.hero-club {
-  min-height: 100svh;
-  min-height: 100vh;
+  /* a little shorter than full viewport — still cinematic, less scroll dead space */
+  min-height: min(78svh, 680px);
+  min-height: min(78vh, 680px);
   display: grid;
   align-items: center; /* was end — content sat too low */
   padding: 0;
@@ -3423,11 +3432,11 @@ body.is-scrolled .site-header .btn-outline {
 .hero.hero-simple .hero-inner {
   position: relative;
   z-index: 2;
-  /* more top clearance under sticky header; less bottom dead space */
-  padding: clamp(5.5rem, 12vh, 7rem) 0 clamp(2.5rem, 6vh, 4rem);
+  /* tighter vertical padding for shorter hero */
+  padding: clamp(4.5rem, 9vh, 5.75rem) 0 clamp(2rem, 4.5vh, 3.25rem);
   width: min(var(--container), calc(100% - 2.5rem));
   margin-inline: auto;
-  margin-top: -2.5vh; /* slight optical lift into true optical center */
+  margin-top: -1.5vh; /* slight optical lift into true optical center */
 }
 .hero-club-grid {
   display: grid;
