@@ -1,364 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Operator Deals — Property True</title>
-  <meta name="description" content="Private operator deal room for Property True principal acquisitions. Not a public marketplace." />
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="canonical" href="https://propertytrue.com/deals/" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="/assets/favicon.svg?v=t-simple-2" type="image/svg+xml" />
-  <link rel="icon" href="/assets/favicon.ico?v=t-simple-2" sizes="any" />
-  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=t-simple-2" />
-  <link rel="stylesheet" href="/styles.css?v=footer3" />
-  <style>
-    .gate { min-height: 70vh; display:flex; align-items:center; justify-content:center; padding: 2rem 1rem; }
-    .gate-card { max-width: 420px; width:100%; background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 2rem; text-align:center; }
-    .gate-card input { width:100%; margin: 1rem 0; padding: 0.9rem 1rem; border-radius: 10px; border:1px solid rgba(255,255,255,0.15); background:#0b0c10; color:#fff; font-size:1.25rem; letter-spacing:0.35em; text-align:center; }
-    .ops-hidden { display:none; }
-    .ops-grid { display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 1.25rem; }
-    @media (max-width: 900px) { .ops-grid { grid-template-columns: 1fr; } }
-    .ops-card { background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.1rem 1.15rem; }
-    .ops-card label { display:block; font-size:0.72rem; letter-spacing:0.04em; text-transform:uppercase; opacity:0.7; margin: 0.55rem 0 0.25rem; }
-    .ops-card input, .ops-card select, .ops-card textarea { width:100%; padding:0.7rem 0.8rem; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#0b0c10; color:#fff; font: inherit; }
-    .ops-card textarea { min-height: 72px; }
-    .metrics { display:grid; grid-template-columns: repeat(3, 1fr); gap:0.65rem; }
-    @media (max-width: 700px) { .metrics { grid-template-columns: 1fr 1fr; } }
-    .metric { background: rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:0.75rem; }
-    .metric b { display:block; font-size:1.05rem; }
-    .metric span { display:block; font-size:0.72rem; opacity:0.65; }
-    .pill { display:inline-block; padding:0.35rem 0.7rem; border-radius:999px; font-size:0.75rem; font-weight:700; letter-spacing:0.04em; }
-    .pill-pass { background: rgba(52,211,153,0.15); color:#34d399; }
-    .pill-watch { background: rgba(251,191,36,0.15); color:#fbbf24; }
-    .pill-kill { background: rgba(248,113,113,0.15); color:#f87171; }
-    .copyout { white-space:pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:0.72rem; background:rgba(0,0,0,0.35); border-radius:10px; padding:0.85rem; border:1px solid rgba(255,255,255,0.08); }
-    .deal-row { border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:1rem; margin-bottom:0.75rem; }
-    .deal-row a { color: var(--gold-deep, #c4a35a); }
-    table.score td { padding:0.35rem 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:0.9rem; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Deal Room — Property True</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="canonical" href="https://propertytrue.com/deals/" />
+<link rel="icon" href="/assets/favicon.svg?v=t-simple-2" type="image/svg+xml" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#f4f6fa;
+  --card:#ffffff;
+  --ink:#1a2230;
+  --muted:#667085;
+  --line:#e6ebf2;
+  --blue:#2f6fed;
+  --blue-soft:#e8f0ff;
+  --good:#0f9f6e;
+  --good-bg:#e8faf3;
+  --warn:#b78105;
+  --warn-bg:#fff6de;
+  --bad:#c23b3b;
+  --bad-bg:#fdecec;
+  --navy:#121826;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif}
+a{color:var(--blue);text-decoration:none}
+.hidden{display:none!important}
+
+.top{
+  position:sticky;top:0;z-index:20;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.85rem 1.1rem;background:rgba(244,246,250,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+}
+.brand{display:flex;align-items:center;gap:.55rem;color:var(--ink);font-weight:800;letter-spacing:.04em;font-size:.8rem}
+.brand img{width:28px;height:28px}
+.top-link{border:1px solid var(--line);background:#fff;color:var(--muted);padding:.42rem .75rem;border-radius:999px;font-size:.82rem;font-weight:700}
+
+.wrap{max-width:720px;margin:0 auto;padding:1.1rem 1rem 3rem}
+
+/* PIN */
+.gate{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:1rem}
+.box{
+  width:min(420px,100%);text-align:center;background:#fff;
+  border:1px solid var(--line);border-radius:24px;padding:1.5rem 1.2rem 1.35rem;
+  box-shadow:0 18px 50px rgba(18,24,38,.06);
+}
+.kicker{color:var(--blue);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.box h1{font-family:"Cormorant Garamond",serif;font-size:2.4rem;margin:.35rem 0 .4rem;color:var(--navy)}
+.box p{color:var(--muted);margin:0 0 1rem;line-height:1.45;font-size:1.02rem}
+.dots{display:flex;justify-content:center;gap:.7rem;margin:0 0 1.05rem}
+.dot{width:14px;height:14px;border-radius:50%;border:2px solid #c9d3e3;background:transparent}
+.dot.on{background:var(--blue);border-color:var(--blue)}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;max-width:300px;margin:0 auto}
+.pad button{
+  height:62px;border-radius:16px;border:1px solid var(--line);
+  background:#f7f9fc;color:var(--ink);font-size:1.4rem;font-weight:800;cursor:pointer;
+}
+.pad button:active{background:var(--blue-soft)}
+.pad .soft{font-size:.92rem;color:var(--muted)}
+.err{min-height:1.2rem;color:var(--bad);margin-top:.7rem;font-weight:700}
+
+/* Room */
+.head h1{font-family:"Cormorant Garamond",serif;font-size:2.2rem;margin:0;color:var(--navy)}
+.sub{color:var(--muted);margin:.2rem 0 1rem;font-size:.98rem;line-height:1.45}
+
+.tabs{display:flex;gap:.5rem;overflow:auto;padding-bottom:.35rem;margin-bottom:1rem}
+.tab{
+  flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--ink);
+  border-radius:999px;padding:.62rem .9rem;font-weight:800;font-size:.88rem;cursor:pointer;
+}
+.tab small{display:block;color:var(--muted);font-weight:600;font-size:.72rem;margin-top:.08rem}
+.tab.active{background:var(--blue-soft);border-color:#c7daf8;color:var(--navy)}
+
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;
+  box-shadow:0 14px 40px rgba(18,24,38,.05);
+}
+.hero{
+  aspect-ratio:16/10;background:linear-gradient(165deg,#e8eef8,#d9e3f2);
+  display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;position:relative;
+}
+.badge{
+  position:absolute;left:.85rem;top:.85rem;border-radius:999px;padding:.35rem .7rem;
+  font-size:.75rem;font-weight:800;border:1px solid transparent;
+}
+.badge.pass{background:var(--bad-bg);color:var(--bad)}
+.badge.watch{background:var(--warn-bg);color:var(--warn)}
+.badge.offer{background:var(--good-bg);color:var(--good)}
+.body{padding:1.15rem 1.15rem 1.25rem}
+.price{font-size:1.85rem;font-weight:800;margin:0;letter-spacing:-.02em;color:var(--navy)}
+.addr{margin:.25rem 0 .75rem;font-size:1.08rem;line-height:1.35}
+.addr small{color:var(--muted);font-size:.92rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.85rem}
+.chip{border:1px solid var(--line);background:#f8fafc;border-radius:999px;padding:.3rem .65rem;font-size:.8rem;color:var(--muted);font-weight:700}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin:0 0 1rem}
+.stat{background:#f7f9fc;border:1px solid var(--line);border-radius:14px;padding:.75rem}
+.stat b{display:block;font-size:1rem;color:var(--navy);line-height:1.25}
+.stat span{display:block;margin-top:.18rem;font-size:.74rem;color:var(--muted);font-weight:700}
+.why{color:#4b5568;line-height:1.55;margin:0 0 1.05rem;font-size:1.02rem}
+.acts{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:.5rem}
+.acts button{border:0;border-radius:14px;padding:1rem .4rem;font-weight:800;font-size:1rem;cursor:pointer}
+.btn-no{background:var(--bad-bg);color:var(--bad)}
+.btn-maybe{background:var(--warn-bg);color:var(--warn)}
+.btn-yes{background:var(--good-bg);color:var(--good)}
+.nav{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.7rem}
+.nav button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:14px;padding:.85rem;font-weight:800;cursor:pointer}
+.listing{display:block;text-align:center;margin-top:.95rem;font-weight:800;font-size:1.02rem}
+
+.stack{margin-top:1.25rem;background:#fff;border:1px solid var(--line);border-radius:20px;padding:1rem 1.05rem}
+.stack h3{margin:0 0 .55rem;font-size:1.02rem;color:var(--navy)}
+.stack section+section{margin-top:1rem}
+.item{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.item:last-child{border-bottom:0}
+.empty{color:var(--muted)}
+.reset{width:100%;margin-top:1rem;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:.85rem;font-weight:800;cursor:pointer}
+
+.site-footer{margin-top:2rem;background:#151b28;color:#b7c2d3;padding:2rem 1rem}
+.site-footer .inner{max-width:720px;margin:0 auto}
+.site-footer a{color:#cfe0ff}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container nav-row">
-      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"><img src="/assets/pt-mark.svg?v=t-simple-2" alt="" width="44" height="44" /></span><span class="brand-name"><span class="word-property">PROPERTY</span><span class="word-true">TRUE</span></span></a>
-      <nav class="nav-desktop">
-        <a href="/">Home</a>
-        <a href="/track-record.html">Track Record</a>
-        <a href="/thesis.html">Thesis</a>
-        <a href="/about.html">About</a>
-        <a class="btn btn-outline" href="/truestorage-menifee.html">Latest Offering</a>
-        <a class="btn btn-gold" href="/access.html">Contact Us</a>
-      </nav>
-      <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
-    </div>
-  </header>
+<div class="top">
+  <a class="brand" href="/"><img src="/assets/pt-mark.svg?v=t-simple-2" alt="" /> PROPERTY TRUE</a>
+  <a class="top-link" href="/">Main site</a>
+</div>
 
-  <main>
-    <div id="gate" class="gate">
-      <div class="gate-card">
-        <div class="kicker" style="justify-content:center;">Private operator room</div>
-        <h2 style="margin:0.4rem 0 0.6rem; font-size:1.7rem;">Deals</h2>
-        <p style="opacity:0.75; margin:0;">Not a public marketplace. Enter PIN to open the analyzer.</p>
-        <form id="gateForm">
-          <input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="••••" autocomplete="off" />
-          <button class="btn btn-gold" type="submit" style="width:100%;">Enter</button>
-        </form>
-        <p id="gateErr" style="color:#f87171; display:none; margin-top:0.75rem;">Wrong PIN</p>
+<div id="gate" class="gate">
+  <div class="box">
+    <div class="kicker">Private operator room</div>
+    <h1>Deal Room</h1>
+    <p>Tap the PIN with big buttons.<br>Then flip deals and mark interest.</p>
+    <div class="dots"><div class="dot" id="d0"></div><div class="dot" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div></div>
+    <div class="pad" id="pad">
+      <button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button>
+      <button type="button" data-k="4">4</button><button type="button" data-k="5">5</button><button type="button" data-k="6">6</button>
+      <button type="button" data-k="7">7</button><button type="button" data-k="8">8</button><button type="button" data-k="9">9</button>
+      <button type="button" class="soft" data-k="clear">Clear</button><button type="button" data-k="0">0</button><button type="button" class="soft" data-k="del">Delete</button>
+    </div>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<main id="room" class="wrap hidden">
+  <h1 class="head">Deal Room</h1>
+  <p class="sub" id="prog">Review 2–4 deals. Tap Pass / Maybe / Interested.</p>
+  <div class="tabs" id="tabs"></div>
+  <div id="mount"></div>
+
+  <div class="stack">
+    <section><h3>Interested</h3><div id="yes"><div class="empty">Empty</div></div></section>
+    <section><h3>Maybe</h3><div id="maybe"><div class="empty">Empty</div></div></section>
+    <section><h3>Passed</h3><div id="no"><div class="empty">Empty</div></div></section>
+    <button class="reset" type="button" id="resetBtn">Reset stack</button>
+  </div>
+</main>
+
+<footer class="site-footer"><div class="inner">
+  <div style="font-weight:800;letter-spacing:.12em;margin-bottom:.5rem;color:#eef3fb">PROPERTY TRUE</div>
+  <div style="display:flex;flex-wrap:wrap;gap:.75rem 1rem;font-size:.9rem">
+    <a href="/">Home</a>
+    <a href="/truestorage-menifee.html">TrueStorage</a>
+    <a href="/deals/">Deal Room</a>
+    <a href="/access.html">Contact</a>
+  </div>
+</div></footer>
+
+<script>
+const PIN='3121';
+let code='';
+let idx=0;
+const KEY='pt-deal-stack-v3';
+const DEALS=[
+  {id:'ev-001',address:'1234 S Everglade St',city:'Santa Ana, CA 92704',price:749900,beds:'3',baths:'2',sqft:'1,071',link:'https://www.redfin.com/CA/Santa-Ana/1234-S-Everglade-St-92704/home/4508341',verdict:'PASS',fast:'MAYBE',asis:'~$760K comps',rent:'~$3,030/mo',cf:'About -$2,400/mo',path:'Not winner at list',why:'Fair retail price. Practice only — not your first winner deal.'},
+  {id:'blackwood-001',address:'2035 E Blackwood',city:'Anaheim, CA 92806',price:699999,beds:'3',baths:'2',sqft:'1,183',link:'https://www.redfin.com/CA/Anaheim/2035-E-Blackwood-Ln-92806/home/4004497',verdict:'WATCH',fast:'MAYBE',asis:'Needs comps',rent:'TBD',cf:'TBD',path:'Possible A/B',why:'Under $700K Anaheim 3/2. Fits your capital box. Worth a glance.'},
+  {id:'pine-001',address:'112 E Pine St',city:'Santa Ana, CA 92701',price:699000,beds:'3',baths:'2',sqft:'757',link:'https://www.redfin.com/CA/Santa-Ana/112-E-Pine-St-92701',verdict:'WATCH',fast:'MAYBE',asis:'Needs comps',rent:'TBD',cf:'TBD',path:'Only if discounted',why:'Lower ask, tiny home. Only interesting if the discount is real.'},
+  {id:'main-001',address:'725 S Main St',city:'Santa Ana, CA 92701',price:825000,beds:'mixed',baths:'retail + house',sqft:'1,842',link:'https://www.redfin.com/CA/Santa-Ana/725-S-Main-St-92701/home/145383963',verdict:'PASS',fast:'KILL',asis:'Rough / wide',rent:'Retail unknown',cf:'Likely negative',path:'Not first winner',why:'Retail rehab risk. Skip for first winner unless a huge discount later.'}
+];
+
+function $(id){return document.getElementById(id)}
+function money(n){return '$'+Number(n).toLocaleString()}
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{"yes":[],"no":[],"maybe":[]}')}catch(e){return{yes:[],no:[],maybe:[]}}}
+function save(s){localStorage.setItem(KEY,JSON.stringify(s));paintStack()}
+function paintDots(){for(let i=0;i<4;i++)$('d'+i).classList.toggle('on',i<code.length)}
+function setErr(m){$('err').textContent=m||''}
+function unlock(){
+  sessionStorage.setItem('pt-ops','1');
+  $('gate').classList.add('hidden');
+  $('room').classList.remove('hidden');
+  paintAll();
+}
+function tryPin(){
+  if(code.length<4){setErr('Enter all 4 digits');return}
+  if(code===PIN) unlock();
+  else {setErr('Wrong PIN'); code=''; paintDots()}
+}
+function press(k){
+  setErr('');
+  if(k==='clear'){code='';paintDots();return}
+  if(k==='del'){code=code.slice(0,-1);paintDots();return}
+  if(code.length>=4) return;
+  code += k; paintDots();
+  if(code.length===4) setTimeout(tryPin,80);
+}
+$('pad').addEventListener('click',e=>{const b=e.target.closest('button[data-k]'); if(b) press(b.getAttribute('data-k'))});
+window.addEventListener('keydown',e=>{
+  if(!$('room').classList.contains('hidden')) return;
+  if(e.key>='0'&&e.key<='9') press(e.key);
+  if(e.key==='Backspace') press('del');
+  if(e.key==='Escape') press('clear');
+  if(e.key==='Enter') tryPin();
+});
+
+function badgeClass(v){
+  v=(v||'').toUpperCase();
+  if(v.includes('WATCH')||v.includes('MAYBE')) return 'watch';
+  if(v.includes('OFFER')) return 'offer';
+  return 'pass';
+}
+function paintTabs(){
+  $('tabs').innerHTML = DEALS.map((d,i)=>`
+    <button type="button" class="tab ${i===idx?'active':''}" data-i="${i}">
+      ${i+1}. ${d.address.split(' ').slice(0,3).join(' ')}
+      <small>${money(d.price)} · ${d.verdict}</small>
+    </button>`).join('');
+  $('tabs').querySelectorAll('.tab').forEach(btn=>{
+    btn.onclick=()=>{ idx=Number(btn.getAttribute('data-i')); paintAll(); };
+  });
+}
+function paintCard(){
+  const d=DEALS[idx];
+  $('prog').textContent = 'Deal '+(idx+1)+' of '+DEALS.length+' · use tabs or Next/Back';
+  $('mount').innerHTML = `
+  <article class="card">
+    <div class="hero">
+      <div class="badge ${badgeClass(d.verdict)}">${d.verdict}</div>
+      <div>Open listing for photos</div>
+    </div>
+    <div class="body">
+      <p class="price">${money(d.price)}</p>
+      <div class="addr">${d.address}<br><small>${d.city}</small></div>
+      <div class="chips">
+        <span class="chip">${d.beds} bd · ${d.baths} ba · ${d.sqft} sf</span>
+        <span class="chip">${d.fast}</span>
       </div>
-    </div>
-
-    <div id="ops" class="ops-hidden">
-      <section class="page-hero" style="padding-bottom:1.5rem;">
-        <div class="bg-type bg-type-night" aria-hidden="true"></div>
-        <div class="container reveal">
-          <div class="kicker">Operator · Owned book</div>
-          <h1>Deal room.</h1>
-          <p>Winner rule: <strong>undervalued (A)</strong> or <strong>upgrade creates the win (B)</strong>. House-first. Hunt up to a year. Office bar: $1.4M sale + $5,500/mo CF. You review KILL / MAYBE / DEEP / OFFER.</p>
-          <div class="note" style="margin-top:1rem;">This page does not change the public brand site. Commercial chapters stay on TrueStorage / invitation rooms. Personal OC buys run through this analyzer.</div>
-        </div>
-      </section>
-
-      <section class="section" style="padding-top:0;">
-        <div class="container">
-          <div class="ops-grid">
-            <div class="ops-card">
-              <div class="kicker">Analyzer</div>
-              <label>Address</label>
-              <input id="address" value="1234 S Everglade St, Santa Ana" />
-              <label>Link</label>
-              <input id="link" value="https://www.redfin.com/CA/Santa-Ana/1234-S-Everglade-St-92704/home/4508341" />
-              <label>Type</label>
-              <select id="type">
-                <option value="house" selected>House</option>
-                <option value="multi">Multi / duplex-style</option>
-                <option value="mixed">Mixed / retail</option>
-              </select>
-              <label>List price</label>
-              <input id="list" type="number" value="749900" />
-              <label>Offer target</label>
-              <input id="offer" type="number" value="720000" />
-              <label>As-is comps mid</label>
-              <input id="asis" type="number" value="760000" />
-              <label>ARV after rehab</label>
-              <input id="arv" type="number" value="820000" />
-              <label>Rehab $</label>
-              <input id="rehab" type="number" value="25000" />
-              <label>Closing $</label>
-              <input id="close" type="number" value="18000" />
-              <label>Down %</label>
-              <input id="downPct" type="number" value="20" />
-              <label>Rate %</label>
-              <input id="rate" type="number" step="0.01" value="7.25" />
-              <label>Tax + ins / year</label>
-              <input id="taxins" type="number" value="11000" />
-              <label>Rent mid / mo</label>
-              <input id="rent" type="number" value="3030" />
-              <label>Powder available $</label>
-              <input id="powder" type="number" value="200000" />
-              <label>DOM</label>
-              <input id="dom" type="number" value="1" />
-              <label>Price cuts</label>
-              <input id="cuts" type="number" value="0" />
-              <label>Notes</label>
-              <textarea id="notes">Fresh list. Fair comps. Not a steal at list.</textarea>
-              <button class="btn btn-gold" style="width:100%; margin-top:1rem;" type="button" onclick="analyze()">Analyze deal</button>
-            </div>
-
-            <div class="ops-card">
-              <div id="verdict" style="margin-bottom:0.85rem;"></div>
-              <div class="metrics" id="metrics"></div>
-              <h3 style="margin:1.2rem 0 0.5rem; font-size:1rem;">Scorecard</h3>
-              <div id="scorecard"></div>
-              <h3 style="margin:1.2rem 0 0.5rem; font-size:1rem;">Sheet row</h3>
-              <div class="copyout" id="copyout">Run analyze.</div>
-              <p style="opacity:0.65; font-size:0.85rem; margin-top:0.75rem;">BUY bar: Winner 28+/35 + Path A or B + reserves left.</p>
-            </div>
-          </div>
-
-          <div style="margin-top:2rem;">
-            <div class="kicker">Live shortlist (review)</div>
-            <h2 style="margin:0.3rem 0 1rem;">Already scored</h2>
-
-            <div class="deal-row">
-              <strong>1234 S Everglade St, Santa Ana · $749,900</strong><br />
-              <a href="https://www.redfin.com/CA/Santa-Ana/1234-S-Everglade-St-92704/home/4508341" target="_blank" rel="noopener">Redfin</a>
-              <p style="margin:0.5rem 0 0; opacity:0.85;">Comps mid ~$760k · rent ~$3,030 · at $720k offer + $25k rehab: CF about -$2.4k/mo after buffer. Analyzer: <b>PASS</b> (Winner ~21/35). Practice only — not first winner at list.</p>
-              <p style="margin:0.4rem 0 0;"><b>Your call:</b> KILL / MAYBE / DEEP / OFFER</p>
-            </div>
-
-            <div class="deal-row">
-              <strong>725 S Main St, Santa Ana · $825,000 mixed/retail</strong><br />
-              <a href="https://www.redfin.com/CA/Santa-Ana/725-S-Main-St-92701/home/145383963" target="_blank" rel="noopener">Redfin</a>
-              <p style="margin:0.5rem 0 0; opacity:0.85;">Rough retail risk · heavy rehab · not house-first. Analyzer: <b>PASS / KILL for first winner</b>.</p>
-              <p style="margin:0.4rem 0 0;"><b>Your call:</b> KILL / MAYBE / DEEP / OFFER</p>
-            </div>
-
-            <div class="note" style="margin-top:1rem;">
-              Sheet: <a href="https://docs.google.com/spreadsheets/d/1exThU0q0H30dIUG_WwBOXQ8sIv51hrX7LUqy4jWIWr8/edit" target="_blank" rel="noopener">house hunting 2026</a>
-              · No PropStream signup required to start
-              · Tinny runs scans; you only review
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-<div class="container footer-shell">
-      <div class="footer-top">
-        <div class="footer-intro">
-          <div class="footer-brand"><span class="word-property">PROPERTY</span><span class="word-true">TRUE</span></div>
-          <p class="footer-copy">Private real estate capital for operators and investors. Direct relationships. No marketplace theater.</p>
-        </div>
-        <div class="footer-dirs">
-          <div class="footer-col">
-            <h4>Brand</h4>
-            <a href="/">Home</a>
-            <a href="/about.html">About</a>
-            <a href="/thesis.html">Thesis</a>
-            <a href="/approach.html">Approach</a>
-            <a href="/track-record.html">Track Record</a>
-            <a href="/network.html">Network</a>
-            <a href="/partners.html">Partners</a>
-          </div>
-          <div class="footer-col">
-            <h4>TrueStorage</h4>
-            <a href="/truestorage-menifee.html">Menifee Offering</a>
-            <a href="/truestorage-menifee-deck.html">Investor Deck</a>
-            <a href="/truestorage-returns-calculator.html">Returns Calculator</a>
-            <a href="/menifee-storage-plan.html">Storage Plan</a>
-            <a href="/ie-self-storage-market-report.html">IE Market Report</a>
-          </div>
-          <div class="footer-col">
-            <h4>TrueHold</h4>
-            <a href="/truehold-menifee.html">Menifee Concept</a>
-            <a href="/truehold-menifee-deck.html">Concept Deck</a>
-            <a href="/truehold-returns-calculator.html">Returns Calculator</a>
-          </div>
-          <div class="footer-col">
-            <h4>Operator</h4>
-            <a href="/deals/">Deal Room</a>
-            <a href="/access.html">Contact</a>
-            <a href="/privacy.html">Privacy</a>
-          </div>
-        </div>
+      <div class="stats">
+        <div class="stat"><b>${d.asis}</b><span>Comps / as-is</span></div>
+        <div class="stat"><b>${d.rent}</b><span>Rent estimate</span></div>
+        <div class="stat"><b>${d.cf}</b><span>Cash flow gut</span></div>
+        <div class="stat"><b>${d.path}</b><span>Winner path</span></div>
       </div>
-      <div class="footer-bottom">
-        <p class="legal-copy"><strong>© <span id="year"></span> Property True.</strong> General information only. Not an offer to sell securities. Private placements, if any, are made only through confidential documents to qualified investors. Real estate involves risk, including loss of principal. Not investment, legal, or tax advice.</p>
+      <p class="why">${d.why}</p>
+      <div class="acts">
+        <button class="btn-no" type="button" data-v="no">Pass</button>
+        <button class="btn-maybe" type="button" data-v="maybe">Maybe</button>
+        <button class="btn-yes" type="button" data-v="yes">Interested</button>
       </div>
-    </div>
-</footer>
-
-  <div id="mobileMenu" class="mobile-menu">
-      <div class="container mobile-cats">
-        <div class="mobile-menu-kicker">Navigate</div>
-        <div class="mobile-cat-title">Brand</div>
-        <a href="/">Home</a>
-        <a href="/about.html">About</a>
-        <a href="/thesis.html">Thesis</a>
-        <a href="/approach.html">Approach</a>
-        <a href="/track-record.html">Track Record</a>
-        <a href="/network.html">Network</a>
-        <a href="/partners.html">Partners</a>
-        <div class="mobile-cat-title">TrueStorage</div>
-        <a href="/truestorage-menifee.html">Menifee Offering</a>
-        <a href="/truestorage-menifee-deck.html">Investor Deck</a>
-        <a href="/truestorage-returns-calculator.html">Returns Calculator</a>
-        <a href="/menifee-storage-plan.html">Storage Plan</a>
-        <a href="/ie-self-storage-market-report.html">IE Market Report</a>
-        <div class="mobile-cat-title">TrueHold</div>
-        <a href="/truehold-menifee.html">Menifee Concept</a>
-        <a href="/truehold-menifee-deck.html">Concept Deck</a>
-        <a href="/truehold-returns-calculator.html">Returns Calculator</a>
-        <div class="mobile-cat-title">Operator</div>
-        <a href="/deals/">Deal Room</a>
-        <a href="/access.html">Contact Us</a>
-        <a href="/privacy.html">Privacy</a>
+      <div class="nav">
+        <button type="button" id="prev">← Previous</button>
+        <button type="button" id="next">Next →</button>
       </div>
+      <a class="listing" href="${d.link}" target="_blank" rel="noopener">Open full listing</a>
     </div>
+  </article>`;
+  $('mount').querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>vote(b.getAttribute('data-v')));
+  $('prev').onclick=()=>{ idx=(idx-1+DEALS.length)%DEALS.length; paintAll(); };
+  $('next').onclick=()=>{ idx=(idx+1)%DEALS.length; paintAll(); };
+}
+function vote(kind){
+  const d=DEALS[idx];
+  const s=load();
+  ['yes','no','maybe'].forEach(k=>{ s[k]=s[k].filter(x=>x.id!==d.id); });
+  s[kind].unshift({id:d.id,address:d.address,price:d.price,link:d.link,verdict:d.verdict});
+  save(s);
+  idx=(idx+1)%DEALS.length;
+  paintAll();
+}
+function paintStack(){
+  const s=load();
+  const paint=(k,el)=>{
+    const a=s[k];
+    el.innerHTML = a.length ? a.map(x=>`<div class="item"><div><b>${x.address}</b><div style="color:var(--muted)">${money(x.price)} · ${x.verdict}</div></div><a href="${x.link}" target="_blank" rel="noopener">View</a></div>`).join('') : '<div class="empty">Empty</div>';
+  };
+  paint('yes',$('yes')); paint('maybe',$('maybe')); paint('no',$('no'));
+}
+function paintAll(){ paintTabs(); paintCard(); paintStack(); }
+$('resetBtn').onclick=()=>{ localStorage.removeItem(KEY); paintAll(); };
 
-  <script src="/site.js?v=t-letter-2"></script>
-  <script>
-    (function () {
-      const gate = document.getElementById('gate');
-      const ops = document.getElementById('ops');
-      const form = document.getElementById('gateForm');
-      const err = document.getElementById('gateErr');
-      if (sessionStorage.getItem('pt-ops') === '1') {
-        gate.style.display = 'none';
-        ops.classList.remove('ops-hidden');
-      }
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const pin = document.getElementById('pin').value.trim();
-        if (pin === '3121') {
-          sessionStorage.setItem('pt-ops', '1');
-          gate.style.display = 'none';
-          ops.classList.remove('ops-hidden');
-          analyze();
-        } else {
-          err.style.display = 'block';
-          document.getElementById('pin').value = '';
-        }
-      });
-    })();
-
-    function money(n){
-      if (!isFinite(n)) return '—';
-      const s = n < 0 ? '-' : '';
-      n = Math.abs(n);
-      if (n >= 1000000) return s + '$' + (n/1000000).toFixed(2) + 'M';
-      if (n >= 1000) return s + '$' + Math.round(n).toLocaleString();
-      return s + '$' + Math.round(n);
-    }
-    function pmt(principal, annual, years=30){
-      const r = annual/100/12, n = years*12;
-      if (principal <= 0) return 0;
-      if (r === 0) return principal/n;
-      return principal * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
-    }
-    function analyze(){
-      const g = id => document.getElementById(id).value;
-      const num = id => parseFloat(g(id)) || 0;
-      const type = g('type');
-      const list = num('list'), offer = num('offer'), asis = num('asis'), arv = num('arv');
-      const rehab = num('rehab'), close = num('close'), downPct = num('downPct');
-      const rate = num('rate'), taxins = num('taxins'), rent = num('rent'), powder = num('powder');
-      const dom = num('dom'), cuts = num('cuts');
-      const price = offer > 0 ? offer : list;
-      const loan = price * (1 - downPct/100);
-      const down = price * (downPct/100);
-      const pi = pmt(loan, rate);
-      const piti = pi + taxins/12;
-      const buffer = rent * 0.20;
-      const cf = rent - piti - buffer;
-      const allIn = price + close + rehab;
-      const cashIn = down + close + rehab;
-      const reserves = powder - cashIn;
-      const discountPct = asis > 0 ? (asis - price) / asis * 100 : 0;
-      const rehabSpread = arv - allIn;
-      const pathA = discountPct >= 8;
-      const pathB = rehabSpread >= 40000 && rehab > 0;
-      const coc = cashIn > 0 ? (cf * 12) / cashIn * 100 : 0;
-
-      let fast = 0;
-      if (type === 'house') fast += 4; else if (type === 'multi') fast += 3;
-      if (price <= 800000) fast += 3; else if (price <= 900000) fast += 2; else if (price <= 1000000) fast += 1;
-      if (cuts >= 2) fast += 4; else if (cuts >= 1) fast += 2;
-      if (dom >= 60) fast += 4; else if (dom >= 30) fast += 2;
-      if (pathA || pathB) fast += 3;
-      if (type === 'mixed') fast = Math.min(fast, 8);
-      fast = Math.min(20, fast);
-      const gateName = fast <= 8 ? 'KILL' : fast <= 13 ? 'MAYBE' : 'DEEP';
-
-      const sDiscount = discountPct >= 12 ? 5 : discountPct >= 8 ? 4 : discountPct >= 3 ? 3 : discountPct >= 0 ? 2 : 1;
-      const sRehab = rehab > 0 && rehabSpread >= 60000 ? 5 : rehabSpread >= 40000 ? 4 : rehabSpread >= 20000 ? 3 : rehabSpread >= 0 ? 2 : 1;
-      const sExit = (cf > 0 && rehabSpread > 0) ? 5 : (cf > -300 || rehabSpread > 30000) ? 3 : 1;
-      const sCF = cf >= 400 ? 5 : cf >= 0 ? 4 : cf >= -500 ? 2 : 0;
-      const sControl = type === 'mixed' ? 3 : 5;
-      const sRes = reserves >= 50000 ? 5 : reserves >= 25000 ? 4 : reserves >= 10000 ? 3 : reserves >= 0 ? 2 : 0;
-      const sFin = 3;
-      const winner = sDiscount + sRehab + sExit + sCF + sControl + sRes + sFin;
-      let decision = 'PASS';
-      if (winner >= 28 && (pathA || pathB) && sControl >= 4 && reserves >= 0) decision = 'OFFER';
-      else if (winner >= 22 || gateName === 'DEEP') decision = 'WATCH';
-      if (type === 'mixed' && !pathA) decision = 'PASS';
-
-      const pill = decision === 'OFFER' ? 'pill-pass' : decision === 'WATCH' ? 'pill-watch' : 'pill-kill';
-      document.getElementById('verdict').innerHTML =
-        '<span class="pill ' + pill + '">' + decision + '</span>   Fast ' + fast + '/20 (' + gateName + ') · Winner ' + winner + '/35 · Path ' +
-        (pathA ? 'A' : '') + (pathA && pathB ? '+' : '') + (pathB ? 'B' : '') + (!pathA && !pathB ? 'NONE' : '');
-
-      document.getElementById('metrics').innerHTML = [
-        ['Discount to as-is', money(asis-price), discountPct.toFixed(1) + '%'],
-        ['All-in', money(allIn), 'price+close+rehab'],
-        ['ARV spread', money(rehabSpread), 'ARV - all-in'],
-        ['PITI', money(piti) + '/mo', 'P&I + tax/ins'],
-        ['Cash flow', money(cf) + '/mo', 'after 20% buffer'],
-        ['Cash in', money(cashIn), 'down+close+rehab'],
-        ['Reserves left', money(reserves), 'powder - cash in'],
-        ['Cash-on-cash', coc.toFixed(1) + '%', 'yr CF / cash in'],
-        ['Loan', money(loan), downPct + '% down']
-      ].map(function(m){ return '<div class="metric"><span>'+m[0]+'</span><b>'+m[1]+'</b><span>'+m[2]+'</span></div>'; }).join('');
-
-      const rows = [
-        ['Discount to value', sDiscount + '/5'],
-        ['Rehab / upgrade edge', sRehab + '/5'],
-        ['Exit (rent or flip)', sExit + '/5'],
-        ['Cash flow', sCF + '/5'],
-        ['Control', sControl + '/5'],
-        ['Reserves', sRes + '/5'],
-        ['Financing realism', sFin + '/5']
-      ];
-      document.getElementById('scorecard').innerHTML = '<table class="score" style="width:100%;">' + rows.map(function(r){ return '<tr><td>'+r[0]+'</td><td style="text-align:right;"><b>'+r[1]+'</b></td></tr>'; }).join('') + '</table>';
-
-      const line = [new Date().toISOString().slice(0,10), g('address'), g('link'), list, offer, asis, arv, rehab, Math.round(allIn), rent, Math.round(piti), Math.round(cf), Math.round(cashIn), coc.toFixed(1), pathA?'Y':'N', pathB?'Y':'N', fast, winner, decision, g('notes').replace(/\t|\n/g,' ')].join('\t');
-      document.getElementById('copyout').textContent = line;
-    }
-  </script>
+if(sessionStorage.getItem('pt-ops')==='1'){
+  $('gate').classList.add('hidden');
+  $('room').classList.remove('hidden');
+  paintAll();
+} else {
+  paintDots();
+}
+</script>
 </body>
 </html>
