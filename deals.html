@@ -3,301 +3,157 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Deal Room — Property True</title>
-<meta name="robots" content="noindex, nofollow" />
+<title>Deal Room — Cash Flow Only</title>
+<meta name="robots" content="noindex,nofollow" />
 <link rel="canonical" href="https://propertytrue.com/deals/" />
 <link rel="icon" href="/assets/favicon.svg?v=t-simple-2" type="image/svg+xml" />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
 <style>
-:root{
-  --bg:#f4f6fa;
-  --card:#ffffff;
-  --ink:#1a2230;
-  --muted:#667085;
-  --line:#e6ebf2;
-  --blue:#2f6fed;
-  --blue-soft:#e8f0ff;
-  --good:#0f9f6e;
-  --good-bg:#e8faf3;
-  --warn:#b78105;
-  --warn-bg:#fff6de;
-  --bad:#c23b3b;
-  --bad-bg:#fdecec;
-  --navy:#121826;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif}
-a{color:var(--blue);text-decoration:none}
-.hidden{display:none!important}
-
-.top{
-  position:sticky;top:0;z-index:20;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:.85rem 1.1rem;background:rgba(244,246,250,.92);
-  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
-}
-.brand{display:flex;align-items:center;gap:.55rem;color:var(--ink);font-weight:800;letter-spacing:.04em;font-size:.8rem}
-.brand img{width:28px;height:28px}
-.top-link{border:1px solid var(--line);background:#fff;color:var(--muted);padding:.42rem .75rem;border-radius:999px;font-size:.82rem;font-weight:700}
-
-.wrap{max-width:720px;margin:0 auto;padding:1.1rem 1rem 3rem}
-
-/* PIN */
-.gate{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:1rem}
-.box{
-  width:min(420px,100%);text-align:center;background:#fff;
-  border:1px solid var(--line);border-radius:24px;padding:1.5rem 1.2rem 1.35rem;
-  box-shadow:0 18px 50px rgba(18,24,38,.06);
-}
-.kicker{color:var(--blue);font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
-.box h1{font-family:"Cormorant Garamond",serif;font-size:2.4rem;margin:.35rem 0 .4rem;color:var(--navy)}
-.box p{color:var(--muted);margin:0 0 1rem;line-height:1.45;font-size:1.02rem}
-.dots{display:flex;justify-content:center;gap:.7rem;margin:0 0 1.05rem}
-.dot{width:14px;height:14px;border-radius:50%;border:2px solid #c9d3e3;background:transparent}
-.dot.on{background:var(--blue);border-color:var(--blue)}
-.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;max-width:300px;margin:0 auto}
-.pad button{
-  height:62px;border-radius:16px;border:1px solid var(--line);
-  background:#f7f9fc;color:var(--ink);font-size:1.4rem;font-weight:800;cursor:pointer;
-}
-.pad button:active{background:var(--blue-soft)}
-.pad .soft{font-size:.92rem;color:var(--muted)}
-.err{min-height:1.2rem;color:var(--bad);margin-top:.7rem;font-weight:700}
-
-/* Room */
-.head h1{font-family:"Cormorant Garamond",serif;font-size:2.2rem;margin:0;color:var(--navy)}
-.sub{color:var(--muted);margin:.2rem 0 1rem;font-size:.98rem;line-height:1.45}
-
-.tabs{display:flex;gap:.5rem;overflow:auto;padding-bottom:.35rem;margin-bottom:1rem}
-.tab{
-  flex:0 0 auto;border:1px solid var(--line);background:#fff;color:var(--ink);
-  border-radius:999px;padding:.62rem .9rem;font-weight:800;font-size:.88rem;cursor:pointer;
-}
-.tab small{display:block;color:var(--muted);font-weight:600;font-size:.72rem;margin-top:.08rem}
-.tab.active{background:var(--blue-soft);border-color:#c7daf8;color:var(--navy)}
-
-.card{
-  background:var(--card);border:1px solid var(--line);border-radius:22px;overflow:hidden;
-  box-shadow:0 14px 40px rgba(18,24,38,.05);
-}
-.hero{
-  aspect-ratio:16/10;background:linear-gradient(165deg,#e8eef8,#d9e3f2);
-  display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;position:relative;
-}
-.badge{
-  position:absolute;left:.85rem;top:.85rem;border-radius:999px;padding:.35rem .7rem;
-  font-size:.75rem;font-weight:800;border:1px solid transparent;
-}
-.badge.pass{background:var(--bad-bg);color:var(--bad)}
-.badge.watch{background:var(--warn-bg);color:var(--warn)}
-.badge.offer{background:var(--good-bg);color:var(--good)}
-.body{padding:1.15rem 1.15rem 1.25rem}
-.price{font-size:1.85rem;font-weight:800;margin:0;letter-spacing:-.02em;color:var(--navy)}
-.addr{margin:.25rem 0 .75rem;font-size:1.08rem;line-height:1.35}
-.addr small{color:var(--muted);font-size:.92rem}
-.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.85rem}
-.chip{border:1px solid var(--line);background:#f8fafc;border-radius:999px;padding:.3rem .65rem;font-size:.8rem;color:var(--muted);font-weight:700}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin:0 0 1rem}
-.stat{background:#f7f9fc;border:1px solid var(--line);border-radius:14px;padding:.75rem}
-.stat b{display:block;font-size:1rem;color:var(--navy);line-height:1.25}
-.stat span{display:block;margin-top:.18rem;font-size:.74rem;color:var(--muted);font-weight:700}
-.why{color:#4b5568;line-height:1.55;margin:0 0 1.05rem;font-size:1.02rem}
-.acts{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:.5rem}
-.acts button{border:0;border-radius:14px;padding:1rem .4rem;font-weight:800;font-size:1rem;cursor:pointer}
-.btn-no{background:var(--bad-bg);color:var(--bad)}
-.btn-maybe{background:var(--warn-bg);color:var(--warn)}
-.btn-yes{background:var(--good-bg);color:var(--good)}
-.nav{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:.7rem}
-.nav button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:14px;padding:.85rem;font-weight:800;cursor:pointer}
-.listing{display:block;text-align:center;margin-top:.95rem;font-weight:800;font-size:1.02rem}
-
-.stack{margin-top:1.25rem;background:#fff;border:1px solid var(--line);border-radius:20px;padding:1rem 1.05rem}
-.stack h3{margin:0 0 .55rem;font-size:1.02rem;color:var(--navy)}
-.stack section+section{margin-top:1rem}
-.item{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px solid var(--line);font-size:.95rem}
-.item:last-child{border-bottom:0}
-.empty{color:var(--muted)}
-.reset{width:100%;margin-top:1rem;border-radius:14px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:.85rem;font-weight:800;cursor:pointer}
-
-.site-footer{margin-top:2rem;background:#151b28;color:#b7c2d3;padding:2rem 1rem}
-.site-footer .inner{max-width:720px;margin:0 auto}
-.site-footer a{color:#cfe0ff}
+:root{--bg:#eef2f7;--card:#fff;--ink:#182033;--muted:#5b6577;--line:#d9e0ea;--blue:#2f6fed;--good:#0f9f6e;--warn:#a67c00;--bad:#c23b3b;--goodbg:#e7f8f1;--warnbg:#fff4d6;--badbg:#fdecec}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif}
+a{color:var(--blue);text-decoration:none}.hidden{display:none!important}
+.top{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:.55rem .85rem;background:rgba(238,242,247,.96);border-bottom:1px solid var(--line)}
+.brand{display:flex;gap:.4rem;align-items:center;font-weight:800;font-size:.75rem;letter-spacing:.05em}.brand img{width:22px;height:22px}.toplink{font-size:.78rem;font-weight:700;color:var(--muted)}
+.gate{min-height:calc(100dvh - 48px);display:flex;align-items:center;justify-content:center;padding:.75rem}
+.box{width:min(360px,100%);background:#fff;border:1px solid var(--line);border-radius:18px;padding:1.1rem;text-align:center}
+.box h1{margin:.2rem 0 .35rem;font-size:1.5rem}.box p{margin:0 0 .7rem;color:var(--muted);font-size:.92rem}
+.dots{display:flex;justify-content:center;gap:.55rem;margin:0 0 .7rem}.dot{width:12px;height:12px;border-radius:50%;border:2px solid #c5d0e0}.dot.on{background:var(--blue);border-color:var(--blue)}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;max-width:260px;margin:0 auto}.pad button{height:52px;border-radius:12px;border:1px solid var(--line);background:#f7f9fc;font-size:1.2rem;font-weight:800}.pad .soft{font-size:.85rem;color:var(--muted)}.err{color:var(--bad);min-height:1rem;margin-top:.45rem;font-weight:700;font-size:.85rem}
+.room{max-width:560px;margin:0 auto;padding:.55rem .75rem 6.2rem}
+.banner{background:#e8f0ff;border:1px solid #c7daf8;border-radius:12px;padding:.65rem .75rem;margin-bottom:.65rem;font-size:.86rem;font-weight:700;color:#1e3a6e;line-height:1.35}
+.meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:.45rem}.meta h1{margin:0;font-size:1.05rem;font-weight:800}.meta span{color:var(--muted);font-size:.8rem;font-weight:700}
+.tabs{display:flex;gap:.35rem;overflow:auto;margin-bottom:.55rem}.tab{flex:0 0 auto;border:1px solid var(--line);background:#fff;border-radius:999px;padding:.4rem .65rem;font-size:.78rem;font-weight:800}.tab.active{background:#e8f0ff;border-color:#c7daf8}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.hero{position:relative;height:120px;background:#d9e2ef;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+.badge{position:absolute;left:.55rem;top:.55rem;border-radius:999px;padding:.25rem .55rem;font-size:.7rem;font-weight:800;background:var(--goodbg);color:var(--good)}
+.badge.warn{background:var(--warnbg);color:var(--warn)}
+.body{padding:.7rem .75rem}.price{margin:0;font-size:1.4rem;font-weight:800}.addr{margin:.1rem 0 .45rem;font-size:.95rem;font-weight:700}.addr small{display:block;color:var(--muted);font-size:.8rem}
+.money{border:1px solid var(--line);border-radius:12px;background:#f7f9fc;padding:.65rem;margin:.5rem 0}.money h3{margin:0 0 .4rem;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.line{display:flex;justify-content:space-between;gap:.5rem;font-size:.84rem;font-weight:700;padding:.12rem 0}.line span{color:var(--muted);font-weight:600}
+.cf{margin-top:.45rem;padding-top:.45rem;border-top:1px dashed var(--line);display:flex;justify-content:space-between;font-weight:800}.cf.neg{color:var(--bad)}.cf.pos{color:var(--good)}
+.note{font-size:.8rem;color:var(--muted);font-weight:600;line-height:1.35;margin:.4rem 0 0}
+.why{margin:.5rem 0 0;font-size:.86rem;color:var(--muted);font-weight:600;line-height:1.35}
+.empty-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1rem;text-align:left}
+.empty-card h2{margin:0 0 .4rem;font-size:1.15rem}.empty-card p{margin:0 0 .55rem;color:var(--muted);font-weight:600;line-height:1.4;font-size:.92rem}
+.be{display:grid;grid-template-columns:1fr 1fr;gap:.35rem;margin-top:.5rem}.be div{background:#f7f9fc;border:1px solid var(--line);border-radius:10px;padding:.45rem;font-size:.78rem;font-weight:700}.be b{display:block;font-size:.9rem;color:var(--ink)}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(255,255,255,.97);border-top:1px solid var(--line);padding:.55rem .75rem calc(.55rem + env(safe-area-inset-bottom))}
+.sticky-inner{max-width:560px;margin:0 auto}.acts{display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:.4rem}.acts button{border:0;border-radius:12px;padding:.85rem .3rem;font-weight:800}.no{background:var(--badbg);color:var(--bad)}.maybe{background:var(--warnbg);color:var(--warn)}.yes{background:var(--goodbg);color:var(--good)}
+.nav{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:.35rem;margin-top:.4rem}.nav button,.nav a{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:.55rem;font-weight:800;font-size:.8rem;text-align:center}
+.stack{margin-top:.75rem;background:#fff;border:1px solid var(--line);border-radius:14px;padding:.7rem}.stack summary{font-weight:800;cursor:pointer}.item{display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:1px solid var(--line);font-size:.84rem}.empty{color:var(--muted)}
 </style>
 </head>
 <body>
-<div class="top">
-  <a class="brand" href="/"><img src="/assets/pt-mark.svg?v=t-simple-2" alt="" /> PROPERTY TRUE</a>
-  <a class="top-link" href="/">Main site</a>
-</div>
+<div class="top"><a class="brand" href="/"><img src="/assets/pt-mark.svg?v=t-simple-2" alt="" /> PROPERTY TRUE</a><a class="toplink" href="/">Site</a></div>
+<div id="gate" class="gate"><div class="box">
+<div style="color:var(--blue);font-size:.7rem;font-weight:800;letter-spacing:.12em">CASH FLOW FILTER ON</div>
+<h1>Deal Room</h1>
+<p>PIN pad. Only deals with cash-flow potential are shown.</p>
+<div class="dots"><div class="dot" id="d0"></div><div class="dot" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div></div>
+<div class="pad" id="pad">
+<button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button>
+<button type="button" data-k="4">4</button><button type="button" data-k="5">5</button><button type="button" data-k="6">6</button>
+<button type="button" data-k="7">7</button><button type="button" data-k="8">8</button><button type="button" data-k="9">9</button>
+<button type="button" class="soft" data-k="clear">Clear</button><button type="button" data-k="0">0</button><button type="button" class="soft" data-k="del">Del</button>
+</div><div class="err" id="err"></div></div></div>
 
-<div id="gate" class="gate">
-  <div class="box">
-    <div class="kicker">Private operator room</div>
-    <h1>Deal Room</h1>
-    <p>Tap the PIN with big buttons.<br>Then flip deals and mark interest.</p>
-    <div class="dots"><div class="dot" id="d0"></div><div class="dot" id="d1"></div><div class="dot" id="d2"></div><div class="dot" id="d3"></div></div>
-    <div class="pad" id="pad">
-      <button type="button" data-k="1">1</button><button type="button" data-k="2">2</button><button type="button" data-k="3">3</button>
-      <button type="button" data-k="4">4</button><button type="button" data-k="5">5</button><button type="button" data-k="6">6</button>
-      <button type="button" data-k="7">7</button><button type="button" data-k="8">8</button><button type="button" data-k="9">9</button>
-      <button type="button" class="soft" data-k="clear">Clear</button><button type="button" data-k="0">0</button><button type="button" class="soft" data-k="del">Delete</button>
-    </div>
-    <div class="err" id="err"></div>
-  </div>
-</div>
-
-<main id="room" class="wrap hidden">
-  <h1 class="head">Deal Room</h1>
-  <p class="sub" id="prog">Review 2–4 deals. Tap Pass / Maybe / Interested.</p>
-  <div class="tabs" id="tabs"></div>
-  <div id="mount"></div>
-
-  <div class="stack">
-    <section><h3>Interested</h3><div id="yes"><div class="empty">Empty</div></div></section>
-    <section><h3>Maybe</h3><div id="maybe"><div class="empty">Empty</div></div></section>
-    <section><h3>Passed</h3><div id="no"><div class="empty">Empty</div></div></section>
-    <button class="reset" type="button" id="resetBtn">Reset stack</button>
-  </div>
+<main id="room" class="room hidden">
+<div class="meta"><h1>Cash-flow deals</h1><span id="prog"></span></div>
+<div class="banner">Filter: 20% down · ~7.25% · rent − PITI − 20% buffer. Single SFRs under $1M in OC usually fail. Multi/income only if numbers can work.</div>
+<div class="tabs" id="tabs"></div>
+<div id="mount"></div>
+<details class="stack"><summary>Your stack</summary>
+<div id="yes" style="margin-top:.5rem"></div>
+<button class="reset" style="width:100%;margin-top:.5rem;border:1px solid var(--line);background:#fff;border-radius:10px;padding:.55rem;font-weight:800" type="button" id="resetBtn">Reset</button>
+</details>
 </main>
 
-<footer class="site-footer"><div class="inner">
-  <div style="font-weight:800;letter-spacing:.12em;margin-bottom:.5rem;color:#eef3fb">PROPERTY TRUE</div>
-  <div style="display:flex;flex-wrap:wrap;gap:.75rem 1rem;font-size:.9rem">
-    <a href="/">Home</a>
-    <a href="/truestorage-menifee.html">TrueStorage</a>
-    <a href="/deals/">Deal Room</a>
-    <a href="/access.html">Contact</a>
-  </div>
-</div></footer>
+<div id="sticky" class="sticky hidden"><div class="sticky-inner">
+<div class="acts">
+<button class="no" type="button" id="btnNo">Pass</button>
+<button class="maybe" type="button" id="btnMaybe">Maybe</button>
+<button class="yes" type="button" id="btnYes">Interested</button>
+</div>
+<div class="nav">
+<button type="button" id="prev">Prev</button>
+<button type="button" id="next">Next</button>
+<a id="listing" href="#" target="_blank" rel="noopener">Listing</a>
+</div></div></div>
 
 <script>
-const PIN='3121';
-let code='';
-let idx=0;
-const KEY='pt-deal-stack-v3';
-const DEALS=[
-  {id:'ev-001',address:'1234 S Everglade St',city:'Santa Ana, CA 92704',price:749900,beds:'3',baths:'2',sqft:'1,071',link:'https://www.redfin.com/CA/Santa-Ana/1234-S-Everglade-St-92704/home/4508341',verdict:'PASS',fast:'MAYBE',asis:'~$760K comps',rent:'~$3,030/mo',cf:'About -$2,400/mo',path:'Not winner at list',why:'Fair retail price. Practice only — not your first winner deal.'},
-  {id:'blackwood-001',address:'2035 E Blackwood',city:'Anaheim, CA 92806',price:699999,beds:'3',baths:'2',sqft:'1,183',link:'https://www.redfin.com/CA/Anaheim/2035-E-Blackwood-Ln-92806/home/4004497',verdict:'WATCH',fast:'MAYBE',asis:'Needs comps',rent:'TBD',cf:'TBD',path:'Possible A/B',why:'Under $700K Anaheim 3/2. Fits your capital box. Worth a glance.'},
-  {id:'pine-001',address:'112 E Pine St',city:'Santa Ana, CA 92701',price:699000,beds:'3',baths:'2',sqft:'757',link:'https://www.redfin.com/CA/Santa-Ana/112-E-Pine-St-92701',verdict:'WATCH',fast:'MAYBE',asis:'Needs comps',rent:'TBD',cf:'TBD',path:'Only if discounted',why:'Lower ask, tiny home. Only interesting if the discount is real.'},
-  {id:'main-001',address:'725 S Main St',city:'Santa Ana, CA 92701',price:825000,beds:'mixed',baths:'retail + house',sqft:'1,842',link:'https://www.redfin.com/CA/Santa-Ana/725-S-Main-St-92701/home/145383963',verdict:'PASS',fast:'KILL',asis:'Rough / wide',rent:'Retail unknown',cf:'Likely negative',path:'Not first winner',why:'Retail rehab risk. Skip for first winner unless a huge discount later.'}
-];
-
+const PIN='3121'; let code=''; let idx=0; const KEY='***';
+const DEALS=[{"id": "main", "address": "725 S Main St", "city": "Santa Ana, CA 92701", "price": 825000, "beds": "2 retail + house", "sqft": "1,842", "link": "https://www.redfin.com/CA/Santa-Ana/725-S-Main-St-92701/home/145383963", "rent": 6500, "type": "mixed", "why": "Cash-flow only if both commercial bays + house are leased at real numbers. Tour/contractor required.", "down": 165000, "loan": 660000, "pi": 4502, "tax_ins_mo": 825, "piti": 5327, "buffer": 1300, "cf": -127, "rate": 7.25, "max_cf_price": 805276, "verdict": "CF-POTENTIAL", "photo": ""}];
+const BE=[{"rent": 2800, "max_price": 288293}, {"rent": 3200, "max_price": 346929}, {"rent": 3600, "max_price": 405565}, {"rent": 4000, "max_price": 464201}, {"rent": 4500, "max_price": 537495}, {"rent": 5000, "max_price": 610790}, {"rent": 5500, "max_price": 681388}, {"rent": 6000, "max_price": 743332}];
 function $(id){return document.getElementById(id)}
-function money(n){return '$'+Number(n).toLocaleString()}
+function money(n){if(n==null||n===undefined)return '—'; n=Number(n); const s=n<0?'-':''; return s+'$'+Math.round(Math.abs(n)).toLocaleString()}
 function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{"yes":[],"no":[],"maybe":[]}')}catch(e){return{yes:[],no:[],maybe:[]}}}
 function save(s){localStorage.setItem(KEY,JSON.stringify(s));paintStack()}
 function paintDots(){for(let i=0;i<4;i++)$('d'+i).classList.toggle('on',i<code.length)}
 function setErr(m){$('err').textContent=m||''}
-function unlock(){
-  sessionStorage.setItem('pt-ops','1');
-  $('gate').classList.add('hidden');
-  $('room').classList.remove('hidden');
-  paintAll();
-}
-function tryPin(){
-  if(code.length<4){setErr('Enter all 4 digits');return}
-  if(code===PIN) unlock();
-  else {setErr('Wrong PIN'); code=''; paintDots()}
-}
-function press(k){
-  setErr('');
-  if(k==='clear'){code='';paintDots();return}
-  if(k==='del'){code=code.slice(0,-1);paintDots();return}
-  if(code.length>=4) return;
-  code += k; paintDots();
-  if(code.length===4) setTimeout(tryPin,80);
-}
+function unlock(){sessionStorage.setItem('pt-ops','1');$('gate').classList.add('hidden');$('room').classList.remove('hidden');$('sticky').classList.remove('hidden');paintAll()}
+function tryPin(){if(code.length<4){setErr('Need 4 digits');return} if(code===PIN)unlock(); else{setErr('Wrong PIN');code='';paintDots()}}
+function press(k){setErr('');if(k==='clear'){code='';paintDots();return} if(k==='del'){code=code.slice(0,-1);paintDots();return} if(code.length>=4)return; code+=k; paintDots(); if(code.length===4)setTimeout(tryPin,70)}
 $('pad').addEventListener('click',e=>{const b=e.target.closest('button[data-k]'); if(b) press(b.getAttribute('data-k'))});
-window.addEventListener('keydown',e=>{
-  if(!$('room').classList.contains('hidden')) return;
-  if(e.key>='0'&&e.key<='9') press(e.key);
-  if(e.key==='Backspace') press('del');
-  if(e.key==='Escape') press('clear');
-  if(e.key==='Enter') tryPin();
-});
+window.addEventListener('keydown',e=>{if(!$('room').classList.contains('hidden'))return; if(e.key>='0'&&e.key<='9')press(e.key); if(e.key==='Backspace')press('del'); if(e.key==='Enter')tryPin()});
 
-function badgeClass(v){
-  v=(v||'').toUpperCase();
-  if(v.includes('WATCH')||v.includes('MAYBE')) return 'watch';
-  if(v.includes('OFFER')) return 'offer';
-  return 'pass';
-}
 function paintTabs(){
-  $('tabs').innerHTML = DEALS.map((d,i)=>`
-    <button type="button" class="tab ${i===idx?'active':''}" data-i="${i}">
-      ${i+1}. ${d.address.split(' ').slice(0,3).join(' ')}
-      <small>${money(d.price)} · ${d.verdict}</small>
-    </button>`).join('');
-  $('tabs').querySelectorAll('.tab').forEach(btn=>{
-    btn.onclick=()=>{ idx=Number(btn.getAttribute('data-i')); paintAll(); };
-  });
+  if(!DEALS.length){$('tabs').innerHTML=''; return}
+  $('tabs').innerHTML=DEALS.map((d,i)=>`<button type="button" class="tab ${i===idx?'active':''}" data-i="${i}">${i+1}. ${d.address.split(' ').slice(0,3).join(' ')}</button>`).join('');
+  $('tabs').querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>{idx=+b.getAttribute('data-i');paintAll()});
 }
 function paintCard(){
+  $('prog').textContent = DEALS.length ? ((idx+1)+' / '+DEALS.length) : '0 deals';
+  if(!DEALS.length){
+    const rows = BE.map(x=>`<div><span>Rent ${money(x.rent)}/mo</span><b>Max buy ~${money(x.max_price)}</b></div>`).join('');
+    $('mount').innerHTML=`<div class="empty-card">
+      <h2>No cash-flow deals in the box right now</h2>
+      <p>At 20% down and ~7.25%, most OC houses under $1M are negative cash flow. I will only surface listings that can clear the filter (or multi/income with a real path).</p>
+      <p>Break-even buy price guide (so you know what “cash flow potential” requires):</p>
+      <div class="be">${rows}</div>
+      <p class="note">Example: to CF on ~$3,000 rent you generally need a purchase far below typical SA/Anaheim list prices — or more doors / higher rent.</p>
+    </div>`;
+    $('sticky').classList.add('hidden');
+    return;
+  }
+  $('sticky').classList.remove('hidden');
   const d=DEALS[idx];
-  $('prog').textContent = 'Deal '+(idx+1)+' of '+DEALS.length+' · use tabs or Next/Back';
-  $('mount').innerHTML = `
-  <article class="card">
-    <div class="hero">
-      <div class="badge ${badgeClass(d.verdict)}">${d.verdict}</div>
-      <div>Open listing for photos</div>
-    </div>
+  const pos=d.cf>=0;
+  $('mount').innerHTML=`<article class="card">
+    <div class="hero"><div class="badge ${pos?'':'warn'}">${d.verdict}</div>Income-style candidate</div>
     <div class="body">
       <p class="price">${money(d.price)}</p>
-      <div class="addr">${d.address}<br><small>${d.city}</small></div>
-      <div class="chips">
-        <span class="chip">${d.beds} bd · ${d.baths} ba · ${d.sqft} sf</span>
-        <span class="chip">${d.fast}</span>
-      </div>
-      <div class="stats">
-        <div class="stat"><b>${d.asis}</b><span>Comps / as-is</span></div>
-        <div class="stat"><b>${d.rent}</b><span>Rent estimate</span></div>
-        <div class="stat"><b>${d.cf}</b><span>Cash flow gut</span></div>
-        <div class="stat"><b>${d.path}</b><span>Winner path</span></div>
+      <div class="addr">${d.address}<small>${d.city} · ${d.beds} · ${d.sqft} sf</small></div>
+      <div class="money">
+        <h3>Money wrap @ 20% down</h3>
+        <div class="line"><span>Down payment</span><b>${money(d.down)}</b></div>
+        <div class="line"><span>Loan</span><b>${money(d.loan)}</b></div>
+        <div class="line"><span>P&I @ ${d.rate}%</span><b>${money(d.pi)}/mo</b></div>
+        <div class="line"><span>Tax+ins rough</span><b>${money(d.tax_ins_mo)}/mo</b></div>
+        <div class="line"><span>PITI</span><b>${money(d.piti)}/mo</b></div>
+        <div class="line"><span>Rent used</span><b>${money(d.rent)}/mo</b></div>
+        <div class="line"><span>20% buffer</span><b>${money(d.buffer)}/mo</b></div>
+        <div class="cf ${pos?'pos':'neg'}"><span>Cash flow gut</span><span>${money(d.cf)}/mo</span></div>
+        <div class="note">CF = rent − PITI − 20% buffer. For this rent, break-even buy is about <b>${money(d.max_cf_price)}</b>.</div>
       </div>
       <p class="why">${d.why}</p>
-      <div class="acts">
-        <button class="btn-no" type="button" data-v="no">Pass</button>
-        <button class="btn-maybe" type="button" data-v="maybe">Maybe</button>
-        <button class="btn-yes" type="button" data-v="yes">Interested</button>
-      </div>
-      <div class="nav">
-        <button type="button" id="prev">← Previous</button>
-        <button type="button" id="next">Next →</button>
-      </div>
-      <a class="listing" href="${d.link}" target="_blank" rel="noopener">Open full listing</a>
-    </div>
-  </article>`;
-  $('mount').querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>vote(b.getAttribute('data-v')));
-  $('prev').onclick=()=>{ idx=(idx-1+DEALS.length)%DEALS.length; paintAll(); };
-  $('next').onclick=()=>{ idx=(idx+1)%DEALS.length; paintAll(); };
+    </div></article>`;
+  $('listing').href=d.link;
 }
 function vote(kind){
-  const d=DEALS[idx];
-  const s=load();
-  ['yes','no','maybe'].forEach(k=>{ s[k]=s[k].filter(x=>x.id!==d.id); });
-  s[kind].unshift({id:d.id,address:d.address,price:d.price,link:d.link,verdict:d.verdict});
-  save(s);
-  idx=(idx+1)%DEALS.length;
-  paintAll();
+  if(!DEALS.length) return;
+  const d=DEALS[idx]; const s=load();
+  ['yes','no','maybe'].forEach(k=>{s[k]=s[k].filter(x=>x.id!==d.id)});
+  s[kind].unshift({id:d.id,address:d.address,price:d.price,link:d.link,cf:d.cf});
+  save(s); if(DEALS.length){idx=(idx+1)%DEALS.length} paintAll();
 }
 function paintStack(){
-  const s=load();
-  const paint=(k,el)=>{
-    const a=s[k];
-    el.innerHTML = a.length ? a.map(x=>`<div class="item"><div><b>${x.address}</b><div style="color:var(--muted)">${money(x.price)} · ${x.verdict}</div></div><a href="${x.link}" target="_blank" rel="noopener">View</a></div>`).join('') : '<div class="empty">Empty</div>';
-  };
-  paint('yes',$('yes')); paint('maybe',$('maybe')); paint('no',$('no'));
+  const s=load(); const a=s.yes||[];
+  $('yes').innerHTML = '<h3 style="margin:0 0 .25rem;font-size:.88rem">Interested</h3>' + (a.length?a.map(x=>`<div class="item"><div><b>${x.address}</b><div style="color:var(--muted)">${money(x.price)} · CF ${money(x.cf)}/mo</div></div><a href="${x.link}" target="_blank">View</a></div>`).join(''):'<div class="empty">Empty</div>');
 }
-function paintAll(){ paintTabs(); paintCard(); paintStack(); }
-$('resetBtn').onclick=()=>{ localStorage.removeItem(KEY); paintAll(); };
-
-if(sessionStorage.getItem('pt-ops')==='1'){
-  $('gate').classList.add('hidden');
-  $('room').classList.remove('hidden');
-  paintAll();
-} else {
-  paintDots();
-}
+function paintAll(){paintTabs();paintCard();paintStack()}
+$('btnNo').onclick=()=>vote('no');$('btnMaybe').onclick=()=>vote('maybe');$('btnYes').onclick=()=>vote('yes');
+$('prev').onclick=()=>{if(!DEALS.length)return;idx=(idx-1+DEALS.length)%DEALS.length;paintAll()};
+$('next').onclick=()=>{if(!DEALS.length)return;idx=(idx+1)%DEALS.length;paintAll()};
+$('resetBtn').onclick=()=>{localStorage.removeItem(KEY);paintAll()};
+if(sessionStorage.getItem('pt-ops')==='1') unlock(); else paintDots();
 </script>
-</body>
-</html>
+</body></html>
