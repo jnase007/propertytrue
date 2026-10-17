@@ -4201,3 +4201,21 @@ body.is-scrolled .site-header,
   z-index: auto !important;
 }
 main { z-index: 0 !important; }
+
+/* FOOTER_FULL_SITEMAP */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  max-width: 42rem;
+}
+.footer-links a {
+  white-space: nowrap;
+}
+.mobile-menu .container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-height: 80vh;
+  overflow: auto;
+}
