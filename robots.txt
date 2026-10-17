@@ -2,3 +2,8 @@ User-agent: *
 Allow: /
 
 Sitemap: https://propertytrue.com/sitemap.xml
+
+# Operator room
+User-agent: *
+Disallow: /deals/
+Disallow: /deals.html

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operator Deals — Property True</title>
+  <meta name="description" content="Private operator deal room for Property True principal acquisitions. Not a public marketplace." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="https://propertytrue.com/deals/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/assets/favicon.svg?v=t-simple-2" type="image/svg+xml" />
+  <link rel="icon" href="/assets/favicon.ico?v=t-simple-2" sizes="any" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=t-simple-2" />
+  <link rel="stylesheet" href="/styles.css?v=nav-bold-1" />
+  <style>
+    .gate { min-height: 70vh; display:flex; align-items:center; justify-content:center; padding: 2rem 1rem; }
+    .gate-card { max-width: 420px; width:100%; background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 2rem; text-align:center; }
+    .gate-card input { width:100%; margin: 1rem 0; padding: 0.9rem 1rem; border-radius: 10px; border:1px solid rgba(255,255,255,0.15); background:#0b0c10; color:#fff; font-size:1.25rem; letter-spacing:0.35em; text-align:center; }
+    .ops-hidden { display:none; }
+    .ops-grid { display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 1.25rem; }
+    @media (max-width: 900px) { .ops-grid { grid-template-columns: 1fr; } }
+    .ops-card { background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 1.1rem 1.15rem; }
+    .ops-card label { display:block; font-size:0.72rem; letter-spacing:0.04em; text-transform:uppercase; opacity:0.7; margin: 0.55rem 0 0.25rem; }
+    .ops-card input, .ops-card select, .ops-card textarea { width:100%; padding:0.7rem 0.8rem; border-radius:10px; border:1px solid rgba(255,255,255,0.12); background:#0b0c10; color:#fff; font: inherit; }
+    .ops-card textarea { min-height: 72px; }
+    .metrics { display:grid; grid-template-columns: repeat(3, 1fr); gap:0.65rem; }
+    @media (max-width: 700px) { .metrics { grid-template-columns: 1fr 1fr; } }
+    .metric { background: rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:0.75rem; }
+    .metric b { display:block; font-size:1.05rem; }
+    .metric span { display:block; font-size:0.72rem; opacity:0.65; }
+    .pill { display:inline-block; padding:0.35rem 0.7rem; border-radius:999px; font-size:0.75rem; font-weight:700; letter-spacing:0.04em; }
+    .pill-pass { background: rgba(52,211,153,0.15); color:#34d399; }
+    .pill-watch { background: rgba(251,191,36,0.15); color:#fbbf24; }
+    .pill-kill { background: rgba(248,113,113,0.15); color:#f87171; }
+    .copyout { white-space:pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:0.72rem; background:rgba(0,0,0,0.35); border-radius:10px; padding:0.85rem; border:1px solid rgba(255,255,255,0.08); }
+    .deal-row { border:1px solid rgba(255,255,255,0.1); border-radius:14px; padding:1rem; margin-bottom:0.75rem; }
+    .deal-row a { color: var(--gold-deep, #c4a35a); }
+    table.score td { padding:0.35rem 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:0.9rem; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-row">
+      <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"><img src="/assets/pt-mark.svg?v=t-simple-2" alt="" width="44" height="44" /></span><span class="brand-name"><span class="word-property">PROPERTY</span><span class="word-true">TRUE</span></span></a>
+      <nav class="nav-desktop">
+        <a href="/">Home</a>
+        <a href="/track-record.html">Track Record</a>
+        <a href="/thesis.html">Thesis</a>
+        <a href="/about.html">About</a>
+        <a class="btn btn-outline" href="/truestorage-menifee.html">Latest Offering</a>
+        <a class="btn btn-gold" href="/access.html">Contact Us</a>
+      </nav>
+      <button id="menuBtn" class="menu-btn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="gate" class="gate">
+      <div class="gate-card">
+        <div class="kicker" style="justify-content:center;">Private operator room</div>
+        <h2 style="margin:0.4rem 0 0.6rem; font-size:1.7rem;">Deals</h2>
+        <p style="opacity:0.75; margin:0;">Not a public marketplace. Enter PIN to open the analyzer.</p>
+        <form id="gateForm">
+          <input id="pin" type="password" inputmode="numeric" maxlength="4" placeholder="••••" autocomplete="off" />
+          <button class="btn btn-gold" type="submit" style="width:100%;">Enter</button>
+        </form>
+        <p id="gateErr" style="color:#f87171; display:none; margin-top:0.75rem;">Wrong PIN</p>
+      </div>
+    </div>
+
+    <div id="ops" class="ops-hidden">
+      <section class="page-hero" style="padding-bottom:1.5rem;">
+        <div class="bg-type bg-type-night" aria-hidden="true"></div>
+        <div class="container reveal">
+          <div class="kicker">Operator · Owned book</div>
+          <h1>Deal room.</h1>
+          <p>Winner rule: <strong>undervalued (A)</strong> or <strong>upgrade creates the win (B)</strong>. House-first. Hunt up to a year. Office bar: $1.4M sale + $5,500/mo CF. You review KILL / MAYBE / DEEP / OFFER.</p>
+          <div class="note" style="margin-top:1rem;">This page does not change the public brand site. Commercial chapters stay on TrueStorage / invitation rooms. Personal OC buys run through this analyzer.</div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top:0;">
+        <div class="container">
+          <div class="ops-grid">
+            <div class="ops-card">
+              <div class="kicker">Analyzer</div>
+              <label>Address</label>
+              <input id="address" value="1234 S Everglade St, Santa Ana" />
+              <label>Link</label>
+              <input id="link" value="https://www.redfin.com/CA/Santa-Ana/1234-S-Everglade-St-92704/home/4508341" />
+              <label>Type</label>
+              <select id="type">
+                <option value="house" selected>House</option>
+                <option value="multi">Multi / duplex-style</option>
+                <option value="mixed">Mixed / retail</option>
+              </select>
+              <label>List price</label>
+              <input id="list" type="number" value="749900" />
+              <label>Offer target</label>
+              <input id="offer" type="number" value="720000" />
+              <label>As-is comps mid</label>
+              <input id="asis" type="number" value="760000" />
+              <label>ARV after rehab</label>
+              <input id="arv" type="number" value="820000" />
+              <label>Rehab $</label>
+              <input id="rehab" type="number" value="25000" />
+              <label>Closing $</label>
+              <input id="close" type="number" value="18000" />
+              <label>Down %</label>
+              <input id="downPct" type="number" value="20" />
+              <label>Rate %</label>
+              <input id="rate" type="number" step="0.01" value="7.25" />
+              <label>Tax + ins / year</label>
+              <input id="taxins" type="number" value="11000" />
+              <label>Rent mid / mo</label>
+              <input id="rent" type="number" value="3030" />
+              <label>Powder available $</label>
+              <input id="powder" type="number" value="200000" />
+              <label>DOM</label>
+              <input id="dom" type="number" value="1" />
+              <label>Price cuts</label>
+              <input id="cuts" type="number" value="0" />
+              <label>Notes</label>
+              <textarea id="notes">Fresh list. Fair comps. Not a steal at list.</textarea>
+              <button class="btn btn-gold" style="width:100%; margin-top:1rem;" type="button" onclick="analyze()">Analyze deal</button>
+            </div>
+
+            <div class="ops-card">
+              <div id="verdict" style="margin-bottom:0.85rem;"></div>
+              <div class="metrics" id="metrics"></div>
+              <h3 style="margin:1.2rem 0 0.5rem; font-size:1rem;">Scorecard</h3>
+              <div id="scorecard"></div>
+              <h3 style="margin:1.2rem 0 0.5rem; font-size:1rem;">Sheet row</h3>
+              <div class="copyout" id="copyout">Run analyze.</div>
+              <p style="opacity:0.65; font-size:0.85rem; margin-top:0.75rem;">BUY bar: Winner 28+/35 + Path A or B + reserves left.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:2rem;">
+            <div class="kicker">Live shortlist (review)</div>
+            <h2 style="margin:0.3rem 0 1rem;">Already scored</h2>
+
+            <div class="deal-row">
+              <strong>1234 S Everglade St, Santa Ana · $749,900</strong><br />
+              <a href="https://www.redfin.com/CA/Santa-Ana/1234-S-Everglade-St-92704/home/4508341" target="_blank" rel="noopener">Redfin</a>
+              <p style="margin:0.5rem 0 0; opacity:0.85;">Comps mid ~$760k · rent ~$3,030 · at $720k offer + $25k rehab: CF about -$2.4k/mo after buffer. Analyzer: <b>PASS</b> (Winner ~21/35). Practice only — not first winner at list.</p>
+              <p style="margin:0.4rem 0 0;"><b>Your call:</b> KILL / MAYBE / DEEP / OFFER</p>
+            </div>
+
+            <div class="deal-row">
+              <strong>725 S Main St, Santa Ana · $825,000 mixed/retail</strong><br />
+              <a href="https://www.redfin.com/CA/Santa-Ana/725-S-Main-St-92701/home/145383963" target="_blank" rel="noopener">Redfin</a>
+              <p style="margin:0.5rem 0 0; opacity:0.85;">Rough retail risk · heavy rehab · not house-first. Analyzer: <b>PASS / KILL for first winner</b>.</p>
+              <p style="margin:0.4rem 0 0;"><b>Your call:</b> KILL / MAYBE / DEEP / OFFER</p>
+            </div>
+
+            <div class="note" style="margin-top:1rem;">
+              Sheet: <a href="https://docs.google.com/spreadsheets/d/1exThU0q0H30dIUG_WwBOXQ8sIv51hrX7LUqy4jWIWr8/edit" target="_blank" rel="noopener">house hunting 2026</a>
+              · No PropStream signup required to start
+              · Tinny runs scans; you only review
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand"><span class="word-property">PROPERTY</span><span class="word-true">TRUE</span></div>
+        <p class="footer-copy">Private operator tools live on separate pages. Public brand pages stay invitation-only capital.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/track-record.html">Track Record</a>
+        <a href="/thesis.html">Thesis</a>
+        <a href="/about.html">About</a>
+        <a href="/access.html">Contact</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+    <div class="container legal">
+      <p class="legal-copy"><strong>© <span id="year"></span> Property True.</strong> Operator planning tools on this page are internal decision aids only — not investment advice, not an offer of securities, and not a public deal board.</p>
+    </div>
+  </footer>
+
+  <div id="mobileMenu" class="mobile-menu">
+    <div class="container">
+      <a href="/">Home</a>
+      <a href="/track-record.html">Track Record</a>
+      <a href="/thesis.html">Thesis</a>
+      <a href="/truestorage-menifee.html">TrueStorage Menifee</a>
+      <a href="/about.html">About</a>
+      <a href="/access.html">Contact Us</a>
+    </div>
+  </div>
+
+  <script src="/site.js?v=t-letter-2"></script>
+  <script>
+    (function () {
+      const gate = document.getElementById('gate');
+      const ops = document.getElementById('ops');
+      const form = document.getElementById('gateForm');
+      const err = document.getElementById('gateErr');
+      if (sessionStorage.getItem('pt-ops') === '1') {
+        gate.style.display = 'none';
+        ops.classList.remove('ops-hidden');
+      }
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const pin = document.getElementById('pin').value.trim();
+        if (pin === '3121') {
+          sessionStorage.setItem('pt-ops', '1');
+          gate.style.display = 'none';
+          ops.classList.remove('ops-hidden');
+          analyze();
+        } else {
+          err.style.display = 'block';
+          document.getElementById('pin').value = '';
+        }
+      });
+    })();
+
+    function money(n){
+      if (!isFinite(n)) return '—';
+      const s = n < 0 ? '-' : '';
+      n = Math.abs(n);
+      if (n >= 1000000) return s + '$' + (n/1000000).toFixed(2) + 'M';
+      if (n >= 1000) return s + '$' + Math.round(n).toLocaleString();
+      return s + '$' + Math.round(n);
+    }
+    function pmt(principal, annual, years=30){
+      const r = annual/100/12, n = years*12;
+      if (principal <= 0) return 0;
+      if (r === 0) return principal/n;
+      return principal * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+    }
+    function analyze(){
+      const g = id => document.getElementById(id).value;
+      const num = id => parseFloat(g(id)) || 0;
+      const type = g('type');
+      const list = num('list'), offer = num('offer'), asis = num('asis'), arv = num('arv');
+      const rehab = num('rehab'), close = num('close'), downPct = num('downPct');
+      const rate = num('rate'), taxins = num('taxins'), rent = num('rent'), powder = num('powder');
+      const dom = num('dom'), cuts = num('cuts');
+      const price = offer > 0 ? offer : list;
+      const loan = price * (1 - downPct/100);
+      const down = price * (downPct/100);
+      const pi = pmt(loan, rate);
+      const piti = pi + taxins/12;
+      const buffer = rent * 0.20;
+      const cf = rent - piti - buffer;
+      const allIn = price + close + rehab;
+      const cashIn = down + close + rehab;
+      const reserves = powder - cashIn;
+      const discountPct = asis > 0 ? (asis - price) / asis * 100 : 0;
+      const rehabSpread = arv - allIn;
+      const pathA = discountPct >= 8;
+      const pathB = rehabSpread >= 40000 && rehab > 0;
+      const coc = cashIn > 0 ? (cf * 12) / cashIn * 100 : 0;
+
+      let fast = 0;
+      if (type === 'house') fast += 4; else if (type === 'multi') fast += 3;
+      if (price <= 800000) fast += 3; else if (price <= 900000) fast += 2; else if (price <= 1000000) fast += 1;
+      if (cuts >= 2) fast += 4; else if (cuts >= 1) fast += 2;
+      if (dom >= 60) fast += 4; else if (dom >= 30) fast += 2;
+      if (pathA || pathB) fast += 3;
+      if (type === 'mixed') fast = Math.min(fast, 8);
+      fast = Math.min(20, fast);
+      const gateName = fast <= 8 ? 'KILL' : fast <= 13 ? 'MAYBE' : 'DEEP';
+
+      const sDiscount = discountPct >= 12 ? 5 : discountPct >= 8 ? 4 : discountPct >= 3 ? 3 : discountPct >= 0 ? 2 : 1;
+      const sRehab = rehab > 0 && rehabSpread >= 60000 ? 5 : rehabSpread >= 40000 ? 4 : rehabSpread >= 20000 ? 3 : rehabSpread >= 0 ? 2 : 1;
+      const sExit = (cf > 0 && rehabSpread > 0) ? 5 : (cf > -300 || rehabSpread > 30000) ? 3 : 1;
+      const sCF = cf >= 400 ? 5 : cf >= 0 ? 4 : cf >= -500 ? 2 : 0;
+      const sControl = type === 'mixed' ? 3 : 5;
+      const sRes = reserves >= 50000 ? 5 : reserves >= 25000 ? 4 : reserves >= 10000 ? 3 : reserves >= 0 ? 2 : 0;
+      const sFin = 3;
+      const winner = sDiscount + sRehab + sExit + sCF + sControl + sRes + sFin;
+      let decision = 'PASS';
+      if (winner >= 28 && (pathA || pathB) && sControl >= 4 && reserves >= 0) decision = 'OFFER';
+      else if (winner >= 22 || gateName === 'DEEP') decision = 'WATCH';
+      if (type === 'mixed' && !pathA) decision = 'PASS';
+
+      const pill = decision === 'OFFER' ? 'pill-pass' : decision === 'WATCH' ? 'pill-watch' : 'pill-kill';
+      document.getElementById('verdict').innerHTML =
+        '<span class="pill ' + pill + '">' + decision + '</span>   Fast ' + fast + '/20 (' + gateName + ') · Winner ' + winner + '/35 · Path ' +
+        (pathA ? 'A' : '') + (pathA && pathB ? '+' : '') + (pathB ? 'B' : '') + (!pathA && !pathB ? 'NONE' : '');
+
+      document.getElementById('metrics').innerHTML = [
+        ['Discount to as-is', money(asis-price), discountPct.toFixed(1) + '%'],
+        ['All-in', money(allIn), 'price+close+rehab'],
+        ['ARV spread', money(rehabSpread), 'ARV - all-in'],
+        ['PITI', money(piti) + '/mo', 'P&I + tax/ins'],
+        ['Cash flow', money(cf) + '/mo', 'after 20% buffer'],
+        ['Cash in', money(cashIn), 'down+close+rehab'],
+        ['Reserves left', money(reserves), 'powder - cash in'],
+        ['Cash-on-cash', coc.toFixed(1) + '%', 'yr CF / cash in'],
+        ['Loan', money(loan), downPct + '% down']
+      ].map(function(m){ return '<div class="metric"><span>'+m[0]+'</span><b>'+m[1]+'</b><span>'+m[2]+'</span></div>'; }).join('');
+
+      const rows = [
+        ['Discount to value', sDiscount + '/5'],
+        ['Rehab / upgrade edge', sRehab + '/5'],
+        ['Exit (rent or flip)', sExit + '/5'],
+        ['Cash flow', sCF + '/5'],
+        ['Control', sControl + '/5'],
+        ['Reserves', sRes + '/5'],
+        ['Financing realism', sFin + '/5']
+      ];
+      document.getElementById('scorecard').innerHTML = '<table class="score" style="width:100%;">' + rows.map(function(r){ return '<tr><td>'+r[0]+'</td><td style="text-align:right;"><b>'+r[1]+'</b></td></tr>'; }).join('') + '</table>';
+
+      const line = [new Date().toISOString().slice(0,10), g('address'), g('link'), list, offer, asis, arv, rehab, Math.round(allIn), rent, Math.round(piti), Math.round(cf), Math.round(cashIn), coc.toFixed(1), pathA?'Y':'N', pathB?'Y':'N', fast, winner, decision, g('notes').replace(/\t|\n/g,' ')].join('\t');
+      document.getElementById('copyout').textContent = line;
+    }
+  </script>
+</body>
+</html>
