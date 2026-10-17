@@ -4219,3 +4219,97 @@ main { z-index: 0 !important; }
   max-height: 80vh;
   overflow: auto;
 }
+
+
+/* ===== FOOTER_STRUCTURE_V3: calm contrast + categories ===== */
+.site-footer {
+  background:
+    radial-gradient(900px 380px at 88% -8%, rgba(47, 111, 237, 0.10), transparent 52%),
+    linear-gradient(180deg, #1a2030 0%, #151b28 48%, #121826 100%);
+  border-top: 1px solid rgba(170, 190, 220, 0.10);
+  color: #c5cddc;
+  padding: 3.6rem 0 3.2rem;
+}
+.site-footer .footer-brand {
+  color: #eef3fb;
+}
+.site-footer .footer-copy {
+  color: #9aa6b8;
+  max-width: 26rem;
+}
+.footer-shell {
+  position: relative;
+  z-index: 2;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.9fr) minmax(0, 1.6fr);
+  gap: 2.2rem 2.5rem;
+  align-items: start;
+}
+@media (max-width: 920px) {
+  .footer-top { grid-template-columns: 1fr; gap: 1.8rem; }
+}
+.footer-dirs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem 1.5rem;
+}
+@media (max-width: 920px) {
+  .footer-dirs { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) {
+  .footer-dirs { grid-template-columns: 1fr; }
+}
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.42rem;
+}
+.footer-col h4 {
+  margin: 0 0 0.35rem;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8eb4ff;
+}
+.footer-col a {
+  color: #b7c2d3;
+  text-decoration: none;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+.footer-col a:hover {
+  color: #eef3fb;
+}
+.footer-bottom {
+  margin-top: 2.2rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(170, 190, 220, 0.10);
+}
+.site-footer .legal-copy {
+  color: #8b95a7;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  max-width: 58rem;
+  margin: 0;
+}
+.site-footer .legal-copy strong {
+  color: #c5cddc;
+  font-weight: 600;
+}
+.mobile-cat-title {
+  margin-top: 0.85rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #8eb4ff;
+}
+.mobile-cat-title:first-child { margin-top: 0; }
+.mobile-cats a {
+  color: #d5dbe6 !important;
+}
