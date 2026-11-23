@@ -504,7 +504,7 @@ if (compact) {
     document.body.classList.toggle("force-print", on);
     $("memo").setAttribute("aria-hidden", on ? "false" : "true");
     $("printBar").classList.toggle("hidden", !on);
-    if (on) window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
 
   function unlock() {
