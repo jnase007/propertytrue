@@ -6,4 +6,5 @@ Sitemap: https://propertytrue.com/sitemap.xml
 # Operator room
 User-agent: *
 Disallow: /deals/
+Disallow: /deals/calculator/
 Disallow: /deals.html
