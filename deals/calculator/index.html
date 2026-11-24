@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Underwrite — Property True</title>
+<link rel="icon" href="/assets/favicon.svg?v=t-simple-2" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="gate" class="gate">
+  <form id="gateForm" class="gate-card">
+    <div class="kicker">Operator tool</div>
+    <h1>Underwrite</h1>
+    <p>Private deal calculator. Same PIN as the Deal Room. This page is not a public offering.</p>
+    <label for="pin">PIN</label>
+    <input id="pin" name="pin" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="Operator PIN">
+    <button class="btn" type="submit">Enter</button>
+    <p id="gateErr" class="err" role="alert"></p>
+  </form>
+</div>
+
+<div id="printBar" class="print-bar hidden">
+  <button type="button" class="btn btn-ghost" id="backToEdit">Back to calculator</button>
+  <button type="button" class="btn" id="doPrint">Print / PDF</button>
+</div>
+
+<div id="app" class="app hidden">
+  <header class="top">
+    <a class="brand" href="/"><img src="/assets/pt-mark.svg?v=t-simple-2" alt="" width="22" height="22"> Property True</a>
+    <nav class="top-nav">
+      <a href="/deals/">Deal Room</a>
+      <a href="/">Site</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="page-head">
+      <div>
+        <div class="kicker">2–4 unit underwriting</div>
+        <h1>Deal calculator</h1>
+      </div>
+      <div class="head-actions">
+        <button type="button" class="btn btn-ghost" id="resetSample">Load sample</button>
+        <button type="button" class="btn" id="previewMemo">Memo preview</button>
+      </div>
+    </div>
+    <p class="banner" id="sampleBanner">Sample deal is loaded so the verdict is visible immediately. Replace it with the property you are underwriting. Actual rents drive the pass/fail. Pro forma is a separate column.</p>
+
+    <div id="verdict" class="verdict-wrap"></div>
+
+    <div class="layout">
+      <form id="dealForm" class="inputs" autocomplete="off">
+        <section class="card">
+          <h2>Saved deals</h2>
+          <p class="hint">Stored in this browser only.</p>
+          <label>Deal name <input id="name" value="Sample 4-unit"></label>
+          <div class="row-actions">
+            <button type="button" class="btn" id="saveDeal">Save</button>
+            <select id="dealSelect" aria-label="Saved deals"><option value="">Saved deals</option></select>
+            <button type="button" class="btn btn-ghost" id="loadDeal">Load</button>
+            <button type="button" class="btn btn-ghost" id="deleteDeal">Delete</button>
+          </div>
+          <p id="status" class="hint" role="status"></p>
+        </section>
+
+        <section class="card">
+          <h2>Property</h2>
+          <label>Address <input id="address" value="1234 Sample Avenue"></label>
+          <label>City <input id="city" value="Riverside, CA 92501"></label>
+          <div class="grid-3">
+            <label>Year built <input id="yearBuilt" value="1978"></label>
+            <label>Lot <input id="lot" value="7,200 sf"></label>
+            <label>Building sf <input id="buildingSqft" value="3,200"></label>
+          </div>
+          <label>Listing link <input id="listingUrl" type="url" placeholder="https:// — not scraped, shown as a link only"></label>
+          <div class="photo-box" id="photoBox">
+            <img id="photoPreview" alt="">
+            <div class="photo-empty" id="photoEmpty">No photo yet. Upload one, or paste a direct image URL. Listing pages are not fetched.</div>
+          </div>
+          <div class="row-actions">
+            <label class="file-btn">Upload photo <input id="photoFile" type="file" accept="image/*"></label>
+            <button type="button" class="btn btn-ghost" id="clearPhoto">Remove</button>
+          </div>
+          <label>Image URL <input id="photoUrl" type="url" placeholder="https://example.com/photo.jpg"></label>
+          <p id="photoMsg" class="hint"></p>
+        </section>
+
+        <section class="card">
+          <h2>Price and loan</h2>
+          <div class="grid-2">
+            <label>Purchase price <input id="price" inputmode="decimal" value="878000"></label>
+            <label>Down payment % <input id="downPct" inputmode="decimal" value="25"></label>
+            <label>Rate % <input id="rate" inputmode="decimal" value="7"></label>
+            <label>Amortization years <input id="termYears" inputmode="decimal" value="30"></label>
+            <label>Rehab $ <input id="rehab" inputmode="decimal" value="0"></label>
+            <label>Upfront reserves $ <input id="upfrontReserves" inputmode="decimal" value="0"></label>
+          </div>
+          <div class="mode-line">
+            <label><input type="checkbox" id="closingFollow" checked> Closing is a % of price</label>
+            <label class="inline">% <input id="closingPct" inputmode="decimal" value="2.5"></label>
+          </div>
+          <p class="hint" id="closingHint"></p>
+          <div id="closingDollarWrap">
+            <label>Closing $ <input id="closingDollars" inputmode="decimal" value="0"></label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Unit mix</h2>
+          <p class="hint">Up to 4 units. Monthly rent. Actual rents drive the verdict. Pro forma is the upside rent you would underwrite after lease-up.</p>
+          <div class="unit" id="units">
+            <div class="unit-head"><span>Unit</span><span>Beds/baths</span><span>Actual / mo</span><span>Pro forma / mo</span></div>
+            <div class="unit-row">
+              <input id="unitLabel0" aria-label="Unit 1 name" placeholder="Unit name" value="Unit 1">
+              <input id="unitBeds0" aria-label="Unit 1 beds" placeholder="Beds" value="2/1">
+              <input id="unitActual0" aria-label="Unit 1 actual rent per month" placeholder="Actual $/mo" inputmode="decimal" value="1706.25">
+              <input id="unitProforma0" aria-label="Unit 1 pro forma rent per month" placeholder="Pro forma $/mo" inputmode="decimal" value="1850">
+            </div>
+            <div class="unit-row">
+              <input id="unitLabel1" aria-label="Unit 2 name" placeholder="Unit name" value="Unit 2">
+              <input id="unitBeds1" aria-label="Unit 2 beds" placeholder="Beds" value="2/1">
+              <input id="unitActual1" aria-label="Unit 2 actual rent per month" placeholder="Actual $/mo" inputmode="decimal" value="1706.25">
+              <input id="unitProforma1" aria-label="Unit 2 pro forma rent per month" placeholder="Pro forma $/mo" inputmode="decimal" value="1850">
+            </div>
+            <div class="unit-row">
+              <input id="unitLabel2" aria-label="Unit 3 name" placeholder="Unit name" value="Unit 3">
+              <input id="unitBeds2" aria-label="Unit 3 beds" placeholder="Beds" value="2/1">
+              <input id="unitActual2" aria-label="Unit 3 actual rent per month" placeholder="Actual $/mo" inputmode="decimal" value="1706.25">
+              <input id="unitProforma2" aria-label="Unit 3 pro forma rent per month" placeholder="Pro forma $/mo" inputmode="decimal" value="1850">
+            </div>
+            <div class="unit-row">
+              <input id="unitLabel3" aria-label="Unit 4 name" placeholder="Unit name" value="Unit 4">
+              <input id="unitBeds3" aria-label="Unit 4 beds" placeholder="Beds" value="2/1">
+              <input id="unitActual3" aria-label="Unit 4 actual rent per month" placeholder="Actual $/mo" inputmode="decimal" value="1706.25">
+              <input id="unitProforma3" aria-label="Unit 4 pro forma rent per month" placeholder="Pro forma $/mo" inputmode="decimal" value="1850">
+            </div>
+          </div>
+          <p class="hint" id="rentHint"></p>
+        </section>
+
+        <section class="card">
+          <h2>Vacancy and expenses</h2>
+          <p class="hint">Sample defaults, all editable: 5% vacancy, taxes 1.1% of price, insurance $4,800, maintenance $4,000, management 8% of effective income, replacement reserves $1,200, utilities $0.</p>
+          <label>Vacancy % of gross rent <input id="vacancyPct" inputmode="decimal" value="5"></label>
+          <div class="mode-line">
+            <label><input type="checkbox" id="taxFollow" checked> Taxes follow price</label>
+            <label class="inline">% <input id="taxPct" inputmode="decimal" value="1.1"></label>
+          </div>
+          <p class="hint" id="taxHint"></p>
+          <div id="taxDollarWrap">
+            <label>Taxes $ / year <input id="taxesAnnual" inputmode="decimal" value="0"></label>
+          </div>
+          <div class="grid-2">
+            <label>Insurance $ / year <input id="insuranceAnnual" inputmode="decimal" value="4800"></label>
+            <label>Maintenance $ / year <input id="maintenanceAnnual" inputmode="decimal" value="4000"></label>
+            <label>Replacement reserves $ / year <input id="replacementReservesAnnual" inputmode="decimal" value="1200"></label>
+            <label>Utilities $ / year <input id="utilitiesAnnual" inputmode="decimal" value="0"></label>
+          </div>
+          <div class="mode-line">
+            <label><input type="checkbox" id="mgmtFollow" checked> Management is % of effective income</label>
+            <label class="inline">% <input id="managementPct" inputmode="decimal" value="8"></label>
+          </div>
+          <p class="hint" id="mgmtHint"></p>
+          <div id="mgmtDollarWrap">
+            <label>Management $ / year <input id="managementAnnual" inputmode="decimal" value="0"></label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Five-year and exit</h2>
+          <div class="grid-2">
+            <label>Rent growth % / year <input id="rentGrowthPct" inputmode="decimal" value="3"></label>
+            <label>Expense growth % / year <input id="expenseGrowthPct" inputmode="decimal" value="2"></label>
+            <label>Exit cap % <input id="exitCapPct" inputmode="decimal" value="6"></label>
+            <label>Selling cost % <input id="exitCostPct" inputmode="decimal" value="5"></label>
+          </div>
+          <p class="hint">Sale price is year-5 NOI divided by the exit cap. Hold is five years. Percentage management follows income. Other expenses grow at the expense rate, starting from this year’s dollars.</p>
+          <h3>Downside case</h3>
+          <div class="grid-2">
+            <label>Vacancy add (points) <input id="downsideVacancyAdd" inputmode="decimal" value="3"></label>
+            <label>Downside rent growth % <input id="downsideRentGrowthPct" inputmode="decimal" value="0"></label>
+            <label>Expense growth add (points) <input id="downsideExpenseGrowthAdd" inputmode="decimal" value="1"></label>
+            <label>Exit cap add (points) <input id="downsideExitCapAdd" inputmode="decimal" value="0.5"></label>
+          </div>
+          <label class="check-line"><input type="checkbox" id="showDownside"> Show the downside in the five-year table</label>
+        </section>
+
+        <section class="card">
+          <h2>Partners</h2>
+          <label>Sponsor fee % of price, paid at close to partner 1 <input id="sponsorFeePct" inputmode="decimal" value="0"></label>
+          <p class="hint">Operating cash flow is split by the cash-flow share. At sale, capital is returned first, then remaining profit is split by the profit share. A shortfall is shared by capital contributed.</p>
+          <div id="partnerList">
+            <div class="partner" data-partner="0">
+              <input class="p-name" aria-label="Partner 1 name" value="Sponsor">
+              <label>Capital $ <input class="p-capital" aria-label="Partner 1 capital" inputmode="decimal" value="60000"></label>
+              <label>Cash flow % <input class="p-cash" aria-label="Partner 1 cash flow share" inputmode="decimal" value="25"></label>
+              <label>Profit % <input class="p-profit" aria-label="Partner 1 profit share" inputmode="decimal" value="40"></label>
+            </div>
+            <div class="partner" data-partner="1">
+              <input class="p-name" aria-label="Partner 2 name" value="Investor">
+              <label>Capital $ <input class="p-capital" aria-label="Partner 2 capital" inputmode="decimal" value="181450"></label>
+              <label>Cash flow % <input class="p-cash" aria-label="Partner 2 cash flow share" inputmode="decimal" value="75"></label>
+              <label>Profit % <input class="p-profit" aria-label="Partner 2 profit share" inputmode="decimal" value="60"></label>
+            </div>
+            <div class="partner" data-partner="2" hidden>
+              <input class="p-name" aria-label="Partner 3 name" value="Partner 3">
+              <label>Capital $ <input class="p-capital" aria-label="Partner 3 capital" inputmode="decimal" value="0"></label>
+              <label>Cash flow % <input class="p-cash" aria-label="Partner 3 cash flow share" inputmode="decimal" value="0"></label>
+              <label>Profit % <input class="p-profit" aria-label="Partner 3 profit share" inputmode="decimal" value="0"></label>
+            </div>
+          </div>
+          <button type="button" class="btn btn-ghost" id="togglePartner">Add a third partner</button>
+        </section>
+
+        <section class="card">
+          <h2>Plan</h2>
+          <textarea id="plan" rows="4">Keep the four tenants in place and raise rents toward pro forma as leases turn. Light turnover in year 1. No ADU in the base case. Target a 45-day close.</textarea>
+          <h2>Risks</h2>
+          <textarea id="risks" rows="4">Local rent rules can limit turnover increases. A roof or sewer repair would use the reserves. Vacancy above 5% or a rate above 7% pushes DSCR further under 1.20. A higher exit cap is the main sale risk.</textarea>
+        </section>
+      </form>
+
+      <div class="results" id="results"></div>
+    </div>
+  </main>
+</div>
+
+<article id="memo" class="memo" aria-hidden="true"></article>
+
+<script src="underwrite.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
